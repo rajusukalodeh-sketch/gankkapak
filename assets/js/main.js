@@ -192,15 +192,23 @@
           bibViewListBtn.classList.add('active');
           bibViewGridBtn.classList.remove('active');
           bibContainer.classList.remove('view-grid');
-          bibContainer.classList.add('view-list');
+          bibContainer.classList.add('view-rack');
         });
 
         bibViewGridBtn.addEventListener('click', () => {
           bibViewGridBtn.classList.add('active');
           bibViewListBtn.classList.remove('active');
-          bibContainer.classList.remove('view-list');
+          bibContainer.classList.remove('view-rack');
           bibContainer.classList.add('view-grid');
         });
+
+        // Horizontal wheel scroll convenience when in rack mode
+        bibContainer.addEventListener('wheel', (e) => {
+          if (bibContainer.classList.contains('view-rack') && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            bibContainer.scrollLeft += e.deltaY;
+          }
+        }, { passive: false });
       }
 
       // ------------------------------------------------------------------------
