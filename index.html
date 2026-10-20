@@ -1,61 +1,88 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GANK KAPAK — Run Club</title>
-  <meta name="description" content="Komunitas lari independen. Lari jam 5 pagi, kami juga tidak yakin kenapa. Pelan boleh, telat boleh.">
-  <meta property="og:title" content="GANK KAPAK — Run Club">
-  <meta property="og:description" content="Lari santai, tenang, percaya diri. Tanpa basa-basi.">
+  <title>GANK KAPAK — Ini bukan habitatku.</title>
+  <meta name="description" content="Komunitas lari independen. Ini bukan habitatku. Kami lari karena rebahan sudah dicoba dan hasilnya sama saja.">
+  <meta property="og:title" content="GANK KAPAK — Ini bukan habitatku.">
+  <meta property="og:description" content="Komunitas lari independen. Kalcer, santai, rapi.">
   <meta property="og:type" content="website">
 
-  <!-- Typography: Bricolage Grotesque (Bold Character Display) & Instrument Sans (Sharp Editorial Body) -->
+  <!-- Google Fonts: Bricolage Grotesque 800 & Instrument Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       1. VARIABLES & COLOR PALETTE (MAX 4 COLORS, NO GRADIENTS)
+       1. PALET WARNA (TANPA GRADASI) & TOKENS
        ========================================================================== */
     :root {
-      --font-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Bricolage Grotesque', sans-serif;
+      --font-body: 'Instrument Sans', sans-serif;
       
-      /* Light Mode Palette */
-      --bg: #E9ECEF;
-      --bg-surface: #DEE2E6;
-      --text: #1A2024;
-      --text-muted: #59656E;
-      --border: rgba(26, 32, 36, 0.16);
-      --border-strong: #1A2024;
+      /* Mode Gelap Default */
+      --bg-base: #0A0F0B;
+      --dot-color: #15412A;
+      --green: #1F9D55;
+      --green-dark: #0F5B30;
+      --white-green: #EAF4EC;
       
-      /* Single Accent: Cobalt Blue */
-      --accent: #2F4BFF;
-      --accent-hover: #1B37EA;
-      --accent-contrast: #FFFFFF;
+      --text: #EAF4EC;
+      --text-muted: rgba(234, 244, 236, 0.65);
+      --border-thin: rgba(234, 244, 236, 0.15);
+      --border-solid: #EAF4EC;
       
-      --radius: 2px;
-      --nav-height: 64px;
-      --max-width: 1280px;
+      --container-max: 1120px;
+      --radius: 10px;
+      --nav-height: 68px;
+      --section-gap: 128px;
     }
 
+    @media (max-width: 768px) {
+      :root {
+        --section-gap: 72px;
+      }
+    }
+
+    /* Mode Terang (Mengikuti Pengaturan Perangkat) */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-base: #EEF4EF;
+        --dot-color: #CFE8D6;
+        --green: #1F9D55;
+        --green-dark: #0F5B30;
+        --white-green: #0A0F0B;
+        
+        --text: #0A0F0B;
+        --text-muted: rgba(10, 15, 11, 0.65);
+        --border-thin: rgba(10, 15, 11, 0.15);
+        --border-solid: #0A0F0B;
+      }
+    }
+
+    /* Manual Dark Mode Override jika dibutuhkan */
     [data-theme="dark"] {
-      /* Dark Mode Palette: Blue-Black (Not pure black) */
-      --bg: #12181C;
-      --bg-surface: #182026;
-      --text: #E9ECEF;
-      --text-muted: #8795A1;
-      --border: rgba(233, 236, 239, 0.16);
-      --border-strong: #E9ECEF;
-      
-      --accent: #2F4BFF;
-      --accent-hover: #4861FF;
-      --accent-contrast: #FFFFFF;
+      --bg-base: #0A0F0B;
+      --dot-color: #15412A;
+      --text: #EAF4EC;
+      --text-muted: rgba(234, 244, 236, 0.65);
+      --border-thin: rgba(234, 244, 236, 0.15);
+      --border-solid: #EAF4EC;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #EEF4EF;
+      --dot-color: #CFE8D6;
+      --text: #0A0F0B;
+      --text-muted: rgba(10, 15, 11, 0.65);
+      --border-thin: rgba(10, 15, 11, 0.15);
+      --border-solid: #0A0F0B;
     }
 
     /* ==========================================================================
-       2. RESET & BASE
+       2. LATAR BELAKANG POLKADOT (HANYA PADA BODY BACKGROUND)
        ========================================================================== */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -71,12 +98,15 @@
 
     body {
       font-family: var(--font-body);
-      background-color: var(--bg);
+      background-color: var(--bg-base);
+      background-image: radial-gradient(var(--dot-color) 10px, transparent 10.5px);
+      background-size: 72px 72px;
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.5;
-      font-size: 1.05rem;
+      font-size: 18px;
       overflow-x: hidden;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      font-variant-numeric: tabular-nums;
     }
 
     a {
@@ -90,66 +120,72 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--green);
       outline-offset: 3px;
     }
 
     .container {
       width: 100%;
-      max-width: var(--max-width);
+      max-width: var(--container-max);
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
     }
 
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 40px;
-      }
-    }
-
-    /* Editorial Section Spacing */
-    .section-py {
-      padding: 110px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    @media (max-width: 768px) {
-      .section-py {
-        padding: 70px 0;
-      }
-    }
-
-    /* Left-aligned Asymmetric Headings */
+    /* ==========================================================================
+       3. TIPOGRAFI & SISTEM GRID 3/12 + 9/12
+       ========================================================================== */
     h1, h2, h3, h4 {
       font-family: var(--font-display);
       font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.035em;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
+    }
+
+    p {
+      max-width: 60ch;
+    }
+
+    .section-block {
+      margin-top: var(--section-gap);
+      position: relative;
+    }
+
+    /* Pola Layout Seragam: Judul di Kolom Kiri (3/12), Isi Kolom Kanan (9/12) */
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    @media (min-width: 860px) {
+      .section-grid {
+        grid-template-columns: 3fr 9fr;
+        gap: 48px;
+      }
+    }
+
+    .col-title {
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
       color: var(--text);
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+      align-self: start;
     }
 
-    .section-title {
-      font-size: clamp(2.4rem, 6vw, 4.8rem);
-      margin-bottom: 18px;
-      max-width: 900px;
+    .col-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
 
-    .section-desc {
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
+    /* Kalimat Humor Datar Per Section */
+    .deadpan-quote {
+      font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 620px;
+      margin-bottom: 8px;
       line-height: 1.45;
-      margin-bottom: 48px;
-    }
-
-    /* Candid Film Image Styling */
-    img.film-grain {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(12%) contrast(106%);
     }
 
     /* Functional Buttons */
@@ -158,43 +194,230 @@
       align-items: center;
       justify-content: center;
       font-family: var(--font-body);
-      font-size: 0.95rem;
       font-weight: 600;
+      font-size: 16px;
       padding: 12px 24px;
       border-radius: var(--radius);
-      border: 1px solid var(--border-strong);
+      border: 1px solid var(--border-solid);
       background: transparent;
       color: var(--text);
       cursor: pointer;
-      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-      text-transform: none;
+      transition: opacity 150ms cubic-bezier(.2,.7,.2,1);
+      white-space: nowrap;
     }
 
     .btn:hover {
-      background: var(--text);
-      color: var(--bg);
+      opacity: 0.85;
     }
 
-    /* Single Accent Button */
-    .btn-accent {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--accent-contrast);
+    .btn-green-solid {
+      background: var(--green);
+      border-color: var(--green);
+      color: #0A0F0B;
+      font-weight: 700;
     }
 
-    .btn-accent:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
-      color: var(--accent-contrast);
+    .btn-green-solid:hover {
+      background: #198748;
+      border-color: #198748;
     }
 
     .btn-sm {
       padding: 8px 16px;
-      font-size: 0.88rem;
+      font-size: 15px;
+    }
+
+    /* Panels Solid Hijau (Hanya Jadwal dan Gabung) */
+    .panel-green {
+      background: var(--green);
+      color: #0A0F0B;
+      border-radius: var(--radius);
+      padding: clamp(28px, 5vw, 56px);
+    }
+
+    .panel-green h2, .panel-green h3, .panel-green h4 {
+      color: #0A0F0B;
+    }
+
+    .panel-green .col-title {
+      color: #0A0F0B;
+    }
+
+    .panel-green .deadpan-quote {
+      color: rgba(10, 15, 11, 0.75);
+    }
+
+    .panel-green .btn {
+      border-color: #0A0F0B;
+      color: #0A0F0B;
+    }
+
+    .panel-green .btn:hover {
+      background: #0A0F0B;
+      color: var(--green);
     }
 
     /* ==========================================================================
-       3. NAVBAR (THIN, CLEAN, SINGLE ACCENT BUTTON, FULLSCREEN MOBILE MENU)
+       4. UNSUR KEKINIAN RUN CLUB
+       ========================================================================== */
+
+    /* 1. NOMOR DADA (BIB) RACE DENGAN 4 PENITI */
+    .bib-card {
+      background: #EAF4EC;
+      color: #0A0F0B;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(10, 15, 11, 0.2);
+      transition: transform 220ms cubic-bezier(.2,.7,.2,1);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .bib-pin {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0A0F0B;
+      border: 1.5px solid #EAF4EC;
+      transition: transform 220ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    .bib-pin.top-left { top: 8px; left: 8px; }
+    .bib-pin.top-right { top: 8px; right: 8px; }
+    .bib-pin.bottom-left { bottom: 8px; left: 8px; }
+    .bib-pin.bottom-right { bottom: 8px; right: 8px; }
+
+    /* Animasi 4: Bib bereaksi saat disentuh / hover */
+    .bib-card:hover, .bib-card.active-tap {
+      transform: rotate(3deg);
+    }
+
+    .bib-card:hover .bib-pin.top-left, .bib-card.active-tap .bib-pin.top-left { transform: rotate(-8deg) scale(1.2); }
+    .bib-card:hover .bib-pin.top-right, .bib-card.active-tap .bib-pin.top-right { transform: rotate(8deg) scale(1.2); }
+    .bib-card:hover .bib-pin.bottom-left, .bib-card.active-tap .bib-pin.bottom-left { transform: rotate(-6deg) scale(1.2); }
+    .bib-card:hover .bib-pin.bottom-right, .bib-card.active-tap .bib-pin.bottom-right { transform: rotate(6deg) scale(1.2); }
+
+    .bib-header-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(10, 15, 11, 0.6);
+      text-align: center;
+    }
+
+    .bib-big-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      font-weight: 800;
+      text-align: center;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 12px 0 8px 0;
+    }
+
+    .bib-footer-name {
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-top: 1px dashed rgba(10, 15, 11, 0.3);
+      padding-top: 8px;
+    }
+
+    /* Runner of the Month Bib Besar */
+    .rotm-bib {
+      background: #EAF4EC;
+      color: #0A0F0B;
+      border-radius: var(--radius);
+      padding: clamp(28px, 4vw, 44px);
+      position: relative;
+      border: 2px solid #0A0F0B;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: center;
+      transition: transform 220ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    @media (min-width: 768px) {
+      .rotm-bib {
+        grid-template-columns: 200px 1fr;
+      }
+    }
+
+    .rotm-bib:hover {
+      transform: rotate(1deg);
+    }
+
+    /* 4. FOTO CETAK FILM DENGAN ROTASI HALUS */
+    .film-photo {
+      border: 6px solid #FFFFFF;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+      transition: transform 350ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    .film-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(105%) saturate(95%) sepia(8%);
+    }
+
+    .film-tilt-1 { transform: rotate(-1.5deg); }
+    .film-tilt-2 { transform: rotate(1.2deg); }
+    .film-tilt-3 { transform: rotate(-1.0deg); }
+
+    /* Animasi 5: Saat disentuh, rotasi kembali ke 0deg dan naik 4px */
+    .film-photo:hover, .film-photo.active-tap {
+      transform: translateY(-4px) rotate(0deg);
+    }
+
+    /* 2. GARIS RUTE SVG ALA STRAVA */
+    .route-svg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .route-line {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 2;
+      stroke-dasharray: 6 6;
+      opacity: 0.45;
+    }
+
+    .runner-dot {
+      fill: var(--green);
+      r: 4.5;
+    }
+
+    /* 3. STRIP GARIS FINIS (8PX CHECKERED) */
+    .finish-line-strip {
+      width: 100%;
+      height: 8px;
+      background: repeating-conic-gradient(#0A0F0B 0% 25%, #EAF4EC 0% 50%) 50% / 16px 16px;
+      display: block;
+    }
+
+    /* ==========================================================================
+       5. NAVBAR (STICKY HITAM 68PX)
        ========================================================================== */
     .navbar {
       position: fixed;
@@ -202,8 +425,8 @@
       left: 0;
       right: 0;
       height: var(--nav-height);
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      background: #0A0F0B;
+      border-bottom: 1px solid rgba(234, 244, 236, 0.12);
       z-index: 1000;
     }
 
@@ -214,18 +437,30 @@
       height: 100%;
     }
 
-    .brand-mark {
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #EAF4EC;
       text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
     }
 
     .nav-links {
       display: none;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
       list-style: none;
     }
 
@@ -236,14 +471,14 @@
     }
 
     .nav-links a {
-      font-size: 0.92rem;
+      font-size: 15px;
       font-weight: 600;
-      color: var(--text);
-      transition: color 0.15s ease;
+      color: #EAF4EC;
+      transition: color 150ms ease;
     }
 
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--accent);
+    .nav-links a:hover {
+      color: var(--green);
     }
 
     /* Dropdown "Lainnya" */
@@ -251,32 +486,34 @@
       position: relative;
     }
 
-    .dropdown-trigger {
+    .dropdown-btn {
       background: none;
       border: none;
-      font-size: 0.92rem;
+      color: #EAF4EC;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--text);
+      padding: 6px 0;
     }
 
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 14px);
-      left: 0;
+      left: -20px;
       width: 220px;
-      background: var(--bg);
-      border: 1px solid var(--border-strong);
+      background: #0A0F0B;
+      border: 1px solid rgba(234, 244, 236, 0.2);
+      border-radius: var(--radius);
       padding: 8px 0;
       display: flex;
       flex-direction: column;
       opacity: 0;
       visibility: hidden;
       transform: translateY(6px);
-      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
       z-index: 100;
     }
 
@@ -288,398 +525,327 @@
     }
 
     .dropdown-menu a {
-      padding: 9px 20px;
-      font-size: 0.88rem;
+      padding: 8px 20px;
+      font-size: 14px;
       font-weight: 500;
-      color: var(--text);
+      color: #EAF4EC;
     }
 
     .dropdown-menu a:hover {
-      background: var(--bg-surface);
-      color: var(--accent);
+      background: rgba(31, 157, 85, 0.15);
+      color: var(--green);
     }
 
-    .nav-right {
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .theme-toggle {
+    .menu-mobile-btn {
+      display: inline-flex;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
       background: none;
-      border: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 6px 8px;
-    }
-
-    .theme-toggle:hover {
-      color: var(--text);
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      background: none;
-      border: none;
+      border: 1px solid rgba(234, 244, 236, 0.3);
+      color: #EAF4EC;
+      padding: 6px 14px;
+      border-radius: var(--radius);
       cursor: pointer;
     }
 
     @media (min-width: 860px) {
-      .mobile-menu-btn {
+      .menu-mobile-btn {
         display: none;
       }
     }
 
-    .mobile-menu-btn span {
-      width: 100%;
-      height: 2px;
-      background: var(--text);
-    }
-
-    /* Fullscreen Mobile Menu with Massive Typography */
-    .mobile-overlay {
+    /* Mobile Sheet Menu */
+    .mobile-menu-modal {
       position: fixed;
       inset: 0;
-      background: var(--bg);
+      background: #0A0F0B;
       z-index: 2000;
-      padding: 30px 24px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
+      transition: opacity 200ms ease, visibility 200ms ease;
     }
 
-    .mobile-overlay.active {
+    .mobile-menu-modal.active {
       opacity: 1;
       visibility: visible;
     }
 
-    .mobile-overlay-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-    }
-
-    .mobile-overlay-links {
+    .mobile-nav-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 16px;
       margin: auto 0;
     }
 
-    .mobile-overlay-links a {
+    .mobile-nav-list a {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 8vw, 3.8rem);
+      font-size: clamp(1.8rem, 7vw, 3rem);
       font-weight: 800;
-      text-transform: uppercase;
-      line-height: 1;
-      letter-spacing: -0.03em;
+      color: #EAF4EC;
       display: block;
-      color: var(--text);
-    }
-
-    .mobile-overlay-links a:hover {
-      color: var(--accent);
+      line-height: 1;
     }
 
     /* ==========================================================================
-       4. BERANDA (HANYA 4 BAGIAN SAJA, MASING-MASING LEGA)
+       6. HERO (ANIMASI 1: PEMBUKA HERO MASKING + OVERSHOOT)
        ========================================================================== */
-
-    /* 1. HERO (ELEMEN BINTANG: NAMA RAKSASA DITIMPA FOTO CANDID) */
     .hero-section {
-      padding-top: calc(var(--nav-height) + 50px);
-      padding-bottom: 80px;
-      position: relative;
-    }
-
-    @keyframes heroReveal {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-container {
-      animation: heroReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .hero-headline-wrap {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .hero-giant-title {
-      font-size: clamp(4.6rem, 15vw, 13.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      word-break: break-word;
-      user-select: none;
-    }
-
-    /* Foto Candid Menimpa Sebagian Teks Raksasa */
-    .hero-overlap-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      align-items: end;
-      margin-top: -30px;
+      padding-top: calc(var(--nav-height) + 60px);
       position: relative;
       z-index: 2;
     }
 
-    @media (min-width: 860px) {
-      .hero-overlap-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 60px;
-        margin-top: -60px;
-      }
-    }
-
-    .hero-photo-wrap {
-      position: relative;
-      height: 380px;
-      border: 1px solid var(--border-strong);
-      background: var(--bg-surface);
+    .hero-title-box {
       overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    /* Baris 1: "Ini bukan" */
+    .hero-mask-wrap {
+      overflow: hidden;
+      display: block;
+    }
+
+    .hero-line-1 {
+      display: block;
+      font-size: clamp(3.8rem, 11vw, 9.2rem);
+      line-height: 0.9;
+      transform: translateY(110%);
+      animation: heroMaskUp 500ms cubic-bezier(.2,.7,.2,1) 100ms forwards;
+    }
+
+    /* Baris 2: "habitatku." berlari masuk dari kanan */
+    .hero-line-2 {
+      display: inline-block;
+      font-size: clamp(3.8rem, 11vw, 9.2rem);
+      line-height: 0.9;
+      color: var(--green);
+      transform: translateX(110vw);
+      animation: heroRunRight 650ms cubic-bezier(.2,.7,.2,1) 250ms forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes heroMaskUp {
+      from { transform: translateY(110%); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes heroRunRight {
+      0% { transform: translateX(100vw); }
+      75% { transform: translateX(-8px); } /* Overshoot */
+      100% { transform: translateX(0); }
+    }
+
+    .hero-subgrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
     }
 
     @media (min-width: 860px) {
-      .hero-photo-wrap {
-        height: 480px;
+      .hero-subgrid {
+        grid-template-columns: 1.1fr 0.9fr;
       }
     }
 
     .hero-lead-text {
-      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-      font-weight: 500;
-      line-height: 1.35;
-      color: var(--text);
-      max-width: 480px;
-      margin-bottom: 24px;
+      font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+      line-height: 1.4;
+      margin-bottom: 28px;
     }
 
-    .hero-action-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    /* Angka Komunitas: Satu baris teks biasa tanpa hitungan animasi */
-    .stats-single-line {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
+    .hero-btn-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .stats-single-line span {
-      display: inline-block;
-    }
-
-    /* 2. LARI BERIKUTNYA (PAPAN KEBERANGKATAN STASIUN) */
-    .departure-board {
-      width: 100%;
-      border-top: 2px solid var(--border-strong);
-      border-bottom: 2px solid var(--border-strong);
-      margin-top: 30px;
-    }
-
-    .departure-header-row {
-      display: grid;
-      grid-template-columns: 100px 100px 1.5fr 1fr 100px auto;
       gap: 16px;
-      padding: 12px 14px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg-surface);
     }
 
-    .departure-row {
+    /* ==========================================================================
+       7. SECTION 1: JADWAL (STRAVA ACTIVITY ROWS & TICKING NUMBERS)
+       ========================================================================== */
+    .strava-activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .strava-row {
+      background: rgba(10, 15, 11, 0.12);
+      border: 1px solid rgba(10, 15, 11, 0.25);
+      border-radius: var(--radius);
+      padding: 18px 22px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
-      padding: 24px 14px;
-      border-bottom: 1px solid var(--border);
       align-items: center;
-      font-size: 1.05rem;
-      font-weight: 600;
     }
 
-    @media (min-width: 860px) {
-      .departure-row {
-        grid-template-columns: 100px 100px 1.5fr 1fr 100px auto;
+    @media (min-width: 768px) {
+      .strava-row {
+        grid-template-columns: 140px 1.2fr 100px 110px 90px auto;
         gap: 16px;
       }
     }
 
-    .departure-row:last-child {
-      border-bottom: none;
+    .strava-day-time {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
     }
 
-    .departure-day {
+    .strava-num-big {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: 800;
     }
 
-    .departure-meta-label {
-      display: none;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    @media (max-width: 859px) {
-      .departure-header-row {
-        display: none;
-      }
-      .departure-meta-label {
-        display: block;
-      }
-    }
-
-    /* 3. DERETAN FOTO BERUKURAN TIDAK SERAGAM */
-    .photo-editorial-strip {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    @media (min-width: 768px) {
-      .photo-editorial-strip {
-        grid-template-columns: 1.4fr 0.9fr;
-      }
-    }
-
-    .photo-cell {
-      position: relative;
-      border: 1px solid var(--border-strong);
-      overflow: hidden;
-      background: var(--bg-surface);
-    }
-
-    .photo-cell.tall {
-      height: 480px;
-    }
-
-    .photo-cell.wide {
-      grid-column: 1 / -1;
-      height: 420px;
-    }
-
-    .photo-caption {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      background: var(--bg);
-      border: 1px solid var(--border-strong);
-      padding: 4px 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* 4. PENUTUP BERANDA */
-    .closing-block {
-      padding: 90px 0;
-      text-align: left;
-    }
-
-    .closing-phrase {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
-      line-height: 1.05;
-      margin-bottom: 28px;
-      max-width: 820px;
-    }
-
-    /* ==========================================================================
-       5. HALAMAN LAIN (MAKSIMAL 3 BLOK PER HALAMAN, TATA LETAK ASIMETRIS)
-       ========================================================================== */
-
-    /* EVENT (VERTICAL LIST: TANGGAL BESAR DI KIRI, FOTO DI KANAN) */
-    .event-entry {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding: 36px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: center;
-    }
-
-    @media (min-width: 860px) {
-      .event-entry {
-        grid-template-columns: 180px 1fr 260px;
-        gap: 40px;
-      }
-    }
-
-    .event-date-large {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 3.6rem);
-      font-weight: 800;
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-    }
-
-    .event-date-sub {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-top: 6px;
+    .strava-unit {
+      font-size: 0.8rem;
+      font-family: var(--font-body);
       font-weight: 500;
     }
 
-    .event-entry-title {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
+    /* ==========================================================================
+       8. SECTION 2: EVENT (DAFTAR VERTIKAL DENGAN TANGGAL BESAR DI KIRI)
+       ========================================================================== */
+    .event-ruled-list {
+      border-top: 1px solid var(--border-thin);
     }
 
-    .event-entry-desc {
-      font-size: 1rem;
+    .event-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-thin);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .event-row {
+        grid-template-columns: 130px 1fr auto;
+        gap: 28px;
+      }
+    }
+
+    .event-date-block {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 0.85;
+    }
+
+    .event-date-year {
+      font-size: 13px;
+      font-weight: 600;
       color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 16px;
+      margin-top: 4px;
     }
 
-    .event-thumb {
-      height: 170px;
-      border: 1px solid var(--border-strong);
-      overflow: hidden;
-      background: var(--bg-surface);
+    .event-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    /* GABUNG: TIGA LANGKAH SINGKAT + FORM PENDEK */
+    .event-loc {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       9. SECTION 3: GALERI (GRID 6 KOLOM ASIMETRIS & LIGHTBOX)
+       ========================================================================== */
+    .gallery-asym-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 860px) {
+      .gallery-asym-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .g-span-2 { grid-column: span 2; }
+      .g-span-3 { grid-column: span 3; }
+      .g-span-4 { grid-column: span 4; }
+    }
+
+    .gallery-fig {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 11, 0.94);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-frame {
+      max-width: 850px;
+      width: 100%;
+      border: 8px solid #FFFFFF;
+      background: #000;
+      position: relative;
+    }
+
+    .lightbox-frame img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-bottom-text {
+      padding: 12px 16px;
+      background: #FFFFFF;
+      color: #0A0F0B;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       10. SECTION 4: GABUNG (PANEL HIJAU + TIGA LANGKAH + FORM)
+       ========================================================================== */
     .join-steps-plain {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 28px;
-      margin-bottom: 48px;
+      gap: 18px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid rgba(10, 15, 11, 0.2);
+      padding-bottom: 24px;
     }
 
     @media (min-width: 768px) {
@@ -688,397 +854,351 @@
       }
     }
 
-    .join-step-block {
-      border-top: 2px solid var(--border-strong);
-      padding-top: 16px;
-    }
-
-    .join-step-num {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .join-form-clean {
-      border: 1px solid var(--border-strong);
-      padding: clamp(24px, 4vw, 40px);
-      background: var(--bg-surface);
-      max-width: 600px;
-    }
-
-    .field-group {
-      margin-bottom: 20px;
-    }
-
-    .field-label {
+    .step-unit strong {
       display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+      color: #0A0F0B;
+    }
+
+    .step-unit p {
+      font-size: 14px;
+      color: rgba(10, 15, 11, 0.75);
+    }
+
+    .form-flat {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 520px;
+    }
+
+    .form-group-flat label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-    }
-
-    .input-clean {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border-strong);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
-      border-radius: var(--radius);
-    }
-
-    .input-clean:focus {
-      border-color: var(--accent);
-    }
-
-    /* GALERI: GRID FOTO TANPA BINGKAI */
-    .frameless-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 4px;
-      margin-top: 30px;
-    }
-
-    .frameless-item {
-      height: 320px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-surface);
-    }
-
-    .frameless-item:hover img {
-      filter: grayscale(0%) contrast(110%);
-    }
-
-    /* Lightbox Tanpa Dekorasi */
-    .lightbox-plain {
-      position: fixed;
-      inset: 0;
-      background: rgba(18, 24, 28, 0.96);
-      z-index: 3000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .lightbox-plain.active {
-      display: flex;
-    }
-
-    .lightbox-inner {
-      max-width: 900px;
-      width: 100%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      position: relative;
-      background: #000;
-    }
-
-    .lightbox-inner img {
-      width: 100%;
-      max-height: 75vh;
-      object-fit: contain;
-      display: block;
-    }
-
-    .lightbox-caption-bar {
-      padding: 14px 18px;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 0.95rem;
-      font-weight: 500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      color: #fff;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    /* ANGGOTA: FOTO KOTAK BERUKURAN SAMA & RUNNER OF THE MONTH FOTO BESAR */
-    .members-strip-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .member-square-box {
-      border: 1px solid var(--border-strong);
-      background: var(--bg-surface);
-    }
-
-    .member-square-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border-strong);
-    }
-
-    .member-info-row {
-      padding: 12px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.9rem;
-    }
-
-    .member-name {
-      font-weight: 700;
-    }
-
-    .member-role {
-      color: var(--text-muted);
-      font-size: 0.82rem;
-    }
-
-    .rotm-editorial-split {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      margin-bottom: 48px;
-      border: 1px solid var(--border-strong);
-      background: var(--bg-surface);
-      overflow: hidden;
-    }
-
-    @media (min-width: 860px) {
-      .rotm-editorial-split {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .rotm-photo-box {
-      height: 440px;
-    }
-
-    .rotm-text-box {
-      padding: clamp(24px, 4vw, 40px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    /* BERITA GAYA MAJALAH */
-    .magazine-article-item {
-      padding: 30px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 768px) {
-      .magazine-article-item {
-        grid-template-columns: 1fr 160px;
-        align-items: center;
-      }
-    }
-
-    .article-headline {
-      font-size: 1.6rem;
       margin-bottom: 6px;
-      transition: color 0.15s ease;
+      color: #0A0F0B;
     }
 
-    .magazine-article-item:hover .article-headline {
-      color: var(--accent);
-    }
-
-    /* MERCHANDISE */
-    .merch-plain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 30px;
-    }
-
-    .merch-plain-card {
-      border: 1px solid var(--border-strong);
-      background: var(--bg-surface);
-    }
-
-    .merch-photo-wrap {
-      height: 280px;
-      background: #DEE2E6;
-      border-bottom: 1px solid var(--border-strong);
-    }
-
-    .merch-bottom-meta {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* SPONSOR MONOKROM SATU BARIS */
-    .sponsor-mono-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 36px;
-      padding: 24px 0;
-      border-top: 1px solid var(--border-strong);
-      border-bottom: 1px solid var(--border-strong);
-    }
-
-    .sponsor-mono-item {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      opacity: 0.75;
-      transition: opacity 0.15s ease;
-    }
-
-    .sponsor-mono-item:hover {
-      opacity: 1;
-      color: var(--accent);
-    }
-
-    /* FAQ ACCORDION (SATU ATAU DUA KALIMAT JAWABAN) */
-    .faq-ruled-list {
-      border-top: 1px solid var(--border-strong);
-    }
-
-    .faq-ruled-row {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-toggle-btn {
+    .input-flat {
       width: 100%;
-      padding: 22px 0;
-      background: none;
-      border: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-      font-family: var(--font-display);
-      font-size: 1.35rem;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      border: 1.5px solid #0A0F0B;
+      background: #EAF4EC;
+      color: #0A0F0B;
+      font-size: 16px;
+    }
+
+    /* Animasi 7: Form submit sweep chequered */
+    .btn-submit-sweep {
+      position: relative;
+      overflow: hidden;
+      background: #0A0F0B;
+      color: var(--green);
+      border: 1.5px solid #0A0F0B;
+      padding: 14px 24px;
       font-weight: 700;
-      color: var(--text);
       cursor: pointer;
     }
 
-    .faq-answer-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.5;
-    }
-
-    .faq-ruled-row.open .faq-answer-panel {
-      max-height: 120px;
-      padding-bottom: 20px;
-    }
-
-    /* LEADERBOARD TOP 5 LIST */
-    .leaderboard-clean-table {
+    .btn-submit-sweep::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      border-top: 1px solid var(--border-strong);
+      height: 100%;
+      background: repeating-conic-gradient(#0A0F0B 0% 25%, #EAF4EC 0% 50%) 50% / 14px 14px;
+      transform: translateX(-100%);
+      transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+      z-index: 1;
     }
 
-    .leader-row-clean {
-      display: grid;
-      grid-template-columns: 50px 1fr 120px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 1.05rem;
-      font-weight: 600;
+    .btn-submit-sweep.is-sweeping::before {
+      transform: translateX(0);
+    }
+
+    .btn-submit-sweep span {
+      position: relative;
+      z-index: 2;
     }
 
     /* ==========================================================================
-       6. FOOTER
+       11. SECTION 5: LAINNYA (BLOK BERTUMPUK DENGAN GARIS PEMISAH TIPIS)
        ========================================================================== */
-    .footer-minimal {
-      padding: 60px 0 40px 0;
-      background: var(--bg);
-      border-top: 1px solid var(--border-strong);
+    .sub-block {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border-thin);
     }
 
-    .footer-top-row {
+    .sub-block:last-child {
+      border-bottom: none;
+    }
+
+    .sub-block-title {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    /* Bibs Grid Pengurus */
+    .bibs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* Berita Tiga Judul Majalah */
+    .news-titles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .news-item {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: baseline;
-      gap: 24px;
-      margin-bottom: 40px;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border-thin);
     }
 
-    .footer-witty-line {
+    .news-item h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: none;
+    }
+
+    .news-tag {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* Merchandise Daftar Bersih */
+    .merch-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .merch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-thin);
+    }
+
+    /* Leaderboard Top 5 Teks Bersih */
+    .top5-table {
+      width: 100%;
+      border-top: 1px solid var(--border-thin);
+    }
+
+    .top5-row {
+      display: grid;
+      grid-template-columns: 40px 1fr 100px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-thin);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* FAQ Ruled Accordion 3 Pertanyaan */
+    .faq-accordion {
+      border-top: 1px solid var(--border-thin);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-thin);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 0;
+      text-align: left;
       font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 200ms cubic-bezier(.2,.7,.2,1);
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .faq-item.active .faq-panel {
+      max-height: 100px;
+      padding-bottom: 16px;
+    }
+
+    /* Sponsor 4 Kotak Monokrom */
+    .sponsor-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .sponsor-boxes {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .sponsor-box {
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 18px 12px;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
 
-    .footer-nav-links {
+    /* ==========================================================================
+       12. SECTION 6: KONTAK (4 BARIS BESAR BERUBAH HIJAU)
+       ========================================================================== */
+    .contact-links-stack {
       display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      list-style: none;
-      font-size: 0.95rem;
-      font-weight: 600;
+      flex-direction: column;
+      border-top: 1px solid var(--border-thin);
     }
 
-    .footer-nav-links a:hover {
-      color: var(--accent);
+    .contact-big-row {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-thin);
+      color: var(--text);
+      transition: color 150ms ease, transform 150ms ease;
     }
 
-    .footer-bottom-row {
+    .contact-big-row:hover, .contact-big-row:focus {
+      color: var(--green);
+      transform: translateX(10px);
+    }
+
+    /* ==========================================================================
+       13. FOOTER (PITA TEKS BERJALAN + STRIP GARIS FINIS 8PX)
+       ========================================================================== */
+    .site-footer {
+      margin-top: var(--section-gap);
+      background: #0A0F0B;
+      color: #EAF4EC;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animasi 6: Pita Teks Berjalan */
+    .marquee-wrapper {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 14px 0;
+      background: #0A0F0B;
+      border-top: 1px solid rgba(234, 244, 236, 0.15);
+      border-bottom: 1px solid rgba(234, 244, 236, 0.15);
+    }
+
+    .marquee-track {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      animation: marqueeRun 25s linear infinite;
+    }
+
+    @keyframes marqueeRun {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .footer-base-bar {
+      padding: 32px 0 40px 0;
+    }
+
+    .footer-split {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
+      gap: 18px;
+      font-size: 15px;
+      color: rgba(234, 244, 236, 0.7);
     }
 
-    /* Prefers-reduced-motion support */
+    /* ==========================================================================
+       14. PREFERS-REDUCED-MOTION (HORMATI ATURAN AKSESIBILITAS)
+       ========================================================================== */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+      .hero-line-1, .hero-line-2 {
+        animation: none !important;
+        transform: none !important;
+      }
+      .marquee-track {
+        animation: none !important;
+      }
+      .film-photo {
+        transition: none !important;
+      }
+      .bib-card {
+        transition: none !important;
+      }
+      body {
+        background-attachment: scroll !important;
       }
     }
   </style>
 </head>
-<body>
+<body data-theme="dark">
+
+  <!-- Garis Rute SVG Ala Strava Yang Berkelok di Sepanjang Halaman -->
+  <div class="route-svg-container" aria-hidden="true">
+    <svg id="routeSvg" width="100%" height="100%" viewBox="0 0 1000 4500" preserveAspectRatio="none">
+      <path id="routePath" class="route-line" d="M 500,120 Q 750,500 520,950 T 350,1600 T 680,2300 T 400,3100 T 600,3800 T 500,4480" />
+      <circle id="runnerDot" class="runner-dot" cx="500" cy="120" />
+    </svg>
+  </div>
 
   <!-- ==========================================================================
-       NAVBAR (THIN, CLEAN, SINGLE ACCENT BUTTON, FULLSCREEN MOBILE MENU)
+       NAVBAR (STICKY HITAM 68PX)
        ========================================================================== -->
   <header class="navbar">
     <div class="container nav-inner">
       
-      <!-- Brand -->
-      <a href="#beranda" class="brand-mark" aria-label="GANK KAPAK">
-        GANK KAPAK
+      <!-- Brand dengan Titik Hijau Kecil -->
+      <a href="#beranda" class="nav-brand">
+        <span class="nav-dot"></span>
+        <span>GANK KAPAK</span>
       </a>
 
       <!-- Desktop Links -->
-      <nav aria-label="Navigasi Utama">
+      <nav aria-label="Menu Navigasi">
         <ul class="nav-links">
           <li><a href="#jadwal">Jadwal</a></li>
           <li><a href="#event">Event</a></li>
@@ -1086,18 +1206,18 @@
           
           <!-- Dropdown "Lainnya" -->
           <li class="nav-dropdown">
-            <button class="dropdown-trigger" aria-haspopup="true">
+            <button class="dropdown-btn" aria-haspopup="true">
               Lainnya
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             <div class="dropdown-menu">
               <a href="#tentang">Tentang</a>
               <a href="#anggota">Anggota</a>
               <a href="#berita">Berita</a>
               <a href="#merchandise">Merchandise</a>
-              <a href="#sponsor">Sponsor</a>
-              <a href="#faq">FAQ</a>
               <a href="#leaderboard">Leaderboard</a>
+              <a href="#faq">FAQ</a>
+              <a href="#sponsor">Sponsor</a>
               <a href="#donasi">Donasi</a>
               <a href="#kontak">Kontak</a>
             </div>
@@ -1105,324 +1225,73 @@
         </ul>
       </nav>
 
-      <!-- Right Action & Single Accent Button -->
-      <div class="nav-right">
-        <!-- Theme Switcher (Text Clean) -->
-        <button id="themeToggleBtn" class="theme-toggle" aria-label="Ganti mode tampilan">
-          <span id="themeToggleLabel">Gelap</span>
-        </button>
-
-        <!-- Satu-satunya Tombol Berwarna Aksen -->
-        <a href="#gabung" class="btn btn-accent btn-sm">
-          Gabung
-        </a>
-
-        <!-- Hamburger Mobile Button -->
-        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Buka menu navigasi">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+      <!-- Right Action: Tombol Gabung Hijau Solid -->
+      <div class="nav-actions">
+        <button id="mobileMenuBtn" class="menu-mobile-btn">Menu</button>
+        <a href="#gabung" class="btn btn-green-solid btn-sm">Gabung</a>
       </div>
 
     </div>
   </header>
 
-  <!-- Fullscreen Mobile Menu (Massive Typography) -->
-  <div id="mobileOverlay" class="mobile-overlay" role="dialog" aria-modal="true" aria-label="Menu Layar Penuh">
-    <div class="mobile-overlay-header">
-      <span class="brand-mark">GANK KAPAK</span>
-      <button id="closeMobileBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--text); cursor: pointer; font-weight: 700;">
-        Tutup
-      </button>
+  <!-- Mobile Fullscreen Menu Sheet -->
+  <div id="mobileMenuModal" class="mobile-menu-modal" role="dialog" aria-modal="true" aria-label="Menu Mobile">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-thin); padding-bottom: 16px;">
+      <span class="nav-brand"><span class="nav-dot"></span> GANK KAPAK</span>
+      <button id="closeMobileMenuBtn" class="menu-mobile-btn">Tutup</button>
     </div>
 
-    <ul class="mobile-overlay-links">
-      <li><a href="#beranda" class="mob-link">Beranda</a></li>
+    <ul class="mobile-nav-list">
       <li><a href="#jadwal" class="mob-link">Jadwal</a></li>
       <li><a href="#event" class="mob-link">Event</a></li>
       <li><a href="#galeri" class="mob-link">Galeri</a></li>
-      <li><a href="#gabung" class="mob-link" style="color: var(--accent);">Gabung</a></li>
+      <li><a href="#gabung" class="mob-link" style="color: var(--green);">Gabung</a></li>
       <li><a href="#tentang" class="mob-link">Tentang</a></li>
       <li><a href="#anggota" class="mob-link">Anggota</a></li>
-      <li><a href="#merchandise" class="mob-link">Merchandise</a></li>
       <li><a href="#kontak" class="mob-link">Kontak</a></li>
     </ul>
 
-    <div style="font-size: 0.9rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 16px;">
-      Lari jam 5 pagi. Kami juga tidak yakin kenapa.
+    <div style="font-size: 14px; color: var(--text-muted); border-top: 1px solid var(--border-thin); padding-top: 16px;">
+      "Ini bukan habitatku."
     </div>
   </div>
 
   <main>
 
     <!-- ==========================================================================
-         BERANDA (BAGIAN 1: HERO - NAMA RAKSASA DITIMPA FOTO CANDID)
+         HERO SECTION (ANIMASI 1: PEMBUKA HERO DENGAN MASKING & OVERSHOOT)
          ========================================================================== -->
     <section class="hero-section" id="beranda">
-      <div class="container hero-container">
+      <div class="container">
         
-        <div class="hero-headline-wrap">
-          <h1 class="hero-giant-title">
-            GANK KAPAK
-          </h1>
+        <!-- Judul Raksasa Dua Baris -->
+        <div class="hero-title-box">
+          <div class="hero-mask-wrap">
+            <h1 class="hero-line-1">Ini bukan</h1>
+          </div>
+          <div>
+            <span class="hero-line-2">habitatku.</span>
+          </div>
         </div>
 
-        <div class="hero-overlap-grid">
-          <!-- Foto Candid Film-style Menimpa Teks -->
-          <div class="hero-photo-wrap">
-            <img src="assets/images/hero.jpg" alt="Pelari Gank Kapak di jalanan kota pagi hari" class="film-grain">
-          </div>
-
-          <!-- Tagline Datar & Tombol Gabung -->
+        <!-- Dua Kolom di Bawah Judul -->
+        <div class="hero-subgrid">
           <div>
             <p class="hero-lead-text">
-              Lari jam 5 pagi. Kami juga tidak yakin kenapa. Pelan boleh. Telat boleh. Tidak datang, ya sayang.
+              Kami lari karena rebahan sudah dicoba dan hasilnya sama saja.
             </p>
 
-            <div class="hero-action-row">
-              <a href="#gabung" class="btn btn-accent">
-                Gabung
-              </a>
-              <a href="#jadwal" class="btn">
-                Lihat rute
-              </a>
-            </div>
-
-            <!-- Satu baris teks statistik biasa (Tanpa hitungan animasi) -->
-            <div class="stats-single-line">
-              <span>380 pelari aktif</span>
-              <span>/</span>
-              <span>48.500 km bersama</span>
-              <span>/</span>
-              <span>52 race selesai</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         BERANDA (BAGIAN 2: LARI BERIKUTNYA - PAPAN KEBERANGKATAN STASIUN)
-         ========================================================================== -->
-    <section class="section-py" id="jadwal">
-      <div class="container">
-        
-        <h2 class="section-title">Lari Berikutnya</h2>
-        <p class="section-desc">
-          Jadwal rutin mingguan. Tanpa registrasi rumit, cukup datang tepat waktu di titik kumpul.
-        </p>
-
-        <!-- Departure Board Format -->
-        <div class="departure-board">
-          <div class="departure-header-row">
-            <div>Hari</div>
-            <div>Waktu</div>
-            <div>Titik Kumpul</div>
-            <div>Latihan</div>
-            <div>Level</div>
-            <div>Aksi</div>
-          </div>
-
-          <!-- Baris 1: Kamis Rutin -->
-          <div class="departure-row">
-            <div>
-              <span class="departure-meta-label">Hari</span>
-              <span class="departure-day">KAMIS</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Waktu</span>
-              <span>19.00 WIB</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Titik Kumpul</span>
-              <span>Pendopo Basecamp Paijo</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Latihan</span>
-              <span>Easy Run 5K - 7K</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Level</span>
-              <span>Santai</span>
-            </div>
-            <div>
-              <a href="https://maps.google.com/?q=Basecamp+Paijo" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Lihat rute
-              </a>
+            <div class="hero-btn-row">
+              <a href="#gabung" class="btn btn-green-solid">Gabung</a>
+              <a href="#jadwal" class="btn">Lihat jadwal</a>
             </div>
           </div>
 
-          <!-- Baris 2: Minggu Pagi -->
-          <div class="departure-row">
-            <div>
-              <span class="departure-meta-label">Hari</span>
-              <span class="departure-day">MINGGU</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Waktu</span>
-              <span>05.45 WIB</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Titik Kumpul</span>
-              <span>Pintu Timur CFD Taman Kota</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Latihan</span>
-              <span>Sunday Long Run 10K - 21K</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Level</span>
-              <span>Sedang</span>
-            </div>
-            <div>
-              <a href="https://maps.google.com/?q=Taman+Kota" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Lihat rute
-              </a>
-            </div>
-          </div>
-
-          <!-- Baris 3: Selasa Malam -->
-          <div class="departure-row">
-            <div>
-              <span class="departure-meta-label">Hari</span>
-              <span class="departure-day">SELASA</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Waktu</span>
-              <span>19.15 WIB</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Titik Kumpul</span>
-              <span>Tribun Barat Stadion Atletik</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Latihan</span>
-              <span>Track Interval & Drills</span>
-            </div>
-            <div>
-              <span class="departure-meta-label">Level</span>
-              <span>Ngebut</span>
-            </div>
-            <div>
-              <a href="https://maps.google.com/?q=Stadion+Atletik" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Lihat rute
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         BERANDA (BAGIAN 3: DOKUMENTASI FOTO BERUKURAN TIDAK SERAGAM)
-         ========================================================================== -->
-    <section class="section-py" id="galeri-preview">
-      <div class="container">
-        
-        <h2 class="section-title">Dokumentasi Jalanan</h2>
-        <p class="section-desc">
-          Bukan pose studio. Rekaman nyata keringat, nafas habis, dan sarapan setelah garis finish.
-        </p>
-
-        <div class="photo-editorial-strip">
-          <div class="photo-cell tall">
-            <img src="assets/images/basecamp.jpg" alt="Malam hari di Basecamp Paijo" class="film-grain">
-            <span class="photo-caption">Basecamp Paijo / 21.04 WIB</span>
-          </div>
-
-          <div class="photo-cell tall">
-            <img src="assets/images/runner-of-month.jpg" alt="Pelari di bawah sinar matahari" class="film-grain">
-            <span class="photo-caption">KM 9.8 / Pagi</span>
-          </div>
-
-          <div class="photo-cell wide">
-            <img src="assets/images/hero.jpg" alt="Lari bersama di pusat kota" class="film-grain">
-            <span class="photo-caption">Rute Sudirman / 06.12 WIB</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         BERANDA (BAGIAN 4: PENUTUP SATU KALIMAT DAN TOMBOL GABUNG)
-         ========================================================================== -->
-    <section class="section-py closing-block">
-      <div class="container">
-        
-        <h2 class="closing-phrase">
-          Pelan boleh. Telat boleh. Tidak datang, ya sayang.
-        </h2>
-
-        <a href="#gabung" class="btn btn-accent" style="font-size: 1.1rem; padding: 14px 32px;">
-          Gabung
-        </a>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: EVENT & RACE (DAFTAR VERTIKAL, FOTO DI KANAN)
-         ========================================================================== -->
-    <section class="section-py" id="event">
-      <div class="container">
-        
-        <h2 class="section-title">Event & Race</h2>
-        <p class="section-desc">Agenda balapan resmi dan perjalanan squad ke luar kota.</p>
-
-        <!-- Event 1 -->
-        <article class="event-entry">
+          <!-- Satu Foto Cetak Film Besar (Rotasi Halus Maksimal 2 Derajat) -->
           <div>
-            <div class="event-date-large">14 NOV</div>
-            <div class="event-date-sub">2026 / 19.30 WIB</div>
-          </div>
-          <div>
-            <h3 class="event-entry-title">Gank Kapak 2nd Anniversary Run 7K</h3>
-            <p class="event-entry-desc">
-              Lari malam menyusuri perimeter kota. Dibatasi 250 pelari demi keselamatan di jalan umum. Selesai lari langsung makan bersama.
-            </p>
-            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20daftar%20Anniversary%20Run" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-              Daftar
-            </a>
-          </div>
-          <div class="event-thumb">
-            <img src="assets/images/hero.jpg" alt="Anniversary run thumbnail" class="film-grain">
-          </div>
-        </article>
-
-        <!-- Event 2 -->
-        <article class="event-entry">
-          <div>
-            <div class="event-date-large">20 DES</div>
-            <div class="event-date-sub">2026 / 05.00 WIB</div>
-          </div>
-          <div>
-            <h3 class="event-entry-title">Ekspedisi Borobudur Marathon</h3>
-            <p class="event-entry-desc">
-              Perjalanan bersama ke Magelang. Kategori 10K, Half Marathon, dan Full Marathon. Akomodasi bersama dan pacer internal.
-            </p>
-            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20gabung%20Ekspedisi%20Borobudur" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-              Gabung squad
-            </a>
-          </div>
-          <div class="event-thumb">
-            <img src="assets/images/basecamp.jpg" alt="Borobudur squad thumbnail" class="film-grain">
-          </div>
-        </article>
-
-        <!-- Event Lama Dilipat -->
-        <div style="margin-top: 36px;">
-          <button id="toggleArchiveBtn" class="btn btn-sm">
-            Lihat arsip event
-          </button>
-          <div id="eventArchivePanel" style="display: none; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px;">
-            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
-              <strong>Maybank Marathon Bali 2026 (Agustus):</strong> 32 pelari finisher tanpa cedera.<br>
-              <strong>Pocari Sweat Run (Juni):</strong> 60 anggota turun di kategori 10K dan Half Marathon.
-            </p>
+            <div class="film-photo film-tilt-1" style="height: 380px;">
+              <img src="assets/images/hero.jpg" alt="Anggota lari pagi di jalanan kota">
+            </div>
           </div>
         </div>
 
@@ -1430,201 +1299,297 @@
     </section>
 
     <!-- ==========================================================================
-         HALAMAN LAIN: GALERI (GRID TANPA BINGKAI, LIGHTBOX, FILTER TEKS)
+         SECTION 1: JADWAL LARI (PANEL SOLID HIJAU + AKTIVITAS ALA STRAVA)
          ========================================================================== -->
-    <section class="section-py" id="galeri">
+    <section class="section-block" id="jadwal">
       <div class="container">
         
-        <h2 class="section-title">Galeri</h2>
-        
-        <!-- Filter Teks Sederhana -->
-        <div style="display: flex; gap: 20px; font-size: 0.95rem; font-weight: 600; margin-bottom: 24px;">
-          <button class="gallery-filter-link active" data-filter="all" style="background: none; border: none; cursor: pointer; color: var(--accent);">Semua</button>
-          <button class="gallery-filter-link" data-filter="kamis" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">Kamis Malam</button>
-          <button class="gallery-filter-link" data-filter="minggu" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">Minggu Pagi</button>
-          <button class="gallery-filter-link" data-filter="race" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">Race Day</button>
-        </div>
+        <div class="panel-green" id="jadwalPanel">
+          <div class="section-grid">
+            
+            <div class="col-title">
+              JADWAL
+            </div>
 
-        <div class="frameless-gallery">
-          <div class="frameless-item" data-cat="minggu" onclick="openLightboxRaw('assets/images/hero.jpg', 'Minggu Pagi / Sudirman Loop')">
-            <img src="assets/images/hero.jpg" alt="Minggu Pagi" class="film-grain">
-          </div>
-          <div class="frameless-item" data-cat="kamis" onclick="openLightboxRaw('assets/images/basecamp.jpg', 'Kamis Malam / Pendopo Basecamp Paijo')">
-            <img src="assets/images/basecamp.jpg" alt="Basecamp Paijo" class="film-grain">
-          </div>
-          <div class="frameless-item" data-cat="race" onclick="openLightboxRaw('assets/images/runner-of-month.jpg', 'Finish Line 10K / Selesai Tanpa Nyerah')">
-            <img src="assets/images/runner-of-month.jpg" alt="Runner of month" class="film-grain">
-          </div>
-          <div class="frameless-item" data-cat="kamis" onclick="openLightboxRaw('assets/images/jersey.jpg', 'Seragam Resmi / Bahan Ringan Cepat Kering')">
-            <img src="assets/images/jersey.jpg" alt="Apparel" class="film-grain">
+            <div class="col-content">
+              <div class="deadpan-quote">
+                Pagi buta bangun demi lari, siang ngantuk di kantor.
+              </div>
+
+              <!-- Baris Aktivitas Ala Strava -->
+              <div class="strava-activity-list">
+                
+                <!-- Baris 1: Kamis -->
+                <div class="strava-row">
+                  <div class="strava-day-time">
+                    KAMIS 19.00
+                  </div>
+                  <div>
+                    <strong>Pendopo Basecamp Paijo</strong>
+                    <div style="font-size: 13px; opacity: 0.8;">Easy Recovery Run keliling kota</div>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-km" data-target="5.0">0.0</span>
+                    <span class="strava-unit">KM</span>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-pace" data-target="6:30">0:00</span>
+                    <span class="strava-unit">/KM</span>
+                  </div>
+                  <div>
+                    <strong>Santai</strong>
+                  </div>
+                  <div>
+                    <a href="https://maps.google.com/?q=Basecamp+Paijo" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Lihat rute</a>
+                  </div>
+                </div>
+
+                <!-- Baris 2: Minggu -->
+                <div class="strava-row">
+                  <div class="strava-day-time">
+                    MINGGU 05.45
+                  </div>
+                  <div>
+                    <strong>Pintu Timur CFD Taman Kota</strong>
+                    <div style="font-size: 13px; opacity: 0.8;">Sunday Long Run aerobik</div>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-km" data-target="15.0">0.0</span>
+                    <span class="strava-unit">KM</span>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-pace" data-target="6:00">0:00</span>
+                    <span class="strava-unit">/KM</span>
+                  </div>
+                  <div>
+                    <strong>Sedang</strong>
+                  </div>
+                  <div>
+                    <a href="https://maps.google.com/?q=Taman+Kota" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Lihat rute</a>
+                  </div>
+                </div>
+
+                <!-- Baris 3: Selasa -->
+                <div class="strava-row">
+                  <div class="strava-day-time">
+                    SELASA 19.15
+                  </div>
+                  <div>
+                    <strong>Tribun Barat Stadion Atletik</strong>
+                    <div style="font-size: 13px; opacity: 0.8;">Track Interval & Cadence Drills</div>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-km" data-target="7.0">0.0</span>
+                    <span class="strava-unit">KM</span>
+                  </div>
+                  <div>
+                    <span class="strava-num-big ticker-pace" data-target="4:55">0:00</span>
+                    <span class="strava-unit">/KM</span>
+                  </div>
+                  <div>
+                    <strong>Ngebut</strong>
+                  </div>
+                  <div>
+                    <a href="https://maps.google.com/?q=Stadion+Atletik" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Lihat rute</a>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Lightbox Sederhana Tanpa Dekorasi -->
-    <div id="rawLightbox" class="lightbox-plain" role="dialog" aria-modal="true">
-      <div class="lightbox-inner">
-        <button class="lightbox-close" onclick="closeLightboxRaw()">Tutup [ESC]</button>
-        <img id="lightboxRawImg" src="" alt="Detail foto">
-        <div class="lightbox-caption-bar">
-          <span id="lightboxRawText">Keterangan foto</span>
+    <!-- ==========================================================================
+         SECTION 2: EVENT (DAFTAR VERTIKAL, TANGGAL BESAR DI KIRI)
+         ========================================================================== -->
+    <section class="section-block" id="event">
+      <div class="container">
+        
+        <div class="section-grid">
+          <div class="col-title">
+            EVENT
+          </div>
+
+          <div class="col-content">
+            <div class="deadpan-quote">
+              Daftar race biar ada alasan beli sepatu baru.
+            </div>
+
+            <div class="event-ruled-list">
+              <div class="event-row">
+                <div class="event-date-block">
+                  14 NOV
+                  <div class="event-date-year">2026 / 19.30 WIB</div>
+                </div>
+                <div>
+                  <div class="event-name">Gank Kapak 2nd Anniversary Night Run 7K</div>
+                  <div class="event-loc">Basecamp Paijo City Loop • Kuota 250 Pelari</div>
+                </div>
+                <div>
+                  <a href="https://wa.me/6281234567890?text=Daftar%20Anniversary%207K" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Daftar</a>
+                </div>
+              </div>
+
+              <div class="event-row">
+                <div class="event-date-block">
+                  20 DES
+                  <div class="event-date-year">2026 / 05.00 WIB</div>
+                </div>
+                <div>
+                  <div class="event-name">Ekspedisi Squad Borobudur Marathon</div>
+                  <div class="event-loc">Magelang, Jawa Tengah • Rombongan Komunitas</div>
+                </div>
+                <div>
+                  <a href="https://wa.me/6281234567890?text=Daftar%20Ekspedisi%20Borobudur" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Daftar</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Arsip Event Dilipat -->
+            <div>
+              <button id="toggleArchiveBtn" class="btn btn-sm">Lihat kenangan</button>
+              <div id="archiveBox" style="display: none; margin-top: 16px; font-size: 15px; color: var(--text-muted); line-height: 1.6;">
+                • Maybank Marathon Bali 2026: 32 pelari finis tanpa cedera.<br>
+                • Pocari Sweat Run: 60 anggota hadir meramaikan rute 10K.
+              </div>
+            </div>
+
+          </div>
         </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: GALERI (GRID 6 KOLOM ASIMETRIS & CAPTION KOCAK)
+         ========================================================================== -->
+    <section class="section-block" id="galeri">
+      <div class="container">
+        
+        <div class="section-grid">
+          <div class="col-title">
+            GALERI
+          </div>
+
+          <div class="col-content">
+            <div class="deadpan-quote">
+              Bukti dokumentasi bahwa kami pernah bergerak.
+            </div>
+
+            <div class="gallery-asym-grid">
+              
+              <div class="gallery-fig g-span-2" onclick="openLightbox('assets/images/hero.jpg', 'Ekspresi sebelum km 8, masih bisa senyum.')">
+                <div class="film-photo film-tilt-2" style="height: 260px;">
+                  <img src="assets/images/hero.jpg" alt="Ekspresi sebelum km 8">
+                </div>
+                <span class="gallery-caption">Ekspresi sebelum km 8</span>
+              </div>
+
+              <div class="gallery-fig g-span-4" onclick="openLightbox('assets/images/basecamp.jpg', 'Duduk melamun di Basecamp Paijo.')">
+                <div class="film-photo" style="height: 260px;">
+                  <img src="assets/images/basecamp.jpg" alt="Kumpul di basecamp">
+                </div>
+                <span class="gallery-caption">Duduk melamun di Basecamp Paijo</span>
+              </div>
+
+              <div class="gallery-fig g-span-3" onclick="openLightbox('assets/images/runner-of-month.jpg', 'Pura-pura segar setelah 10K.')">
+                <div class="film-photo film-tilt-3" style="height: 280px;">
+                  <img src="assets/images/runner-of-month.jpg" alt="Pura-pura segar">
+                </div>
+                <span class="gallery-caption">Pura-pura segar setelah 10K</span>
+              </div>
+
+              <div class="gallery-fig g-span-3" onclick="openLightbox('assets/images/jersey.jpg', 'Seragam dinas malam hari.')">
+                <div class="film-photo" style="height: 280px;">
+                  <img src="assets/images/jersey.jpg" alt="Jersey malam hari">
+                </div>
+                <span class="gallery-caption">Seragam dinas malam hari</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" onclick="closeLightbox()">
+      <div class="lightbox-frame" onclick="event.stopPropagation()">
+        <img id="lightboxImg" src="" alt="Detail foto">
+        <div class="lightbox-bottom-text" id="lightboxText">Keterangan foto</div>
       </div>
     </div>
 
     <!-- ==========================================================================
-         HALAMAN LAIN: GABUNG (TIGA LANGKAH + FORM PENDEK)
+         SECTION 4: GABUNG (PANEL SOLID HIJAU + FORM + ANIMASI SWEEP GARIS FINIS)
          ========================================================================== -->
-    <section class="section-py" id="gabung">
+    <section class="section-block" id="gabung">
       <div class="container">
         
-        <h2 class="section-title">Gabung</h2>
-        <p class="section-desc">
-          Tidak ada seleksi atau iuran bulanan. Siapa saja boleh lari bersama kami.
-        </p>
-
-        <!-- Tiga Langkah Singkat -->
-        <div class="join-steps-plain">
-          <div class="join-step-block">
-            <div class="join-step-num">1. Isi form</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Masukkan nama dan nomor WhatsApp agar admin bisa mencatat.</p>
-          </div>
-
-          <div class="join-step-block">
-            <div class="join-step-num">2. Masuk grup WA</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Admin mengirim tautan grup resmi untuk info titik temu dan rute mingguan.</p>
-          </div>
-
-          <div class="join-step-block">
-            <div class="join-step-num">3. Datang</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Pilih jadwal terdekat. Pakai sepatu lari yang nyaman dan langsung sapa kami.</p>
-          </div>
-        </div>
-
-        <!-- Form Pendek -->
-        <div class="join-form-clean">
-          <form id="minimalJoinForm">
-            <div class="field-group">
-              <label class="field-label" for="formNama">Nama Lengkap</label>
-              <input type="text" id="formNama" class="input-clean" required placeholder="Nama Anda">
+        <div class="panel-green">
+          <div class="section-grid">
+            
+            <div class="col-title">
+              GABUNG
             </div>
 
-            <div class="field-group">
-              <label class="field-label" for="formWA">Nomor WhatsApp</label>
-              <input type="tel" id="formWA" class="input-clean" required placeholder="08xxxxxxxxxx">
+            <div class="col-content">
+              <div class="deadpan-quote">
+                Datang saja dulu. Urusan nafas habis dipikirkan nanti.
+              </div>
+
+              <!-- Tiga Langkah -->
+              <div class="join-steps-plain">
+                <div class="step-unit">
+                  <strong>1. Isi form</strong>
+                  <p>Nama dan nomor WhatsApp agar admin tahu kamu ada.</p>
+                </div>
+                <div class="step-unit">
+                  <strong>2. Masuk grup WA</strong>
+                  <p>Tautan grup dibagikan untuk koordinasi titik kumpul.</p>
+                </div>
+                <div class="step-unit">
+                  <strong>3. Datang</strong>
+                  <p>Hadir di Kamis malam atau Minggu pagi terdekat.</p>
+                </div>
+              </div>
+
+              <!-- Form Pendek -->
+              <form id="joinForm" class="form-flat">
+                <div class="form-group-flat">
+                  <label for="regNama">Nama Lengkap</label>
+                  <input type="text" id="regNama" class="input-flat" required placeholder="Nama Anda">
+                </div>
+
+                <div class="form-group-flat">
+                  <label for="regWA">Nomor WhatsApp</label>
+                  <input type="tel" id="regWA" class="input-flat" required placeholder="08xxxxxxxxxx">
+                </div>
+
+                <div class="form-group-flat">
+                  <label for="regLevel">Level Lari</label>
+                  <select id="regLevel" class="input-flat" required>
+                    <option value="Pemula (Sering jalan)">Pemula (Sering jalan)</option>
+                    <option value="Sedang (Bisa 5K santai)">Sedang (Bisa 5K santai)</option>
+                    <option value="Ngebut (Pace 5 ke bawah)">Ngebut (Pace 5 ke bawah)</option>
+                  </select>
+                </div>
+
+                <!-- Animasi 7: Tombol berubah jadi strip garis finis yang menyapu -->
+                <button type="submit" id="btnSubmitJoin" class="btn btn-submit-sweep">
+                  <span id="btnSubmitText">Kirim lewat WhatsApp</span>
+                </button>
+              </form>
+
             </div>
 
-            <div class="field-group">
-              <label class="field-label" for="formLevel">Level Lari</label>
-              <select id="formLevel" class="input-clean" required>
-                <option value="Pemula (Sering jalan)">Pemula (Sering jalan)</option>
-                <option value="Sedang (Bisa 5K nonstop)">Sedang (Bisa 5K nonstop)</option>
-                <option value="Ngebut (Pace 5 ke bawah)">Ngebut (Pace 5 ke bawah)</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-accent" style="width: 100%;">
-              Gabung
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: TENTANG (TIGA PARAGRAF PENDEK)
-         ========================================================================== -->
-    <section class="section-py" id="tentang">
-      <div class="container">
-        
-        <h2 class="section-title">Tentang</h2>
-        
-        <div style="max-width: 720px; font-size: 1.15rem; line-height: 1.6; color: var(--text);">
-          <p style="margin-bottom: 22px;">
-            GANK KAPAK berdiri pada tahun 2024 dari obrolan larut malam di warung kopi sehabis lari lima kilometer yang berantakan. Tidak ada atlet pro di sini. Kami hanya kumpulan orang biasa yang memilih lelah di aspal daripada pusing di kamar.
-          </p>
-          <p style="margin-bottom: 22px;">
-            Nama KAPAK bukan simbol kekerasan, melainkan tekad membelah batasan rasa malas dan keraguan diri sendiri. Sedangkan kata GANK menandakan prinsip kami: kamu tidak akan pernah ditinggal sendirian di rute lari, apa pun pacemu.
-          </p>
-          <p style="color: var(--text-muted);">
-            Kami tidak menarik iuran pendaftaran. Operasional komunitas berjalan mandiri dari sumbangan sukarela dan penjualan merchandise resmi.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: ANGGOTA (FOTO KOTAK & ROTM FOTO BESAR)
-         ========================================================================== -->
-    <section class="section-py" id="anggota">
-      <div class="container">
-        
-        <h2 class="section-title">Anggota</h2>
-        <p class="section-desc">Pengurus sesi rutin dan pelari terbaik bulan ini.</p>
-
-        <!-- Runner of the Month: Satu Foto Besar -->
-        <div class="rotm-editorial-split">
-          <div class="rotm-photo-box">
-            <img src="assets/images/runner-of-month.jpg" alt="Runner of the Month" class="film-grain">
-          </div>
-          <div class="rotm-text-box">
-            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px;">
-              Runner of the Month / Oktober 2026
-            </span>
-            <h3 style="font-size: 2.2rem; margin-bottom: 12px;">Siti Rahmawati</h3>
-            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;">
-              Menyelesaikan 128 kilometer bulan ini tanpa sekalipun mengeluh di grup obrolan.
-            </p>
-            <p style="font-size: 0.95rem; font-weight: 500;">
-              "Dulu lima ratus meter saja ingin pulang. Sekarang kalau tidak lari malah gelisah."
-            </p>
-          </div>
-        </div>
-
-        <!-- Foto Kotak Berukuran Sama -->
-        <div class="members-strip-grid">
-          <div class="member-square-box">
-            <div class="member-square-img">
-              <img src="assets/images/hero.jpg" alt="Budi Paijo" class="film-grain">
-            </div>
-            <div class="member-info-row">
-              <span class="member-name">Budi Paijo</span>
-              <span class="member-role">Ketua</span>
-            </div>
-          </div>
-
-          <div class="member-square-box">
-            <div class="member-square-img">
-              <img src="assets/images/basecamp.jpg" alt="Dimas Pratama" class="film-grain">
-            </div>
-            <div class="member-info-row">
-              <span class="member-name">Dimas Satria</span>
-              <span class="member-role">Pelatih</span>
-            </div>
-          </div>
-
-          <div class="member-square-box">
-            <div class="member-square-img">
-              <img src="assets/images/runner-of-month.jpg" alt="Rina Maharani" class="film-grain">
-            </div>
-            <div class="member-info-row">
-              <span class="member-name">Rina Maharani</span>
-              <span class="member-role">Sweeper</span>
-            </div>
-          </div>
-
-          <div class="member-square-box">
-            <div class="member-square-img">
-              <img src="assets/images/jersey.jpg" alt="dr. Fajar" class="film-grain">
-            </div>
-            <div class="member-info-row">
-              <span class="member-name">dr. Fajar</span>
-              <span class="member-role">Medis</span>
-            </div>
           </div>
         </div>
 
@@ -1632,274 +1597,323 @@
     </section>
 
     <!-- ==========================================================================
-         HALAMAN LAIN: BERITA (GAYA MAJALAH: JUDUL BESAR + 1 BARIS RINGKASAN)
-         ========================================================================== -->
-    <section class="section-py" id="berita">
+       SECTION 5: LAINNYA (BLOK BERTUMPUK DENGAN GARIS PEMISAH TIPIS)
+       ========================================================================== -->
+    <section class="section-block" id="lainnya">
       <div class="container">
         
-        <h2 class="section-title">Berita</h2>
-        <p class="section-desc">Catatan rute dan tulisan seputar lari santai.</p>
+        <div class="section-grid">
+          <div class="col-title">
+            LAINNYA
+          </div>
 
-        <div style="border-top: 1px solid var(--border-strong);">
-          <article class="magazine-article-item">
-            <div>
-              <h3 class="article-headline">5 Prinsip Bertahan di Sesi Lari Pagi Tanpa Mengutuk Alarm Jam 4</h3>
-              <p style="font-size: 1.05rem; color: var(--text-muted);">
-                Tidur lebih cepat adalah satu-satunya jawaban logis yang sering diabaikan.
+          <div class="col-content">
+
+            <!-- 1. TENTANG (3 PARAGRAF PENDEK) -->
+            <div class="sub-block" id="tentang">
+              <h3 class="sub-block-title">Tentang</h3>
+              <div class="deadpan-quote" style="margin-bottom: 14px;">
+                Bukan atlet, bukan selebriti lintasan.
+              </div>
+              <p style="margin-bottom: 16px;">
+                GANK KAPAK bermula dari obrolan larut malam di warung kopi setelah lari lima kilometer yang berantakan. Tidak ada pelari hebat di hari pertama, hanya sekumpulan orang yang bosan berdiam diri di kamar.
+              </p>
+              <p style="margin-bottom: 16px;">
+                Nama KAPAK diambil sebagai metafora membelah keraguan diri dan rasa malas. Bukan alat untuk berkelahi di jalanan, tapi keberanian untuk tetap melangkah saat kaki mulai terasa berat.
+              </p>
+              <p>
+                Komunitas ini gratis seumur hidup. Biaya operasional ditutup secara sukarela lewat donasi dan penjualan kaos resmi.
               </p>
             </div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); text-align: right;">
-              12 Okt 2026 / 3 min
-            </div>
-          </article>
 
-          <article class="magazine-article-item">
-            <div>
-              <h3 class="article-headline">Mengapa Kami Selalu Menyediakan Sweeper di Barisan Paling Belakang</h3>
-              <p style="font-size: 1.05rem; color: var(--text-muted);">
-                Karena tidak ada yang pantas merasa tertinggal hanya karena pacenya santai.
+            <!-- 2. ANGGOTA (BIB RACE DENGAN 4 PENITI GOYANG & ROTM) -->
+            <div class="sub-block" id="anggota">
+              <h3 class="sub-block-title">Anggota</h3>
+              <div class="deadpan-quote">
+                Wajah-wajah yang bertanggung jawab atas keringat mingguan.
+              </div>
+
+              <!-- Bib Besar Runner of the Month -->
+              <div class="rotm-bib" style="margin-top: 16px;">
+                <div class="bib-pin top-left"></div>
+                <div class="bib-pin top-right"></div>
+                <div class="bib-pin bottom-left"></div>
+                <div class="bib-pin bottom-right"></div>
+
+                <div style="text-align: center;">
+                  <div class="bib-header-tag">RUNNER OF THE MONTH</div>
+                  <div class="bib-big-num">01</div>
+                  <div class="bib-footer-name">SITI RAHMAWATI</div>
+                </div>
+
+                <div>
+                  <h4 style="font-size: 1.4rem; margin-bottom: 6px;">Siti "Rahma" Rahmawati</h4>
+                  <p style="font-size: 15px; color: rgba(10, 15, 11, 0.75); line-height: 1.45;">
+                    Konsisten 128 kilometer bulan ini. Bukti bahwa pelari pemula pun bisa menempuh jarak jauh jika tidak sibuk memikirkan gengsi.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bibs Pengurus -->
+              <div class="bibs-grid">
+                <div class="bib-card">
+                  <div class="bib-pin top-left"></div>
+                  <div class="bib-pin top-right"></div>
+                  <div class="bib-pin bottom-left"></div>
+                  <div class="bib-pin bottom-right"></div>
+                  <div class="bib-header-tag">PENGURUS</div>
+                  <div class="bib-big-num">08</div>
+                  <div class="bib-footer-name">BUDI PAIJO</div>
+                </div>
+
+                <div class="bib-card">
+                  <div class="bib-pin top-left"></div>
+                  <div class="bib-pin top-right"></div>
+                  <div class="bib-pin bottom-left"></div>
+                  <div class="bib-pin bottom-right"></div>
+                  <div class="bib-header-tag">PELATIH</div>
+                  <div class="bib-big-num">24</div>
+                  <div class="bib-footer-name">COACH DIMAS</div>
+                </div>
+
+                <div class="bib-card">
+                  <div class="bib-pin top-left"></div>
+                  <div class="bib-pin top-right"></div>
+                  <div class="bib-pin bottom-left"></div>
+                  <div class="bib-pin bottom-right"></div>
+                  <div class="bib-header-tag">SWEEPER</div>
+                  <div class="bib-big-num">42</div>
+                  <div class="bib-footer-name">RINA MAHARANI</div>
+                </div>
+
+                <div class="bib-card">
+                  <div class="bib-pin top-left"></div>
+                  <div class="bib-pin top-right"></div>
+                  <div class="bib-pin bottom-left"></div>
+                  <div class="bib-pin bottom-right"></div>
+                  <div class="bib-header-tag">MEDIS</div>
+                  <div class="bib-big-num">99</div>
+                  <div class="bib-footer-name">DR. FAJAR</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. BERITA (3 JUDUL MAJALAH + LABEL KATEGORI) -->
+            <div class="sub-block" id="berita">
+              <h3 class="sub-block-title">Berita</h3>
+              <div class="deadpan-quote">
+                Kumpulan tulisan seputar lari santai.
+              </div>
+
+              <div class="news-titles-list" style="margin-top: 14px;">
+                <div class="news-item">
+                  <h4>5 Trik Menghadapi Alarm Pagi Tanpa Mengutuk Hari</h4>
+                  <span class="news-tag">TIPS</span>
+                </div>
+                <div class="news-item">
+                  <h4>Kenapa Sweeper Selalu Jadi Posisi Paling Mulia di Rute Kami</h4>
+                  <span class="news-tag">CERITA</span>
+                </div>
+                <div class="news-item">
+                  <h4>Catatan Finisher Bali: Panas Terik dan Sepatu yang Jebol</h4>
+                  <span class="news-tag">RACE RECAP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. MERCHANDISE (DAFTAR JERSEY, KAOS, BUFF + PESAN VIA WA) -->
+            <div class="sub-block" id="merchandise">
+              <h3 class="sub-block-title">Merchandise</h3>
+              <div class="deadpan-quote">
+                Seragam resmi jika kamu ingin tampil kompak di garis start.
+              </div>
+
+              <div class="merch-rows" style="margin-top: 14px;">
+                <div class="merch-row">
+                  <div>
+                    <strong>Kaos Lari Gank Kapak 2026</strong>
+                    <div style="font-size: 14px; color: var(--text-muted);">Bahan microfiber cepat kering</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <strong>Rp 150.000</strong>
+                    <a href="https://wa.me/6281234567890?text=Pesan%20Kaos%20Lari" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Pesan via WhatsApp</a>
+                  </div>
+                </div>
+
+                <div class="merch-row">
+                  <div>
+                    <strong>Singlet Race Edition</strong>
+                    <div style="font-size: 14px; color: var(--text-muted);">Ultralight untuk cuaca panas</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <strong>Rp 135.000</strong>
+                    <a href="https://wa.me/6281234567890?text=Pesan%20Singlet" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Pesan via WhatsApp</a>
+                  </div>
+                </div>
+
+                <div class="merch-row">
+                  <div>
+                    <strong>Buff Microfiber</strong>
+                    <div style="font-size: 14px; color: var(--text-muted);">Pelindung leher dan penahan keringat</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <strong>Rp 40.000</strong>
+                    <a href="https://wa.me/6281234567890?text=Pesan%20Buff" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Pesan via WhatsApp</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. LEADERBOARD (TOP 5 TEKS BERSIH + STRAVA) -->
+            <div class="sub-block" id="leaderboard">
+              <h3 class="sub-block-title">Leaderboard</h3>
+              <div class="deadpan-quote">
+                Peringkat kilometer bulanan di klub Strava kami.
+              </div>
+
+              <div class="top5-table" style="margin-top: 14px;">
+                <div class="top5-row"><span>01</span> <span>Ahmad Ridwan</span> <span style="text-align: right;">184 KM</span></div>
+                <div class="top5-row"><span>02</span> <span>Siti Rahmawati</span> <span style="text-align: right;">128 KM</span></div>
+                <div class="top5-row"><span>03</span> <span>Budi Paijo</span> <span style="text-align: right;">112 KM</span></div>
+                <div class="top5-row"><span>04</span> <span>dr. Fajar Ananda</span> <span style="text-align: right;">98 KM</span></div>
+                <div class="top5-row"><span>05</span> <span>Rina Maharani</span> <span style="text-align: right;">88 KM</span></div>
+              </div>
+
+              <div style="margin-top: 18px;">
+                <a href="https://strava.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Klub Strava</a>
+              </div>
+            </div>
+
+            <!-- 6. FAQ (ACCORDION TIGA PERTANYAAN, JAWABAN SINGKAT) -->
+            <div class="sub-block" id="faq">
+              <h3 class="sub-block-title">FAQ</h3>
+              <div class="deadpan-quote">
+                Jawaban singkat untuk pertanyaan yang sering muncul.
+              </div>
+
+              <div class="faq-accordion" style="margin-top: 14px;">
+                <div class="faq-item active">
+                  <button class="faq-trigger" onclick="toggleFaq(this)">
+                    <span>Boleh ikut jika baru mulai lari dan sering jalan?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-panel">
+                    Boleh. Kami menyediakan sweeper yang mendampingi siapa pun di barisan paling belakang sampai selesai.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" onclick="toggleFaq(this)">
+                    <span>Apakah ada biaya pendaftaran atau iuran bulanan?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-panel">
+                    Tidak ada sama sekali. Komunitas ini gratis untuk siapa saja.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" onclick="toggleFaq(this)">
+                    <span>Apa yang wajib saya bawa saat pertama datang?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-panel">
+                    Sepatu yang nyaman di kakimu dan tumbler air minum sendiri.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. SPONSOR (EMPAT KOTAK LOGO MONOKROM) -->
+            <div class="sub-block" id="sponsor">
+              <h3 class="sub-block-title">Sponsor</h3>
+              <div class="deadpan-quote">
+                Mitra penyedia air mineral dingin dan titik peristirahatan.
+              </div>
+
+              <div class="sponsor-boxes">
+                <div class="sponsor-box">BASECAMP PAIJO</div>
+                <div class="sponsor-box">HYDRO-MAX</div>
+                <div class="sponsor-box">KINETIK PHYSIO</div>
+                <div class="sponsor-box">STRIDE STORE</div>
+              </div>
+
+              <div style="margin-top: 18px;">
+                <a href="https://wa.me/6281234567890?text=Jadi%20Partner%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Jadi partner kami</a>
+              </div>
+            </div>
+
+            <!-- 8. DONASI (SATU PARAGRAF, INFO REKENING, KONFIRMASI WA) -->
+            <div class="sub-block" id="donasi">
+              <h3 class="sub-block-title">Donasi</h3>
+              <div class="deadpan-quote">
+                Bantuan operasional galon air dan kas darurat pelari cedera.
+              </div>
+
+              <p style="margin-top: 12px; margin-bottom: 16px;">
+                Dana sukarela digunakan untuk pembelian air mineral galon di pos kumpul, stok perban dan es pereda cedera, serta santunan warga di sekitar rute lari rutin.
               </p>
-            </div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); text-align: right;">
-              04 Okt 2026 / 4 min
-            </div>
-          </article>
 
-          <article class="magazine-article-item">
-            <div>
-              <h3 class="article-headline">Review Singkat Rute Sudirman Pukul 06.00: Dingin, Tenang, Bersih</h3>
-              <p style="font-size: 1.05rem; color: var(--text-muted);">
-                Waktu terbaik sebelum jalanan diambil alih oleh kemacetan harian.
-              </p>
+              <div style="border: 1px solid var(--border-thin); border-radius: var(--radius); padding: 18px; max-width: 420px; margin-bottom: 16px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--green);">BANK BCA (REKENING RESMI)</div>
+                <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; margin: 4px 0;">829-019-8821</div>
+                <div style="font-size: 14px; color: var(--text-muted);">a.n. Komunitas Lari Gank Kapak</div>
+              </div>
+
+              <a href="https://wa.me/6281234567890?text=Konfirmasi%20Donasi" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Konfirmasi via WhatsApp</a>
             </div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); text-align: right;">
-              28 Sep 2026 / 5 min
-            </div>
-          </article>
+
+          </div>
         </div>
 
       </div>
     </section>
 
     <!-- ==========================================================================
-         HALAMAN LAIN: MERCHANDISE (FOTO POLOS, HARGA, PESAN VIA WHATSAPP)
+         SECTION 6: KONTAK (4 BARIS BESAR BERUBAH HIJAU SAAT DISENTUH)
          ========================================================================== -->
-    <section class="section-py" id="merchandise">
+    <section class="section-block" id="kontak">
       <div class="container">
         
-        <h2 class="section-title">Merchandise</h2>
-        <p class="section-desc">Seragam latihan dan atribut resmi komunitas.</p>
+        <div class="section-grid">
+          <div class="col-title">
+            KONTAK
+          </div>
 
-        <div class="merch-plain-grid">
-          <div class="merch-plain-card">
-            <div class="merch-photo-wrap">
-              <img src="assets/images/jersey.jpg" alt="Kaos Lari" class="film-grain">
+          <div class="col-content">
+            <div class="deadpan-quote">
+              Chat kami kalau butuh teman lari atau sekadar mau tanya menu sarapan.
             </div>
-            <div class="merch-bottom-meta">
-              <strong style="font-size: 1.15rem;">Kaos Lari Gank Kapak 2026</strong>
-              <span style="font-size: 1rem; color: var(--text-muted);">Rp 150.000</span>
-              <a href="https://wa.me/6281234567890?text=Pesan%20Kaos%20Lari%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Pesan via WhatsApp
+
+            <!-- 4 Baris Tebal -->
+            <div class="contact-links-stack">
+              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="contact-big-row">
+                WHATSAPP ADMIN
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-big-row">
+                INSTAGRAM @GANKKAPAK.RUN
+              </a>
+              <a href="https://strava.com" target="_blank" rel="noopener noreferrer" class="contact-big-row">
+                STRAVA RUN CLUB
+              </a>
+              <a href="mailto:halo@gankkapak.run" class="contact-big-row">
+                HALO@GANKKAPAK.RUN
               </a>
             </div>
-          </div>
 
-          <div class="merch-plain-card">
-            <div class="merch-photo-wrap" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 3rem; font-weight: 800;">
-              CAP
+            <!-- Peta Kecil Lokasi Kumpul -->
+            <div style="border: 1px solid var(--border-thin); border-radius: var(--radius); overflow: hidden; height: 220px; max-width: 600px; margin-top: 16px;">
+              <iframe 
+                title="Peta Titik Kumpul Basecamp Paijo"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.28312952876!2d106.774124!3d-6.229728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e49fe3dd01%3A0x7d01878b27671391!2sGelora%20Bung%20Karno%20Main%20Stadium!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                loading="lazy">
+              </iframe>
             </div>
-            <div class="merch-bottom-meta">
-              <strong style="font-size: 1.15rem;">Topi Lari Quick-Dry</strong>
-              <span style="font-size: 1rem; color: var(--text-muted);">Rp 75.000</span>
-              <a href="https://wa.me/6281234567890?text=Pesan%20Topi%20Lari%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Pesan via WhatsApp
-              </a>
-            </div>
+
           </div>
-
-          <div class="merch-plain-card">
-            <div class="merch-photo-wrap" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 3rem; font-weight: 800;">
-              BUFF
-            </div>
-            <div class="merch-bottom-meta">
-              <strong style="font-size: 1.15rem;">Buff Microfiber</strong>
-              <span style="font-size: 1rem; color: var(--text-muted);">Rp 40.000</span>
-              <a href="https://wa.me/6281234567890?text=Pesan%20Buff%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Pesan via WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: SPONSOR (LOGO MONOKROM SATU BARIS)
-         ========================================================================== -->
-    <section class="section-py" id="sponsor">
-      <div class="container">
-        
-        <h2 class="section-title">Sponsor</h2>
-        <p class="section-desc">Mitra yang mendukung logistik air minum dan basecamp kami.</p>
-
-        <div class="sponsor-mono-row">
-          <span class="sponsor-mono-item">BASECAMP PAIJO</span>
-          <span class="sponsor-mono-item">HYDRO-MAX</span>
-          <span class="sponsor-mono-item">KINETIK PHYSIO</span>
-          <span class="sponsor-mono-item">STRIDE STORE</span>
-          <span class="sponsor-mono-item">GEL ENERGY PRO</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: FAQ (ACCORDION, JAWABAN 1-2 KALIMAT)
-         ========================================================================== -->
-    <section class="section-py" id="faq">
-      <div class="container">
-        
-        <h2 class="section-title">FAQ</h2>
-
-        <div class="faq-ruled-list">
-          <div class="faq-ruled-row open">
-            <button class="faq-toggle-btn" onclick="toggleFaqRule(this)">
-              <span>Boleh ikut jika baru mulai lari dan sering jalan?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-answer-panel">
-              Boleh. Kami menyediakan sweeper yang mendampingi siapa pun di barisan paling belakang sampai selesai.
-            </div>
-          </div>
-
-          <div class="faq-ruled-row">
-            <button class="faq-toggle-btn" onclick="toggleFaqRule(this)">
-              <span>Apakah ada biaya pendaftaran atau iuran bulanan?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-answer-panel">
-              Tidak ada. Komunitas ini gratis untuk umum.
-            </div>
-          </div>
-
-          <div class="faq-ruled-row">
-            <button class="faq-toggle-btn" onclick="toggleFaqRule(this)">
-              <span>Perlengkapan apa yang wajib dibawa?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-answer-panel">
-              Sepatu lari yang pas di kaki dan botol minum sendiri.
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: LEADERBOARD (TOP 5 BERUPA DAFTAR TEKS BERSIH)
-         ========================================================================== -->
-    <section class="section-py" id="leaderboard">
-      <div class="container">
-        
-        <h2 class="section-title">Leaderboard</h2>
-        <p class="section-desc">Pencatatan jarak tempuh bulanan via Strava Club.</p>
-
-        <div class="leaderboard-clean-table">
-          <div class="leader-row-clean">
-            <span>01</span>
-            <span>Ahmad Ridwan</span>
-            <span style="text-align: right;">184 KM</span>
-          </div>
-          <div class="leader-row-clean">
-            <span>02</span>
-            <span>Siti Rahmawati</span>
-            <span style="text-align: right;">128 KM</span>
-          </div>
-          <div class="leader-row-clean">
-            <span>03</span>
-            <span>Budi Paijo</span>
-            <span style="text-align: right;">112 KM</span>
-          </div>
-          <div class="leader-row-clean">
-            <span>04</span>
-            <span>dr. Fajar Ananda</span>
-            <span style="text-align: right;">98 KM</span>
-          </div>
-          <div class="leader-row-clean">
-            <span>05</span>
-            <span>Rina Maharani</span>
-            <span style="text-align: right;">88 KM</span>
-          </div>
-        </div>
-
-        <div style="margin-top: 24px;">
-          <a href="https://strava.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-            Gabung klub Strava
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: DONASI (SATU PARAGRAF, REKENING, KONFIRMASI WA)
-         ========================================================================== -->
-    <section class="section-py" id="donasi">
-      <div class="container">
-        
-        <h2 class="section-title">Donasi</h2>
-        
-        <div style="max-width: 640px;">
-          <p style="font-size: 1.1rem; line-height: 1.5; color: var(--text-muted); margin-bottom: 24px;">
-            Dana donasi dialokasikan untuk penyediaan air mineral galon di titik kumpul, perlengkapan P3K, dan santunan sosial bagi warga di sekitar rute lari mingguan.
-          </p>
-
-          <div style="border: 1px solid var(--border-strong); padding: 20px; background: var(--bg-surface); margin-bottom: 20px;">
-            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">BCA Rekening Komunitas</div>
-            <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; margin: 4px 0;">829-019-8821</div>
-            <div style="font-size: 0.9rem; color: var(--text-muted);">a.n. Gank Kapak Running Club</div>
-          </div>
-
-          <a href="https://wa.me/6281234567890?text=Konfirmasi%20Donasi%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-            Konfirmasi via WhatsApp
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         HALAMAN LAIN: KONTAK (TOMBOL BESAR WA, IG, STRAVA & PETA KECIL)
-         ========================================================================== -->
-    <section class="section-py" id="kontak">
-      <div class="container">
-        
-        <h2 class="section-title">Kontak</h2>
-        
-        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 36px;">
-          <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn">
-            WhatsApp Admin
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn">
-            Instagram
-          </a>
-          <a href="https://strava.com" target="_blank" rel="noopener noreferrer" class="btn">
-            Strava Club
-          </a>
-        </div>
-
-        <!-- Peta Kecil -->
-        <div style="max-width: 680px; height: 240px; border: 1px solid var(--border-strong); overflow: hidden;">
-          <iframe 
-            title="Lokasi Basecamp Paijo"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.28312952876!2d106.774124!3d-6.229728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e49fe3dd01%3A0x7d01878b27671391!2sGelora%20Bung%20Karno%20Main%20Stadium!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            loading="lazy">
-          </iframe>
         </div>
 
       </div>
@@ -1908,170 +1922,253 @@
   </main>
 
   <!-- ==========================================================================
-       FOOTER (LOGO, 4 TAUTAN, SOSIAL MEDIA, SATU KALIMAT HUMOR)
+       SECTION 7: FOOTER (PITA TEKS BERJALAN + STRIP GARIS FINIS 8PX)
        ========================================================================== -->
-  <footer class="footer-minimal">
-    <div class="container">
-      
-      <div class="footer-top-row">
-        <div class="footer-witty-line">
+  <footer class="site-footer">
+    
+    <!-- Animasi 6: Pita Teks Berjalan -->
+    <div class="marquee-wrapper" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        LARI DULU, MIKIR BELAKANG. • LARI DULU, MIKIR BELAKANG. • LARI DULU, MIKIR BELAKANG. • LARI DULU, MIKIR BELAKANG. • LARI DULU, MIKIR BELAKANG. • LARI DULU, MIKIR BELAKANG. • 
+      </div>
+    </div>
+
+    <!-- Unsur 3: Garis Finis Kotak-Kotak Hitam Putih 8px -->
+    <div class="finish-line-strip" aria-hidden="true"></div>
+
+    <div class="container footer-base-bar">
+      <div class="footer-split">
+        <div>
+          © GANK KAPAK
+        </div>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--green);">
           Lari dulu, mikir belakangan.
         </div>
-
-        <ul class="footer-nav-links">
-          <li><a href="#jadwal">Jadwal</a></li>
-          <li><a href="#event">Event</a></li>
-          <li><a href="#galeri">Galeri</a></li>
-          <li><a href="#gabung">Gabung</a></li>
-        </ul>
       </div>
-
-      <div class="footer-bottom-row">
-        <div>
-          © 2026 GANK KAPAK. Semua hak dilindungi.
-        </div>
-        <div style="display: flex; gap: 18px;">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://strava.com" target="_blank" rel="noopener noreferrer">Strava</a>
-          <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        </div>
-      </div>
-
     </div>
+
   </footer>
 
   <!-- ==========================================================================
-       JAVASCRIPT LOGIC (MINIMAL, RESPONSIVE, KEYBOARD ACCESSIBLE)
+       JAVASCRIPT (HANYA 8 ANIMASI EKSKLUSIF & KONTROL UI SENTUHAN)
        ========================================================================== -->
   <script>
-    // 1. Theme Toggle (Light / Dark Mode)
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const themeLabel = document.getElementById('themeToggleLabel');
+    // 1. ANIMASI 2: Garis Rute Menyambung Saat Scroll & Titik Pelari
+    const routePath = document.getElementById('routePath');
+    const runnerDot = document.getElementById('runnerDot');
 
-    function setTheme(t) {
-      document.documentElement.setAttribute('data-theme', t);
-      localStorage.setItem('gank_theme_kalcer', t);
-      themeLabel.textContent = (t === 'dark') ? 'Terang' : 'Gelap';
+    if (routePath && runnerDot) {
+      const pathLength = routePath.getTotalLength();
+      routePath.style.strokeDasharray = pathLength;
+      routePath.style.strokeDashoffset = pathLength;
+
+      function updateRouteOnScroll() {
+        const scrollY = window.pageYOffset;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.min(Math.max(scrollY / (maxScroll || 1), 0), 1);
+
+        // Update stroke dashoffset
+        routePath.style.strokeDashoffset = pathLength * (1 - progress);
+
+        // Update titik pelari di ujung garis
+        const point = routePath.getPointAtLength(pathLength * progress);
+        runnerDot.setAttribute('cx', point.x);
+        runnerDot.setAttribute('cy', point.y);
+      }
+
+      window.addEventListener('scroll', updateRouteOnScroll, { passive: true });
+      updateRouteOnScroll();
     }
 
-    const initialTheme = localStorage.getItem('gank_theme_kalcer') || 'light';
-    setTheme(initialTheme);
+    // 2. ANIMASI 3: Jadwal Berdetak (Ticker KM & Pace naik cepat saat terlihat, ±600ms)
+    const jadwalPanel = document.getElementById('jadwalPanel');
+    let hasAnimatedJadwal = false;
 
-    themeBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
+    if (jadwalPanel) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAnimatedJadwal) {
+            hasAnimatedJadwal = true;
+            runJadwalTicker();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(jadwalPanel);
+    }
+
+    function runJadwalTicker() {
+      const kmElements = document.querySelectorAll('.ticker-km');
+      const paceElements = document.querySelectorAll('.ticker-pace');
+      const duration = 600; // ±600ms persis sesuai spesifikasi
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        kmElements.forEach(el => {
+          const target = parseFloat(el.getAttribute('data-target'));
+          el.textContent = (target * ease).toFixed(1);
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          // Tetapkan nilai akhir presisi
+          kmElements.forEach(el => el.textContent = el.getAttribute('data-target'));
+          paceElements.forEach(el => el.textContent = el.getAttribute('data-target'));
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    // 3. ANIMASI 4: Bib Bereaksi Pada Mobile Tap
+    document.querySelectorAll('.bib-card').forEach(bib => {
+      bib.addEventListener('touchstart', () => {
+        bib.classList.add('active-tap');
+      }, { passive: true });
+      bib.addEventListener('touchend', () => {
+        setTimeout(() => bib.classList.remove('active-tap'), 300);
+      });
     });
 
-    // 2. Fullscreen Mobile Navigation
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-    const closeMobileBtn = document.getElementById('closeMobileBtn');
-    const mobileLinks = document.querySelectorAll('.mob-link');
+    // 4. ANIMASI 6: Pita Teks Berjalan Kecepatan Naik Saat Scroll Cepat
+    const marqueeTrack = document.getElementById('marqueeTrack');
+    let lastScrollPos = window.pageYOffset;
+    let scrollSpeedTimeout = null;
 
-    function openMobileMenu() {
-      mobileOverlay.classList.add('active');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      const speed = Math.abs(currentScroll - lastScrollPos);
+      lastScrollPos = currentScroll;
+
+      if (speed > 18 && marqueeTrack) {
+        marqueeTrack.style.animationDuration = '8s'; // Akselerasi cepat
+        clearTimeout(scrollSpeedTimeout);
+        scrollSpeedTimeout = setTimeout(() => {
+          if (marqueeTrack) marqueeTrack.style.animationDuration = '25s'; // Kembali normal
+        }, 350);
+      }
+    }, { passive: true });
+
+    // 5. ANIMASI 7: Form Terkirim (Sweep Garis Finis 500ms)
+    const joinForm = document.getElementById('joinForm');
+    const btnSubmitJoin = document.getElementById('btnSubmitJoin');
+    const btnSubmitText = document.getElementById('btnSubmitText');
+
+    if (joinForm && btnSubmitJoin) {
+      joinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nama = document.getElementById('regNama').value.trim();
+        const wa = document.getElementById('regWA').value.trim();
+        const level = document.getElementById('regLevel').value;
+
+        // Pemicu animasi sweep
+        btnSubmitJoin.classList.add('is-sweeping');
+        btnSubmitText.textContent = "Menyapu garis finis...";
+
+        setTimeout(() => {
+          btnSubmitText.textContent = "Sampai ketemu di start.";
+
+          setTimeout(() => {
+            const pesan = `Halo Admin Gank Kapak, saya mau gabung:%0A%0A` +
+              `• Nama: ${encodeURIComponent(nama)}%0A` +
+              `• WhatsApp: ${encodeURIComponent(wa)}%0A` +
+              `• Level: ${encodeURIComponent(level)}%0A%0A` +
+              `Mohon info titik kumpul dan tautan grup. Terima kasih!`;
+
+            window.open(`https://wa.me/6281234567890?text=${pesan}`, '_blank');
+            btnSubmitJoin.classList.remove('is-sweeping');
+            btnSubmitText.textContent = "Kirim lewat WhatsApp";
+            joinForm.reset();
+          }, 800);
+        }, 500); // ±500ms sweep
+      });
+    }
+
+    // 6. ANIMASI 8: Polkadot Latar Parallax (20% Kecepatan Scroll)
+    let isTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isTicking) {
+        window.requestAnimationFrame(() => {
+          if (window.innerWidth > 640 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const offset = window.pageYOffset * 0.2;
+            document.body.style.backgroundPositionY = `${-offset}px`;
+          }
+          isTicking = false;
+        });
+        isTicking = true;
+      }
+    }, { passive: true });
+
+    // 7. Lightbox Handlers
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxText = document.getElementById('lightboxText');
+
+    function openLightbox(src, caption) {
+      lightboxImg.src = src;
+      lightboxText.textContent = caption;
+      lightboxModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeMobileMenu() {
-      mobileOverlay.classList.remove('active');
+    function closeLightbox() {
+      lightboxModal.classList.remove('active');
       document.body.style.overflow = '';
     }
-
-    mobileMenuBtn.addEventListener('click', openMobileMenu);
-    closeMobileBtn.addEventListener('click', closeMobileMenu);
-    mobileLinks.forEach(l => l.addEventListener('click', closeMobileMenu));
-
-    // 3. Simple Lightbox
-    const rawLightbox = document.getElementById('rawLightbox');
-    const lightboxRawImg = document.getElementById('lightboxRawImg');
-    const lightboxRawText = document.getElementById('lightboxRawText');
-
-    function openLightboxRaw(src, text) {
-      lightboxRawImg.src = src;
-      lightboxRawText.textContent = text;
-      rawLightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightboxRaw() {
-      rawLightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    rawLightbox.addEventListener('click', (e) => {
-      if (e.target === rawLightbox) closeLightboxRaw();
-    });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && rawLightbox.classList.contains('active')) {
-        closeLightboxRaw();
+      if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+        closeLightbox();
       }
     });
 
-    // 4. Archive Toggle in Event
+    // 8. FAQ Accordion Handler
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+
+    // 9. Arsip Event Toggle
     const toggleArchiveBtn = document.getElementById('toggleArchiveBtn');
-    const eventArchivePanel = document.getElementById('eventArchivePanel');
-
-    if (toggleArchiveBtn && eventArchivePanel) {
+    const archiveBox = document.getElementById('archiveBox');
+    if (toggleArchiveBtn && archiveBox) {
       toggleArchiveBtn.addEventListener('click', () => {
-        const isHidden = (eventArchivePanel.style.display === 'none');
-        eventArchivePanel.style.display = isHidden ? 'block' : 'none';
-        toggleArchiveBtn.textContent = isHidden ? 'Tutup arsip' : 'Lihat arsip event';
+        const isHidden = (archiveBox.style.display === 'none');
+        archiveBox.style.display = isHidden ? 'block' : 'none';
+        toggleArchiveBtn.textContent = isHidden ? 'Tutup kenangan' : 'Lihat kenangan';
       });
     }
 
-    // 5. FAQ Ruled Accordion
-    function toggleFaqRule(btn) {
-      const row = btn.closest('.faq-ruled-row');
-      const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.faq-ruled-row').forEach(r => r.classList.remove('open'));
-      if (!isOpen) row.classList.add('open');
-    }
+    // 10. Mobile Menu Modal Handlers
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuModal = document.getElementById('mobileMenuModal');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
 
-    // 6. Minimal Join Form Submission to WhatsApp
-    const minimalJoinForm = document.getElementById('minimalJoinForm');
-    if (minimalJoinForm) {
-      minimalJoinForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nama = document.getElementById('formNama').value.trim();
-        const wa = document.getElementById('formWA').value.trim();
-        const level = document.getElementById('formLevel').value;
-
-        const msg = `Halo Admin Gank Kapak,%0A%0A` +
-          `Saya mau gabung:%0A` +
-          `- Nama: ${encodeURIComponent(nama)}%0A` +
-          `- WA: ${encodeURIComponent(wa)}%0A` +
-          `- Level: ${encodeURIComponent(level)}%0A%0A` +
-          `Mohon tautan grup WA resmi. Terima kasih.`;
-
-        window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+    if (mobileMenuBtn && mobileMenuModal && closeMobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
-    }
 
-    // 7. Gallery Simple Filter
-    const filterLinks = document.querySelectorAll('.gallery-filter-link');
-    const galleryItems = document.querySelectorAll('.frameless-item');
+      closeMobileMenuBtn.addEventListener('click', () => {
+        mobileMenuModal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
 
-    filterLinks.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterLinks.forEach(b => {
-          b.classList.remove('active');
-          b.style.color = 'var(--text-muted)';
-        });
-        btn.classList.add('active');
-        btn.style.color = 'var(--accent)';
-
-        const cat = btn.getAttribute('data-filter');
-        galleryItems.forEach(item => {
-          if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
+      document.querySelectorAll('.mob-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuModal.classList.remove('active');
+          document.body.style.overflow = '';
         });
       });
-    });
+    }
   </script>
 </body>
 </html>
