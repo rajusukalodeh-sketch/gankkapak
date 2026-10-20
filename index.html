@@ -430,13 +430,13 @@
        ========================================================================== -->
     <section class="section-spacing" id="orang" aria-label="Anggota dan Pengurus">
       <div class="container">
-        
+
         <!-- Header Papan Bib & Controls -->
         <div class="bib-board-header">
           <div class="bib-board-title-group">
-            <span class="cs-badge">PAPAN NOMOR DADA • OFFICIAL RACE DAY 2026</span>
+            <span class="cs-badge">OFFICIAL MEMBER 2026</span>
             <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 8px 0 4px;">Orang-orang</h2>
-            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">Nomor BIB resmi kontingen Gank Kapak Mojokerto.</p>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">BIB resmi kontingen Gank Kapak</p>
           </div>
 
           <div class="bib-controls-wrapper">
@@ -448,19 +448,22 @@
               <button type="button" class="bib-chip" data-filter="runner">SQUAD RUNNER</button>
             </div>
 
-            <!-- View Mode Switcher: Wall Grid vs Rack Geser -->
+            <!-- View Mode Switcher: List (Default) vs Wall Grid -->
             <div class="bib-view-switch" role="group" aria-label="Mode Tampilan">
-              <button type="button" class="bib-view-btn active" id="bibViewGrid" title="Tampilan Papan Wall Grid" aria-label="Tampilan Grid">⊞ Wall</button>
-              <button type="button" class="bib-view-btn" id="bibViewRack" title="Tampilan Gantungan Geser" aria-label="Tampilan Geser">⇄ Geser</button>
+              <button type="button" class="bib-view-btn active" id="bibViewList" title="Tampilan List Roster"
+                aria-label="Tampilan List">☰ List</button>
+              <button type="button" class="bib-view-btn" id="bibViewGrid" title="Tampilan Papan Wall Grid"
+                aria-label="Tampilan Grid">⊞ Wall</button>
             </div>
           </div>
         </div>
 
-        <!-- Container Kartu Bib (Mendukung Mode Grid dan Mode Rack) -->
-        <div class="bib-wall-container view-grid" id="bibWallContainer">
+        <!-- Container Kartu Bib (Default Mode List, opsi Mode Wall) -->
+        <div class="bib-wall-container view-list" id="bibWallContainer">
 
           <!-- Bib 1: Anisa -->
-          <article class="bib-card bib-rotm active" data-category="runner" tabindex="0" aria-label="Bib Runner of the Month Anisa">
+          <article class="bib-card bib-rotm active" data-category="runner" tabindex="0"
+            aria-label="Bib Runner of the Month Anisa">
             <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
             <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
             <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
@@ -742,7 +745,7 @@
               <div class="bib-number tabular">13</div>
               <div class="bib-runner-details">
                 <div class="bib-name">Kevin</div>
-                <div class="bib-role">Kuch aka pelatih</div>
+                <div class="bib-role">Kuch aka pelatih • Bikin jadwal latihan ketat, tapi diam-diam buka jasa joki ordal BIB race</div>
               </div>
             </div>
           </article>
@@ -756,7 +759,7 @@
 
             <div class="bib-top-strip">
               <span class="bib-series">GANK KAPAK</span>
-              <span class="bib-tag">Anggota</span>
+              <span class="bib-tag">Pemantau</span>
             </div>
 
             <div class="bib-center-content">
@@ -764,13 +767,13 @@
               <div class="bib-number tabular">14</div>
               <div class="bib-runner-details">
                 <div class="bib-name">Faisal Kecil</div>
-                <div class="bib-role">Mas mas kecil</div>
+                <div class="bib-role">Mas mas kecil • PEMANTAU HANDAL barisan pelari dan radar rute pintas tersembunyi</div>
               </div>
             </div>
           </article>
 
-          <!-- Bib 15: Piki -->
-          <article class="bib-card" data-category="kreatif" tabindex="0" aria-label="Bib Piki 15">
+          <!-- Bib 15: Fiki -->
+          <article class="bib-card" data-category="kreatif" tabindex="0" aria-label="Bib Fiki 15">
             <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
             <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
             <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
@@ -785,8 +788,8 @@
               <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">15</div>
               <div class="bib-runner-details">
-                <div class="bib-name">Piki</div>
-                <div class="bib-role">Donatur</div>
+                <div class="bib-name">Fiki</div>
+                <div class="bib-role">Donatur utama • Saldo tak terhingga penyokong logistik, amunisi konsumsi, dan biaya race</div>
               </div>
             </div>
           </article>
@@ -796,39 +799,45 @@
     </section>
 
     <!-- ==========================================================================
-       [H] GALERI (Contact Sheet Zine Collage Ala Street Running, Washi Tape & Decals)
+       [H] GALERI (Momen Jalanan & Race Recap Pelari Kalcer)
        ========================================================================== -->
-    <section class="section-spacing" id="galeri" aria-label="Galeri Foto Film">
+    <section class="section-spacing" id="galeri" aria-label="Dokumentasi Pelari Kalcer">
       <div class="container">
-        <!-- 35mm Film Top Sprocket Strip -->
-        <div class="sprocket-strip" aria-hidden="true">
-          <span class="sprocket-meta">KODAK 5063 TX</span>
-          <span class="sprockets-row"></span>
-          <span class="sprocket-meta">▶ 12A • GANK KAPAK 2026</span>
+        <!-- Runner KM Split Track Ribbon -->
+        <div class="runner-track-ribbon" aria-hidden="true">
+          <span class="track-km-badge">KM 00 START</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">KM 05 WATER STATION</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">KM 10 PACE 04:30</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">KM 16 CARBO GEL</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">KM 21.097 FINISH LINE</span>
         </div>
 
         <div class="contact-sheet-header">
           <div class="contact-sheet-meta">
-            <span class="cs-badge">KODAK 400TX</span>
-            <span class="cs-sub">CONTACT SHEET #2026 • DARKROOM EDITORIAL</span>
+            <span class="cs-badge">GANK KAPAK RACE RECAP</span>
+            <span class="cs-sub">MOMEN JALANAN 2026 • KERINGAT &amp; SENYUM FINISHER</span>
           </div>
 
-          <!-- Interactive Film LUT Switcher (Gacor Film Filter Toggles) -->
-          <div class="film-lut-controls" role="group" aria-label="Pilihan Tone Warna Film">
+          <!-- Interactive Running Tone Switcher -->
+          <div class="film-lut-controls" role="group" aria-label="Pilihan Tone Dokumentasi Lari">
             <button type="button" class="lut-btn active" data-lut="bw"
-              title="Hitam Putih Kontras Khas Kodak Tri-X">400TX B&amp;W</button>
-            <button type="button" class="lut-btn" data-lut="retro" title="Warna Hangat Kalcer Fujicolor 800">FUJI 800</button>
-            <button type="button" class="lut-btn" data-lut="darkroom" title="Mode Lampu Merah Kamar Gelap">DARKROOM 🔴</button>
+              title="Hitam Putih Raw Street Running">MONOCHROME</button>
+            <button type="button" class="lut-btn" data-lut="retro" title="Warna Hangat CFD Pagi">SUNRISE CFD</button>
+            <button type="button" class="lut-btn" data-lut="darkroom" title="Mode Lari Malam Gelap">NIGHT RUN 🔴</button>
           </div>
         </div>
 
-        <!-- Asymmetric Kalcer Zine Collage Grid -->
+        <!-- Asymmetric Kalcer Runner Collage Grid -->
         <div class="gallery-grid" id="galleryGrid">
 
-          <!-- Frame 01A: Hero Editorial Negative with Grease Pencil Wax Circle & Crop Marks -->
+          <!-- Frame 01A: Hero Long Run Km 16 -->
           <div class="film-card film-card-1" data-frame-index="0" onclick="openLightboxByIndex(0)">
             <span class="washi-tape-accent" aria-hidden="true"></span>
-            <span class="film-frame-number tabular">01A</span>
+            <span class="film-frame-number tabular">RECAP #01</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar4.jpeg" alt="Long Run Pertama Km 16" class="film-img">
               <div class="grease-circle" aria-hidden="true"></div>
@@ -838,14 +847,14 @@
             </div>
             <div class="film-footer-meta">
               <p class="film-caption">"LONG RUN PERTAMA"</p>
-              <span class="film-exposure-meta">1/1000s • ƒ/2.8 • 28mm</span>
+              <span class="film-exposure-meta">Pace 05:12 / KM • 16.4 KM • HR 164 BPM</span>
             </div>
           </div>
 
-          <!-- Frame 02A: Night Patrol Negative with Hazard Decal & Marshal Squad Stamp -->
+          <!-- Frame 02A: Night Patrol Marshal Duty -->
           <div class="film-card film-card-2" data-frame-index="1" onclick="openLightboxByIndex(1)">
             <span class="tape-hazard" aria-hidden="true">MARSHAL DUTY • 03:30 AM</span>
-            <span class="film-frame-number tabular">02A</span>
+            <span class="film-frame-number tabular">RECAP #02</span>
             <div class="film-img-wrapper">
               <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10% jadi marshal" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
@@ -853,14 +862,14 @@
             </div>
             <div class="film-footer-meta">
               <p class="film-caption">"jadi marshal"</p>
-              <span class="film-exposure-meta">ISO 3200 • HIGH CONTRAST</span>
+              <span class="film-exposure-meta">03:30 AM • Marshal Rute • Zero Incident</span>
             </div>
           </div>
 
-          <!-- Frame 03A: Authentic Polaroid / 120 Medium Format Frame with Tape Decal -->
+          <!-- Frame 03A: Sprint Finish Kentchang -->
           <div class="film-card film-card-3 polaroid-mount" data-frame-index="2" onclick="openLightboxByIndex(2)">
             <span class="scotch-tape-center" aria-hidden="true"></span>
-            <span class="film-frame-number tabular">03A</span>
+            <span class="film-frame-number tabular">RECAP #03</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar1.jpeg" alt="Pura-pura tegar depan kamera" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
@@ -868,14 +877,14 @@
             </div>
             <div class="polaroid-chin">
               <p class="polaroid-caption">"biar apa ? biar kentchang"</p>
-              <span class="polaroid-meta">FUJICOLOR 800 • INSTAX WIDE</span>
+              <span class="polaroid-meta">Sprint Finish • Cadence 192 SPM • Muka Pura-pura Tegar</span>
             </div>
           </div>
 
-          <!-- Frame 04A: Green Ink Rubber Stamp Contingent Finisher -->
+          <!-- Frame 04A: Official Contingent Finisher Medals -->
           <div class="film-card film-card-4" data-frame-index="3" onclick="openLightboxByIndex(3)">
             <span class="stamp-contingent" aria-hidden="true">★ KONTINGEN RESMI ★</span>
-            <span class="film-frame-number tabular">04A</span>
+            <span class="film-frame-number tabular">RECAP #04</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar3.jpeg" alt="Kontingen Pertama Genk Kapak" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
@@ -883,14 +892,14 @@
             </div>
             <div class="film-footer-meta">
               <p class="film-caption">"FIRST KONTINGEN GENK KAPAK"</p>
-              <span class="film-exposure-meta">SAFETY FILM • PUSH +1</span>
+              <span class="film-exposure-meta">Half Marathon • Target Sub-2 • Medali Sah</span>
             </div>
           </div>
 
           <!-- Frame 06A: Night Patrol Reflective Vests Squad -->
           <div class="film-card film-card-6" data-frame-index="4" onclick="openLightboxByIndex(4)">
-            <span class="stamp-patrol" aria-hidden="true">MOJOKERTO NIGHT PATROL</span>
-            <span class="film-frame-number tabular">06A</span>
+            <span class="stamp-patrol" aria-hidden="true">ROMPI HIJAU PATROL</span>
+            <span class="film-frame-number tabular">RECAP #05</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar2.jpeg" alt="Patroli malam & kopi subuh" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
@@ -898,33 +907,35 @@
             </div>
             <div class="film-footer-meta">
               <p class="film-caption">"patroli malam &amp; rombongan"</p>
-              <span class="film-exposure-meta">REFL. VEST • BASECAMP</span>
+              <span class="film-exposure-meta">Rompi Hijau • Pace Santai 06:30 • Finish Warung Kopi</span>
             </div>
           </div>
 
-          <!-- Frame 05A: Panoramic Archive Hero Banner at Base -->
+          <!-- Frame 05A: Uno Run 5K Pertama -->
           <div class="film-card film-card-5 panoramic-mount" data-frame-index="5" onclick="openLightboxByIndex(5)">
-            <span class="stamp-archive" aria-hidden="true">ARCHIVE #0001 • CIKAL BAKAL</span>
-            <span class="film-frame-number tabular">05A</span>
+            <span class="stamp-archive" aria-hidden="true">HISTORIC 5K • CIKAL BAKAL</span>
+            <span class="film-frame-number tabular">RECAP #06</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar5.jpeg" alt="Uno Run Awal Dari Semua" class="film-img">
-              <div class="grease-arrow" aria-hidden="true">◀ AWAL DARI SEMUA</div>
+              <div class="grease-arrow" aria-hidden="true">◀ DARI SINI SEMUA DIMULAI</div>
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <div class="film-footer-meta">
               <p class="film-caption">"UNO RUN AWAL DARI SEMUA"</p>
-              <span class="film-exposure-meta">EXP 2026 • DARKROOM PRINT #01</span>
+              <span class="film-exposure-meta">Uno Run 2026 • 5.0 KM • Titik Nol Gank Kapak</span>
             </div>
           </div>
 
         </div>
 
-        <!-- 35mm Film Bottom Sprocket Strip -->
-        <div class="sprocket-strip sprocket-bottom" aria-hidden="true">
-          <span class="sprocket-meta">EASTMAN KODAK COMPANY</span>
-          <span class="sprockets-row"></span>
-          <span class="sprocket-meta">▶ 16A • SAFETY FILM</span>
+        <!-- Runner Finish Line Strip -->
+        <div class="runner-track-ribbon ribbon-bottom" aria-hidden="true">
+          <span class="track-km-badge">GANK KAPAK MOJOKERTO</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">LARI DULU MIKIR BELAKANGAN</span>
+          <span class="track-dash-line"></span>
+          <span class="track-km-badge">TIDAK BOLEH ONAR YA</span>
         </div>
       </div>
     </section>
@@ -935,8 +946,8 @@
     </div>
     <div class="camera-flash" id="cameraFlash" aria-hidden="true"></div>
 
-    <!-- Lightbox Modal with Film Negative Slide Mount -->
-    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Film">
+    <!-- Lightbox Modal with Race Photo Mount -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Lari">
       <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Tutup Pratinjau">Tutup &times;</button>
       <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrevBtn" aria-label="Foto Sebelumnya">&#10094;</button>
       <button class="lightbox-nav-btn lightbox-next" id="lightboxNextBtn" aria-label="Foto Berikutnya">&#10095;</button>
@@ -944,13 +955,13 @@
       <div class="lightbox-inner">
         <div class="lightbox-slide-mount">
           <div class="slide-mount-header" aria-hidden="true">
-            <span>KODAK SAFETY FILM 400TX</span>
-            <span id="lightboxFrameNum">FRAME 01A</span>
+            <span>GANK KAPAK MOJOKERTO • OFFICIAL RACE RECAP</span>
+            <span id="lightboxFrameNum">RECAP #01</span>
           </div>
           <img src="" alt="" class="lightbox-img" id="lightboxImg">
           <div class="slide-mount-footer" aria-hidden="true">
-            <span>GANK KAPAK MOJOKERTO &bull; 2026</span>
-            <span>DEVELOPED AT BASECAMP</span>
+            <span>PACER APPROVED &bull; RECOVERY GEL READY</span>
+            <span>FINISHER PROOF</span>
           </div>
         </div>
         <p class="lightbox-caption" id="lightboxCaption"></p>

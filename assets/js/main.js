@@ -161,12 +161,12 @@
       });
 
       // ------------------------------------------------------------------------
-      // PAPAN BIB: FILTER KATEGORI & VIEW MODE SWITCHER (WALL VS RACK)
+      // PAPAN BIB: FILTER KATEGORI & VIEW MODE SWITCHER (LIST VS WALL)
       // ------------------------------------------------------------------------
       const bibChips = document.querySelectorAll('.bib-chip');
       const bibContainer = document.getElementById('bibWallContainer');
+      const bibViewListBtn = document.getElementById('bibViewList');
       const bibViewGridBtn = document.getElementById('bibViewGrid');
-      const bibViewRackBtn = document.getElementById('bibViewRack');
 
       if (bibChips.length > 0 && bibContainer) {
         bibChips.forEach(chip => {
@@ -187,19 +187,19 @@
         });
       }
 
-      if (bibViewGridBtn && bibViewRackBtn && bibContainer) {
-        bibViewGridBtn.addEventListener('click', () => {
-          bibViewGridBtn.classList.add('active');
-          bibViewRackBtn.classList.remove('active');
-          bibContainer.classList.remove('view-rack');
-          bibContainer.classList.add('view-grid');
-        });
-
-        bibViewRackBtn.addEventListener('click', () => {
-          bibViewRackBtn.classList.add('active');
+      if (bibViewGridBtn && bibViewListBtn && bibContainer) {
+        bibViewListBtn.addEventListener('click', () => {
+          bibViewListBtn.classList.add('active');
           bibViewGridBtn.classList.remove('active');
           bibContainer.classList.remove('view-grid');
-          bibContainer.classList.add('view-rack');
+          bibContainer.classList.add('view-list');
+        });
+
+        bibViewGridBtn.addEventListener('click', () => {
+          bibViewGridBtn.classList.add('active');
+          bibViewListBtn.classList.remove('active');
+          bibContainer.classList.remove('view-list');
+          bibContainer.classList.add('view-grid');
         });
       }
 
@@ -261,15 +261,15 @@
       }
 
       // ------------------------------------------------------------------------
-      // GALERI: 35MM SLIDE MOUNT LIGHTBOX, SHUTTER IRIS & FLASH EFFECT
+      // GALERI: RACE RECAP LIGHTBOX & FINISHER PROOF
       // ------------------------------------------------------------------------
       const gallerySlides = [
-        { src: 'assets/images/gambar4.jpeg', caption: '"LONG RUN PERTAMA"', frame: 'FRAME 01A' },
-        { src: 'assets/images/hero.jpeg', caption: '"jadi marshal"', frame: 'FRAME 02A' },
-        { src: 'assets/images/gambar1.jpeg', caption: '"biar apa ? biar kentchang"', frame: 'FRAME 03A' },
-        { src: 'assets/images/gambar3.jpeg', caption: '"FIRST KONTINGEN GENK KAPAK"', frame: 'FRAME 04A' },
-        { src: 'assets/images/gambar2.jpeg', caption: '"patroli malam & rombongan"', frame: 'FRAME 06A' },
-        { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'FRAME 05A' }
+        { src: 'assets/images/gambar4.jpeg', caption: '"LONG RUN PERTAMA"', frame: 'RECAP #01' },
+        { src: 'assets/images/hero.jpeg', caption: '"JADI MARSHAL RUTE"', frame: 'RECAP #02' },
+        { src: 'assets/images/gambar1.jpeg', caption: '"BIAR APA ? BIAR KENTCHANG"', frame: 'RECAP #03' },
+        { src: 'assets/images/gambar3.jpeg', caption: '"FIRST KONTINGEN GANK KAPAK"', frame: 'RECAP #04' },
+        { src: 'assets/images/gambar2.jpeg', caption: '"PATROLI MALAM & ROMBONGAN"', frame: 'RECAP #05' },
+        { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'RECAP #06' }
       ];
       let currentGalleryIndex = 0;
 
@@ -335,7 +335,7 @@
           setTimeout(() => {
             if (lightboxImg) lightboxImg.src = src;
             if (lightboxCaption) lightboxCaption.textContent = caption;
-            if (lightboxFrameNum) lightboxFrameNum.textContent = 'SAFETY FILM';
+            if (lightboxFrameNum) lightboxFrameNum.textContent = 'RACE MOMENT';
             lightboxModal.classList.add('open');
             document.body.style.overflow = 'hidden';
           }, 100);
