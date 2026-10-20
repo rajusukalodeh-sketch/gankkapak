@@ -189,19 +189,59 @@
       });
 
       // ------------------------------------------------------------------------
-      // LIGHTBOX GALERI (Klik foto membuka modal)
+      // [A2] LIVE TELEMETRY HUD (Stopwatch & Cadence Jitter)
+      // ------------------------------------------------------------------------
+      const stopwatchEl = document.getElementById('hudStopwatch');
+      const cadenceEl = document.getElementById('hudCadence');
+      if (stopwatchEl) {
+        let baseSeconds = 24 * 60 + 18.4;
+        const hudStart = performance.now();
+        function updateHudTimer() {
+          const elapsed = (performance.now() - hudStart) / 1000;
+          const currentTotal = baseSeconds + elapsed;
+          const hours = Math.floor(currentTotal / 3600);
+          const mins = Math.floor((currentTotal % 3600) / 60);
+          const secs = Math.floor(currentTotal % 60);
+          const tenths = Math.floor((currentTotal * 10) % 10);
+          const timeStr = `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${tenths}`;
+          stopwatchEl.textContent = timeStr;
+          requestAnimationFrame(updateHudTimer);
+        }
+        requestAnimationFrame(updateHudTimer);
+      }
+
+      if (cadenceEl) {
+        setInterval(() => {
+          const jitter = 173 + Math.floor(Math.random() * 5); // 173..177 SPM
+          cadenceEl.textContent = jitter;
+        }, 2200);
+      }
+
+      // ------------------------------------------------------------------------
+      // LIGHTBOX GALERI DENGAN CAMERA SHUTTER FLASH EFFECT
       // ------------------------------------------------------------------------
       const lightboxModal = document.getElementById('lightboxModal');
       const lightboxImg = document.getElementById('lightboxImg');
       const lightboxCaption = document.getElementById('lightboxCaption');
       const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+      const cameraFlash = document.getElementById('cameraFlash');
 
       window.openLightbox = function (src, caption) {
         if (!lightboxModal) return;
-        lightboxImg.src = src;
-        lightboxCaption.textContent = caption;
-        lightboxModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
+
+        // Optical Camera Flash Trigger
+        if (cameraFlash) {
+          cameraFlash.classList.remove('flash-active');
+          void cameraFlash.offsetWidth; // Force CSS Reflow
+          cameraFlash.classList.add('flash-active');
+        }
+
+        setTimeout(() => {
+          lightboxImg.src = src;
+          lightboxCaption.textContent = caption;
+          lightboxModal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }, 120);
       };
 
       function closeLightbox() {
@@ -221,6 +261,67 @@
           closeLightbox();
         }
       });
+
+      // ------------------------------------------------------------------------
+      // ANIMASI #4+: INTERACTIVE 3D HOLOGRAPHIC TILT PADA BIB CARDS
+      // ------------------------------------------------------------------------
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        bibCards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -(y / rect.height) * 14;
+            const rotateY = (x / rect.width) * 14;
+            card.style.transform = `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+        });
+      }
+
+      // ------------------------------------------------------------------------
+      // MAGNETIC BUTTON HOVER EFFECT (Desktop)
+      // ------------------------------------------------------------------------
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const magneticElements = document.querySelectorAll('.btn-green, .hero-gabung-pill, .kalcer-stamp-badge');
+        magneticElements.forEach(el => {
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+            const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+            el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+          });
+        });
+      }
+
+      // ------------------------------------------------------------------------
+      // KALCER SCROLL REVEAL ENTRANCE (IntersectionObserver)
+      // ------------------------------------------------------------------------
+      const revealTargets = document.querySelectorAll('.event-row, .film-card, .cerita-item, .faq-item, .sponsor-logo, .drop-card');
+      revealTargets.forEach((target, idx) => {
+        target.classList.add('kalcer-reveal');
+        target.style.transitionDelay = `${(idx % 4) * 0.08}s`;
+      });
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        revealTargets.forEach(el => revealObserver.observe(el));
+      } else {
+        revealTargets.forEach(el => el.classList.add('is-revealed'));
+      }
 
       // ------------------------------------------------------------------------
       // MODAL RUTE
@@ -272,7 +373,7 @@
       }
 
       // ------------------------------------------------------------------------
-      // DYNAMIC STRAVA SYNC LOADER (Papan km)
+      // DYNAMIC STRAVA SYNC LOADER (Papan km dengan Bar & Crown)
       // ------------------------------------------------------------------------
       const leaderboardContainer = document.getElementById('leaderboardRows');
       if (leaderboardContainer && window.fetch) {
@@ -283,13 +384,22 @@
           })
           .then(list => {
             if (Array.isArray(list) && list.length > 0) {
-              leaderboardContainer.innerHTML = list.map(item => `
-                <div class="leaderboard-row">
-                  <span class="leaderboard-rank">${item.rank}</span>
-                  <span class="leaderboard-name">${item.name}</span>
-                  <span class="leaderboard-km">${item.distance}</span>
-                </div>
-              `).join('');
+              const maxDist = Math.max(...list.map(i => parseFloat(i.distance) || 1));
+              leaderboardContainer.innerHTML = list.map((item, idx) => {
+                const distVal = parseFloat(item.distance) || 0;
+                const percent = maxDist > 0 ? ((distVal / maxDist) * 100).toFixed(1) : 50;
+                const isLeader = idx === 0;
+                return `
+                  <div class="leaderboard-row" data-percent="${percent}">
+                    <span class="leaderboard-rank ${isLeader ? 'leader-top' : ''}">
+                      ${item.rank} ${isLeader ? '<span class="crown-icon">👑</span>' : ''}
+                    </span>
+                    <span class="leaderboard-name">${item.name}</span>
+                    <span class="leaderboard-km">${item.distance}</span>
+                    <div class="leaderboard-bar" style="--bar-fill: ${percent}%;"></div>
+                  </div>
+                `;
+              }).join('');
             }
           })
           .catch(() => {
@@ -298,3 +408,4 @@
       }
 
     })();
+
