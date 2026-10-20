@@ -1500,13 +1500,13 @@ footer[id] {
   scroll-snap-align: start;
 }
 
-/* Bib Card (Authentic Tyvek Paper, 3D Sheen, Safety Pins & Tear-off Stub) */
+/* Bib Card (Clean Tyvek Race Bib, 3D Sheen & Metallic Safety Pins) */
 .bib-card {
   position: relative;
   background-color: #EAF4EC;
   color: #0A0F0B;
   border-radius: var(--radius);
-  padding: 20px 18px 16px;
+  padding: 20px 18px 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1518,7 +1518,7 @@ footer[id] {
   perspective: 1000px;
   transform-style: preserve-3d;
   transition: transform 0.25s var(--ease-run), box-shadow 0.25s ease, opacity 0.3s ease;
-  min-height: 420px;
+  min-height: 290px;
 }
 
 /* Filtered out cards state */
@@ -1597,52 +1597,38 @@ footer[id] {
   100% { transform: rotate(10deg) scale(1.15); }
 }
 
-/* Top Strip (Event series & Corral Tag) */
+/* Top Strip (Clean & Unpretentious Race Bib Series & Role Tag) */
 .bib-top-strip {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #0A0F0B;
   padding-bottom: 8px;
-  margin-bottom: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.bib-top-left {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .bib-series {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
   color: #0A0F0B;
   text-transform: uppercase;
 }
 
-.bib-wave {
-  font-family: monospace;
-  font-size: 0.5625rem;
-  letter-spacing: 0.1em;
-  color: rgba(10, 15, 11, 0.65);
-  font-weight: 700;
-}
-
 .bib-tag {
   font-family: var(--font-display);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #0F5B30;
   border: 1.5px solid #0F5B30;
-  padding: 3px 8px;
+  padding: 2px 8px;
   border-radius: 4px;
-  background-color: rgba(31, 157, 85, 0.1);
-  display: inline-block;
+  background-color: rgba(31, 157, 85, 0.08);
 }
 
 .tag-princess {
@@ -1660,7 +1646,7 @@ footer[id] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px 4px;
+  padding: 8px 4px 4px;
 }
 
 .bib-watermark {
@@ -1681,11 +1667,11 @@ footer[id] {
 .bib-number {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 4.75rem;
-  line-height: 0.85;
+  font-size: 4.5rem;
+  line-height: 0.88;
   letter-spacing: -0.06em;
   text-align: center;
-  margin: 12px 0 10px;
+  margin: 10px 0 8px;
   color: #0A0F0B;
   position: relative;
   z-index: 2;
@@ -1739,74 +1725,6 @@ footer[id] {
   box-shadow: 0 8px 24px rgba(31, 157, 85, 0.25);
 }
 
-/* Perforated Tear-off Coupon Stub */
-.bib-tear-stub {
-  margin-top: 14px;
-  border-top: 1.5px dashed rgba(10, 15, 11, 0.3);
-  padding-top: 6px;
-  position: relative;
-}
-
-.stub-line {
-  font-family: monospace;
-  font-size: 0.5625rem;
-  letter-spacing: 0.15em;
-  color: rgba(10, 15, 11, 0.4);
-  text-align: center;
-  margin-bottom: 6px;
-  user-select: none;
-}
-
-.stub-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.stub-barcode {
-  display: flex;
-  flex-direction: column;
-}
-
-.barcode-font {
-  font-family: monospace;
-  font-weight: 900;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  color: #0A0F0B;
-}
-
-.barcode-num {
-  font-family: monospace;
-  font-size: 0.5625rem;
-  letter-spacing: 0.12em;
-  color: rgba(10, 15, 11, 0.55);
-}
-
-.stub-claim {
-  text-align: right;
-}
-
-.stub-tag {
-  display: block;
-  font-size: 0.5625rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #0F5B30;
-}
-
-.stub-desc {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.6875rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: #0A0F0B;
-}
-
 /* Responsive Bib Wall */
 @media (max-width: 1200px) and (min-width: 901px) {
   .bib-wall-container.view-grid {
@@ -1846,8 +1764,8 @@ footer[id] {
     scrollbar-width: none;
   }
   .bib-card {
-    min-height: 380px;
-    padding: 18px 14px 14px;
+    min-height: 260px;
+    padding: 18px 14px 20px;
   }
   .bib-number {
     font-size: 3.8rem;
