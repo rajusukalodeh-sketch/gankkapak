@@ -1,0 +1,7 @@
+{
+  "client_id": "MASUKKAN_CLIENT_ID_ANDA",
+  "client_secret": "MASUKKAN_CLIENT_SECRET_ANDA",
+  "refresh_token": "MASUKKAN_REFRESH_TOKEN_ANDA",
+  "club_id": "MASUKKAN_CLUB_ID_ANDA",
+  "_petunjuk": "Dapatkan Client ID, Secret, dan Refresh Token gratis di https://www.strava.com/settings/api"
+}

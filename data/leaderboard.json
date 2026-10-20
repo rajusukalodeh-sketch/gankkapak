@@ -1,32 +1,27 @@
 [
-  {
-    "rank": "01",
-    "name": "Anisa (Mba-mba Ultra)",
-    "distance": "164.2 KM",
-    "pace": "5:15 /km"
-  },
-  {
-    "rank": "02",
-    "name": "Ega (Dieng Elevasi)",
-    "distance": "132.8 KM",
-    "pace": "5:45 /km"
-  },
-  {
-    "rank": "03",
-    "name": "Surya (Marketing Handal)",
-    "distance": "115.0 KM",
-    "pace": "5:30 /km"
-  },
-  {
-    "rank": "04",
-    "name": "Fajar (Admin Digital)",
-    "distance": "98.4 KM",
-    "pace": "6:10 /km"
-  },
-  {
-    "rank": "05",
-    "name": "Evan (Introvert Lari Hening)",
-    "distance": "84.0 KM",
-    "pace": "6:25 /km"
-  }
+    {
+        "rank": "01",
+        "name": "Anisa (Mba-mba Ultra)",
+        "distance": "168.0 KM"
+    },
+    {
+        "rank": "02",
+        "name": "Ega (Dieng Elevasi)",
+        "distance": "136.5 KM"
+    },
+    {
+        "rank": "03",
+        "name": "Surya (Marketing Handal)",
+        "distance": "116.2 KM"
+    },
+    {
+        "rank": "04",
+        "name": "Fajar (Admin Digital)",
+        "distance": "103.0 KM"
+    },
+    {
+        "rank": "05",
+        "name": "Evan (Introvert Lari Hening)",
+        "distance": "88.4 KM"
+    }
 ]

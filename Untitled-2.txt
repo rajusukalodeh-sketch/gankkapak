@@ -1,0 +1,7 @@
+lanjutkan yang gagal.
+
+ganti gambar di galeri dengan gambar1 - 3 dan hero
+
+aku ada gambar logo. ditaruh dimana gambar logo itu bagusnya ? atur asal kalcer dan tidak merusak
+
+masukkan event yang hanya ada nama anggotanya, SLU itu (sikso rogo lawu), untuk event yang tanggalnya udah lebih dari hari ini, buat jadi kenangan. dan data dummy kenangan hapus aja.

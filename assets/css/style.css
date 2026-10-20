@@ -1,0 +1,1743 @@
+/* ==========================================================================
+       1. DESIGN SYSTEM & TOKENS (PALET SOLID TANPA GRADASI)
+       ========================================================================== */
+    :root {
+      --font-display: 'Bricolage Grotesque', -apple-system, sans-serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+
+      /* Dark Mode Default */
+      --bg-base: #0A0F0B;
+      --dot-color: #15412A;
+      --surface-dark: #0A0F0B;
+      --surface-elevated: #0f1610;
+      --green: #1F9D55;
+      --green-dark: #0F5B30;
+      --chalk-white: #EAF4EC;
+
+      --text: #EAF4EC;
+      --text-muted: rgba(234, 244, 236, 0.65);
+      --text-faint: rgba(234, 244, 236, 0.35);
+      --border-thin: rgba(234, 244, 236, 0.15);
+      --border-strong: #EAF4EC;
+
+      --container-max: 1280px;
+      --gutter: 24px;
+      --radius: 10px;
+      --nav-height: 68px;
+      --info-height: 40px;
+      --ease-run: cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    /* Light Mode */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-base: #EEF4EF;
+        --dot-color: #CFE8D6;
+        --surface-dark: #EEF4EF;
+        --surface-elevated: #FFFFFF;
+        --green: #1F9D55;
+        --green-dark: #0F5B30;
+        --chalk-white: #0A0F0B;
+
+        --text: #0A0F0B;
+        --text-muted: rgba(10, 15, 11, 0.65);
+        --text-faint: rgba(10, 15, 11, 0.35);
+        --border-thin: rgba(10, 15, 11, 0.15);
+        --border-strong: #0A0F0B;
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      :root {
+        --gutter: 20px;
+      }
+    }
+
+    /* Reset & Base */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background Polkadot (strictly fixed on body, 3px dot, 18px spacing) */
+    body {
+      background-color: var(--bg-base);
+      background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.6px);
+      background-size: 18px 18px;
+      background-attachment: fixed;
+      background-position: 0 0;
+      color: var(--text);
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Tabular numbers for all stats, times, km */
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Focus styling for keyboard accessibility */
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    /* Grid Container (12-column, 1280px max, 24px gutter / 20px mobile) */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gutter);
+    }
+
+    /* Solid Panels: Polkadot is strictly hidden underneath panels */
+    .panel-solid {
+      background-color: var(--surface-dark);
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+    }
+
+    .panel-green {
+      background-color: var(--green);
+      color: #0A0F0B;
+      border-radius: var(--radius);
+      border: none;
+    }
+
+    .panel-black {
+      background-color: #0A0F0B;
+      color: #EAF4EC;
+      border-radius: var(--radius);
+      border: 1px solid rgba(234, 244, 236, 0.15);
+    }
+
+    /* Typography Classes */
+    .title-giant {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.88;
+      font-variation-settings: 'wdth' 75;
+      text-transform: uppercase;
+    }
+
+    .title-normal {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      font-variation-settings: 'wdth' 100;
+      text-transform: uppercase;
+    }
+
+    .body-lead {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.5;
+      max-width: 60ch;
+    }
+
+    .text-green {
+      color: var(--green);
+    }
+
+    /* Spacing utilities (Multiples of 8px) */
+    .section-spacing {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+
+    @media (max-width: 768px) {
+      .section-spacing {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+    }
+
+    /* Chequered finish-line pattern (8px height) */
+    .finish-line-strip {
+      height: 8px;
+      width: 100%;
+      background-image: repeating-linear-gradient(90deg,
+          #0A0F0B 0px,
+          #0A0F0B 8px,
+          #EAF4EC 8px,
+          #EAF4EC 16px);
+      display: block;
+    }
+
+    /* ==========================================================================
+       2. SVG ROUTE LINE ANIMATION (Animation #2)
+       ========================================================================== */
+    .route-tracker {
+      position: fixed;
+      right: 12px;
+      top: 120px;
+      bottom: 40px;
+      width: 24px;
+      pointer-events: none;
+      z-index: 40;
+    }
+
+    .route-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .route-bg-path {
+      stroke: var(--border-thin);
+      stroke-width: 2;
+      stroke-dasharray: 4 4;
+      fill: none;
+    }
+
+    .route-active-path {
+      stroke: var(--green);
+      stroke-width: 3;
+      stroke-dasharray: 6 6;
+      fill: none;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    .runner-dot {
+      fill: var(--green);
+      transition: transform 0.1s linear;
+    }
+
+    @media (max-width: 768px) {
+      .route-tracker {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       [A] BAR INFO TIPIS (Paling Atas)
+       ========================================================================== */
+    .top-info-bar {
+      background-color: #0A0F0B;
+      color: #EAF4EC;
+      height: var(--info-height);
+      border-bottom: 1px solid rgba(234, 244, 236, 0.15);
+      display: flex;
+      align-items: center;
+      font-size: 0.8125rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-info-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .top-info-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-info-pulse {
+      width: 8px;
+      height: 8px;
+      background-color: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .top-info-link {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       [B] NAVBAR (Sticky 68px)
+       ========================================================================== */
+    .navbar {
+      background-color: var(--surface-dark);
+      border-bottom: 1px solid var(--border-thin);
+      height: var(--nav-height);
+      position: sticky;
+      top: var(--info-height);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.375rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--green);
+    }
+
+    /* Dropdown "Lainnya" */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      background: transparent;
+      padding: 8px 0;
+    }
+
+    .dropdown-btn:hover {
+      color: var(--green);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 190px;
+      background-color: var(--surface-dark);
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 8px 0;
+      list-style: none;
+      display: none;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      z-index: 95;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-item a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .dropdown-item a:hover {
+      background-color: rgba(31, 157, 85, 0.1);
+      color: var(--text);
+    }
+
+    /* Buttons */
+    .btn-green {
+      background-color: var(--green);
+      color: #0A0F0B;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-green:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border-thin);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text);
+      background-color: rgba(234, 244, 236, 0.05);
+    }
+
+    /* Tombol WhatsApp Finish-line sweep animation (Animation #7) */
+    .btn-wa-sweep {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa-sweep .sweep-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background-image: repeating-linear-gradient(90deg,
+          #0A0F0B 0px,
+          #0A0F0B 8px,
+          #EAF4EC 8px,
+          #EAF4EC 16px);
+      pointer-events: none;
+      transition: width 0.4s var(--ease-run);
+      z-index: 2;
+    }
+
+    .btn-wa-sweep.sweeping .sweep-layer {
+      width: 100%;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-btn {
+      display: none;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 8px 12px;
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: var(--bg-base);
+      z-index: 200;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px var(--gutter);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open {
+      display: flex;
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 40px 0;
+    }
+
+    .mobile-nav-item a {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--text);
+      display: inline-block;
+    }
+
+    .mobile-nav-item a:hover {
+      color: var(--green);
+    }
+
+    .mobile-nav-sublinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-thin);
+    }
+
+    .mobile-nav-sublinks a {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+
+    /* Floating WhatsApp button on mobile */
+    .mobile-floating-wa {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: var(--gutter);
+      right: var(--gutter);
+      z-index: 85;
+      background-color: var(--green);
+      color: #0A0F0B;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .mobile-floating-wa {
+        display: block;
+      }
+    }
+
+    /* ==========================================================================
+       [C] HERO (Full-Bleed 100vh, Foto Candid Gelap Film-Grain)
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - var(--nav-height) - var(--info-height));
+      min-height: 600px;
+      max-height: 1080px;
+      background-color: #0A0F0B;
+      overflow: hidden;
+    }
+
+    .hero-photo-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(0.65) contrast(1.15);
+    }
+
+    /* Film grain overlay */
+    .hero-photo-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#000000 1px, transparent 1px);
+      background-size: 3px 3px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .hero-top-bar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-bottom-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Slogan Animation #1: Masking dari bawah & habitatku berlari dari kanan */
+    .slogan-title {
+      font-size: clamp(3.75rem, 11vw, 9.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      color: #EAF4EC;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-variation-settings: 'wdth' 75;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .slogan-mask {
+      display: block;
+      overflow: hidden;
+      line-height: 0.88;
+    }
+
+    .slogan-line-1 {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: heroMaskUp 0.75s var(--ease-run) forwards 0.15s;
+    }
+
+    .slogan-line-2 {
+      display: inline-block;
+      color: var(--green);
+      transform: translateX(100px);
+      opacity: 0;
+      animation: heroRunRight 0.9s var(--ease-run) forwards 0.35s;
+    }
+
+    @keyframes heroMaskUp {
+      0% {
+        transform: translateY(110%);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroRunRight {
+      0% {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+
+      80% {
+        transform: translateX(-10px);
+        /* Overshoot */
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-caption-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .hero-caption {
+      font-size: 0.875rem;
+      color: rgba(234, 244, 236, 0.75);
+      background-color: rgba(10, 15, 11, 0.85);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(234, 244, 236, 0.2);
+    }
+
+    /* ==========================================================================
+       [D] MANIFESTO (TENTANG) - Section Lega Zine
+       ========================================================================== */
+    .manifesto-section {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+
+    .manifesto-lead {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 4.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text);
+      max-width: 1080px;
+      margin-bottom: 32px;
+    }
+
+    .manifesto-kapak {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--green);
+      padding-left: 16px;
+      max-width: 720px;
+    }
+
+    /* ==========================================================================
+       [E] JADWAL (Panel Hijau Penuh Lebar #1F9D55 - Week Strip)
+       ========================================================================== */
+    .week-strip-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .week-strip {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(150px, 1fr));
+      gap: 1px;
+      background-color: var(--green-dark);
+      border: 1px solid var(--green-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .day-cell {
+      background-color: var(--green);
+      color: #0A0F0B;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      position: relative;
+      transition: background-color 0.2s ease;
+    }
+
+    .day-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(10, 15, 11, 0.2);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .today-tag {
+      font-size: 0.6875rem;
+      background-color: #0A0F0B;
+      color: #EAF4EC;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      display: none;
+    }
+
+    /* Sel hari ini berdenyut halus 2x lalu diam (Animation #3) */
+    .day-cell.is-today {
+      background-color: #24b563;
+      box-shadow: inset 0 0 0 2px #0A0F0B;
+      animation: todayPulse 0.8s var(--ease-run) 2;
+    }
+
+    .day-cell.is-today .today-tag {
+      display: inline-block;
+    }
+
+    @keyframes todayPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.98);
+      }
+    }
+
+    .day-empty-text {
+      font-size: 1.125rem;
+      color: rgba(10, 15, 11, 0.7);
+      margin-top: auto;
+      margin-bottom: auto;
+      font-style: italic;
+    }
+
+    .day-run-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    .run-time {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #0A0F0B;
+    }
+
+    .run-distance {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 2.25rem;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #0A0F0B;
+    }
+
+    .run-meta {
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: rgba(10, 15, 11, 0.85);
+    }
+
+    .run-route-link {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: #0A0F0B;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    .run-route-link:hover {
+      opacity: 0.75;
+    }
+
+    /* ==========================================================================
+       [F] EVENT (Baris Selebar Layar)
+       ========================================================================== */
+    .event-row {
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border-thin);
+    }
+
+    .event-date {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .event-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .event-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.375rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .event-loc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+
+    .event-archive-toggle {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--green);
+      cursor: pointer;
+    }
+
+    .event-archive-content {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px dashed var(--border-thin);
+    }
+
+    .event-archive-content.open {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .event-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* ==========================================================================
+       [G] ORANG-ORANG (Scroll-Snap Bib Race Berukuran Besar)
+       ========================================================================== */
+    .bib-track-wrapper {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px 0;
+    }
+
+    .bib-track-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bib-track {
+      display: flex;
+      gap: 24px;
+      scroll-snap-type: x mandatory;
+      padding-right: var(--gutter);
+    }
+
+    /* Bib Card (Animation #4: Miring 3 derajat & pin bergoyang) */
+    .bib-card {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      background-color: #EAF4EC;
+      color: #0A0F0B;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(10, 15, 11, 0.15);
+      width: 270px;
+      height: 380px;
+      transform: rotate(0deg);
+      transition: transform 0.22s var(--ease-run);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Runner of the Month (Bib pertama dibuat lebih besar) */
+    .bib-card.bib-rotm {
+      width: 320px;
+      height: 420px;
+      background-color: #FFFFFF;
+      border: 2px solid var(--green);
+    }
+
+    .bib-card:hover,
+    .bib-card:focus-visible,
+    .bib-card.active {
+      transform: translateY(-4px) rotate(3deg);
+    }
+
+    /* Pin Holes (4 di sudut) */
+    .bib-pin {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #0A0F0B;
+      border: 2px solid #a3b8a8;
+      transition: transform 0.22s var(--ease-run);
+    }
+
+    .bib-pin-tl {
+      top: 14px;
+      left: 14px;
+    }
+
+    .bib-pin-tr {
+      top: 14px;
+      right: 14px;
+    }
+
+    .bib-pin-bl {
+      bottom: 14px;
+      left: 14px;
+    }
+
+    .bib-pin-br {
+      bottom: 14px;
+      right: 14px;
+    }
+
+    .bib-card:hover .bib-pin,
+    .bib-card:focus-visible .bib-pin,
+    .bib-card.active .bib-pin {
+      transform: rotate(-6deg);
+    }
+
+    .bib-header {
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .bib-tag {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0F5B30;
+      border: 1px solid #0F5B30;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .bib-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 4.5rem;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      text-align: center;
+      margin: 16px 0;
+      color: #0A0F0B;
+    }
+
+    .bib-rotm .bib-number {
+      font-size: 5.5rem;
+      color: #0F5B30;
+    }
+
+    .bib-photo-mini {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      border: 2px solid #0A0F0B;
+      filter: grayscale(100%) contrast(1.2);
+    }
+
+    .bib-footer {
+      text-align: center;
+      border-top: 1px solid rgba(10, 15, 11, 0.15);
+      padding-top: 12px;
+      margin-top: auto;
+    }
+
+    .bib-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #0A0F0B;
+    }
+
+    .bib-role {
+      font-size: 0.8125rem;
+      color: rgba(10, 15, 11, 0.7);
+    }
+
+    /* ==========================================================================
+       [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
+       ========================================================================== */
+    .contact-sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-thin);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    /* Foto Cetak Film (Animation #5: Naik 4px & lurus 0deg saat sentuh) */
+    .film-card {
+      position: relative;
+      background-color: #0A0F0B;
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 12px 12px 16px;
+      cursor: pointer;
+      transform: translateY(0) rotate(var(--tilt, 0deg));
+      transition: transform 0.25s var(--ease-run);
+    }
+
+    .film-card:hover,
+    .film-card:focus-visible {
+      transform: translateY(-4px) rotate(0deg);
+    }
+
+    .film-card-1 {
+      grid-column: span 5;
+      --tilt: -1deg;
+    }
+
+    .film-card-2 {
+      grid-column: span 7;
+      --tilt: 1deg;
+    }
+
+    .film-card-3 {
+      grid-column: span 4;
+      --tilt: 1.5deg;
+    }
+
+    .film-card-4 {
+      grid-column: span 4;
+      --tilt: -1.2deg;
+    }
+
+    .film-card-5 {
+      grid-column: span 4;
+      --tilt: 0.8deg;
+    }
+
+    @media (max-width: 860px) {
+
+      .film-card-1,
+      .film-card-2,
+      .film-card-3,
+      .film-card-4,
+      .film-card-5 {
+        grid-column: span 12;
+        --tilt: 0deg;
+      }
+    }
+
+    .film-frame-number {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .film-img-wrapper {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      border-radius: 6px;
+      background-color: #121813;
+    }
+
+    .film-card-2 .film-img-wrapper {
+      height: 320px;
+    }
+
+    .film-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(40%) contrast(1.1);
+      transition: filter 0.2s ease;
+    }
+
+    .film-card:hover .film-img {
+      filter: grayscale(0%) contrast(1.05);
+    }
+
+    .film-caption {
+      margin-top: 12px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Lightbox modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(10, 15, 11, 0.95);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--gutter);
+    }
+
+    .lightbox-modal.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .lightbox-img {
+      max-height: 80vh;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      border: 1px solid rgba(234, 244, 236, 0.2);
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text);
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--border-thin);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+    }
+
+    /* ==========================================================================
+       [I] DROP (MERCHANDISE - Lookbook Editorial)
+       ========================================================================== */
+    .drop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .drop-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .drop-card {
+      background-color: var(--surface-dark);
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateY(0);
+      transition: transform 0.25s var(--ease-run);
+    }
+
+    .drop-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .drop-photo-box {
+      width: 100%;
+      height: 380px;
+      background-color: #121813;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .drop-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .drop-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drop-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--green);
+    }
+
+    .drop-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .drop-price {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* ==========================================================================
+       [J] CERITA (BERITA - 3 Entri Gaya Majalah)
+       ========================================================================== */
+    .cerita-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cerita-item {
+      display: grid;
+      grid-template-columns: 1fr 140px;
+      gap: 24px;
+      align-items: baseline;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border-thin);
+      cursor: pointer;
+    }
+
+    .cerita-item:first-child {
+      border-top: 1px solid var(--border-thin);
+    }
+
+    .cerita-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.375rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 8px;
+      transition: color 0.15s ease;
+    }
+
+    .cerita-item:hover .cerita-title {
+      color: var(--green);
+    }
+
+    .cerita-sentence {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 60ch;
+    }
+
+    .cerita-category {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      .cerita-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .cerita-category {
+        text-align: left;
+      }
+    }
+
+    /* ==========================================================================
+       [K] PAPAN KM (LEADERBOARD - Top 5 Teks Bersih Tabular Numbers)
+       ========================================================================== */
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+
+    .leaderboard-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 140px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-thin);
+      align-items: center;
+      font-size: 1.0625rem;
+    }
+
+    .leaderboard-row:first-child {
+      border-top: 1px solid var(--border-thin);
+    }
+
+    .leaderboard-rank {
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .leaderboard-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .leaderboard-km {
+      text-align: right;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ==========================================================================
+       [L] GABUNG (Panel Hitam Penuh Lebar, Tanpa Form)
+       ========================================================================== */
+    .gabung-box {
+      padding: 72px 48px;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .gabung-box {
+        padding: 48px 24px;
+      }
+    }
+
+    .gabung-headline {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: #EAF4EC;
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .gabung-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ==========================================================================
+       [M] SISANYA (3 Blok Sejajar di Desktop, Bertumpuk di HP)
+       ========================================================================== */
+    .sisanya-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+
+    @media (max-width: 860px) {
+      .sisanya-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    .sisanya-col-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-thin);
+    }
+
+    /* Accordion FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border-thin);
+      padding: 14px 0;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      font-size: 1.125rem;
+      transition: transform 0.2s ease;
+      color: var(--green);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Sponsor Grid */
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .sponsor-logo {
+      background-color: var(--surface-dark);
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 20px 12px;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Donasi */
+    .donasi-box {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bank-card {
+      background-color: var(--surface-dark);
+      border: 1px solid var(--border-thin);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: var(--text);
+    }
+
+    .bank-account {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      color: var(--green);
+      margin: 4px 0;
+    }
+
+    /* ==========================================================================
+       [N] FOOTER RAKSASA (Kontak & Bleed Wordmark)
+       ========================================================================== */
+    .footer-section {
+      background-color: #0A0F0B;
+      color: #EAF4EC;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(234, 244, 236, 0.15);
+    }
+
+    .footer-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 48px;
+    }
+
+    .footer-links-row a:hover {
+      color: var(--green);
+    }
+
+    /* Pita teks berjalan (Animation #6) */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(234, 244, 236, 0.15);
+      border-bottom: 1px solid rgba(234, 244, 236, 0.15);
+      padding: 12px 0;
+      margin-bottom: 48px;
+      background-color: #0d140e;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      white-space: nowrap;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--green);
+      animation: marqueeScroll 22s linear infinite;
+    }
+
+    .marquee-track.fast-scroll {
+      animation-duration: 7s;
+    }
+
+    @keyframes marqueeScroll {
+      0% {
+        transform: translateX(0%);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Giant Wordmark terpotong di dasar */
+    .giant-wordmark-wrapper {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0.72;
+      user-select: none;
+      margin-bottom: -15px;
+    }
+
+    .giant-wordmark {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(4.5rem, 16vw, 16.5rem);
+      letter-spacing: -0.05em;
+      color: #EAF4EC;
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-variation-settings: 'wdth' 75;
+      display: block;
+      transform: translateY(12%);
+    }
+
+    .footer-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0 32px;
+      font-size: 0.875rem;
+      color: rgba(234, 244, 236, 0.5);
+    }
+
+    @media (max-width: 640px) {
+      .footer-bottom-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+    }
+
+    /* ==========================================================================
+       ACCESSIBILITY & PREFERS-REDUCED-MOTION
+       Matikan animasi #1, #2, #6, #8
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+
+      .slogan-line-1,
+      .slogan-line-2 {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .route-active-path {
+        stroke-dashoffset: 0 !important;
+        transition: none !important;
+      }
+
+      .day-cell.is-today {
+        animation: none !important;
+      }
+
+      .marquee-track {
+        animation: none !important;
+        transform: none !important;
+      }
+
+      body {
+        background-attachment: scroll !important;
+      }
+    }
