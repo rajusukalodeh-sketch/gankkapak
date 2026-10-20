@@ -1508,8 +1508,8 @@
        ========================================================================== */
     .sisanya-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
     }
 
     @media (max-width: 860px) {
@@ -1812,7 +1812,6 @@
             <li class="dropdown-item"><a href="#leaderboard">Papan km</a></li>
             <li class="dropdown-item"><a href="#faq">FAQ</a></li>
             <li class="dropdown-item"><a href="#sponsor">Sponsor</a></li>
-            <li class="dropdown-item"><a href="#donasi">Donasi</a></li>
             <li class="dropdown-item"><a href="#kontak">Kontak</a></li>
           </ul>
         </li>
@@ -1850,7 +1849,6 @@
         <a href="#leaderboard" class="mobile-nav-link">Papan km</a>
         <a href="#faq" class="mobile-nav-link">FAQ</a>
         <a href="#sponsor" class="mobile-nav-link">Sponsor</a>
-        <a href="#donasi" class="mobile-nav-link">Donasi</a>
         <a href="#kontak" class="mobile-nav-link">Kontak</a>
       </div>
       <div style="margin-top: 24px;">
@@ -2497,12 +2495,18 @@
        ========================================================================== -->
     <section class="section-spacing" id="leaderboard" aria-label="Papan Kilometer">
       <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; flex-wrap: wrap; gap: 8px;">
           <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Papan km</h2>
-          <span style="font-size: 0.875rem; color: var(--text-muted);">Bulan Ini</span>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 0.8125rem; color: var(--green); font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block;"></span>
+              Strava Club Ready
+            </span>
+            <span style="font-size: 0.875rem; color: var(--text-muted);">Bulan Ini</span>
+          </div>
         </div>
 
-        <div class="leaderboard-table tabular">
+        <div class="leaderboard-table tabular" id="leaderboardRows">
           <div class="leaderboard-row">
             <span class="leaderboard-rank">01</span>
             <span class="leaderboard-name">Anisa (Mba-mba Ultra)</span>
@@ -2533,7 +2537,7 @@
         <div>
           <a href="https://www.strava.com/clubs/gankkapak" target="_blank" rel="noopener noreferrer"
             class="btn-outline">
-            Lihat klub di Strava
+            Buka Leaderboard Resmi di Strava
           </a>
         </div>
       </div>
@@ -2604,42 +2608,38 @@
             </div>
           </div>
 
-          <!-- Blok 2: Sponsor -->
+          <!-- Blok 2: Sponsor (Entitas Komunitas Non-Brand) -->
           <div id="sponsor">
             <h3 class="sisanya-col-title">Sponsor</h3>
             <div class="sponsor-grid">
-              <div class="sponsor-logo">BASECAMP PAIJO</div>
-              <div class="sponsor-logo">HYDRO-MAX</div>
-              <div class="sponsor-logo">KINETIK PHYSIO</div>
-              <div class="sponsor-logo">STRIDE STORE</div>
+              <div class="sponsor-logo">WARUNG PAIJO</div>
+              <div class="sponsor-logo">KOYO CABE LAB</div>
+              <div class="sponsor-logo">BENGKEL BETIS</div>
+              <div class="sponsor-logo">DEPOT AIR GALON</div>
             </div>
-            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20kami%20tertarik%20menjadi%20partner%20sponsor"
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4;">
+              Saat ini belum ada sponsor komersial. Semua dukungan murni dari patungan gorengan dan kopi basecamp. Tertarik jadi sponsor resmi pertama?
+            </p>
+            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20kami%20tertarik%20menjadi%20partner%20sponsor%20resmi"
               target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; text-align: center;">
               Jadi partner kami
             </a>
           </div>
 
-          <!-- Blok 3: Donasi -->
-          <div id="donasi">
+          <!-- Blok 3: Donasi disembunyikan sementara sesuai permintaan -->
+          <!--
+          <div id="donasi" style="display: none;">
             <h3 class="sisanya-col-title">Donasi</h3>
             <div class="donasi-box">
-              <p>
-                Donasi sukarela untuk operasional air mineral galon di rute panjang, kotak P3K darurat, dan sarapan
-                sweeper mingguan.
-              </p>
+              <p>Donasi sukarela untuk operasional air mineral galon dan P3K.</p>
               <div class="bank-card tabular">
-                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Transfer Bank
-                  BCA</span>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Transfer Bank BCA</span>
                 <div class="bank-account">829-019-8821</div>
                 <div style="font-size: 0.8125rem; color: var(--text-muted);">a.n. Gank Kapak Komunitas</div>
               </div>
-              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20sudah%20mengirim%20donasi%20operasional%20Gank%20Kapak"
-                target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="text-align: center;">
-                <span class="sweep-layer" aria-hidden="true"></span>
-                Konfirmasi via WhatsApp
-              </a>
             </div>
           </div>
+          -->
 
         </div>
       </div>
@@ -2985,6 +2985,32 @@
       mobileLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
       });
+
+      // ------------------------------------------------------------------------
+      // DYNAMIC STRAVA SYNC LOADER (Papan km)
+      // ------------------------------------------------------------------------
+      const leaderboardContainer = document.getElementById('leaderboardRows');
+      if (leaderboardContainer && window.fetch) {
+        fetch('data/leaderboard.json')
+          .then(res => {
+            if (!res.ok) throw new Error('Data leaderboard tidak ditemukan');
+            return res.json();
+          })
+          .then(list => {
+            if (Array.isArray(list) && list.length > 0) {
+              leaderboardContainer.innerHTML = list.map(item => `
+                <div class="leaderboard-row">
+                  <span class="leaderboard-rank">${item.rank}</span>
+                  <span class="leaderboard-name">${item.name}</span>
+                  <span class="leaderboard-km">${item.distance}</span>
+                </div>
+              `).join('');
+            }
+          })
+          .catch(() => {
+            // Fallback otomatis menggunakan daftar default
+          });
+      }
 
     })();
   </script>
