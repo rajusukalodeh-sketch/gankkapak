@@ -426,224 +426,539 @@
     </section>
 
     <!-- ==========================================================================
-       [G] ORANG-ORANG (Scroll-Snap Bib Race Berukuran Besar)
+       [G] ORANG-ORANG (Papan Nomor Dada / Kalcer Race Bib Wall & Roster)
        ========================================================================== -->
     <section class="section-spacing" id="orang" aria-label="Anggota dan Pengurus">
       <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
-          <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Orang-orang</h2>
-          <span style="font-size: 0.875rem; color: var(--text-muted);">Geser ke samping</span>
+        
+        <!-- Header Papan Bib & Controls -->
+        <div class="bib-board-header">
+          <div class="bib-board-title-group">
+            <span class="cs-badge">PAPAN NOMOR DADA • OFFICIAL RACE DAY 2026</span>
+            <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 8px 0 4px;">Orang-orang</h2>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">Nomor BIB resmi kontingen Gank Kapak Mojokerto. Lengkap dengan kupon sobek.</p>
+          </div>
+
+          <div class="bib-controls-wrapper">
+            <!-- Filter Kategori Anggota -->
+            <div class="bib-category-chips" role="tablist" aria-label="Filter Kategori Anggota">
+              <button type="button" class="bib-chip active" data-filter="all">SEMUA (12)</button>
+              <button type="button" class="bib-chip" data-filter="ayah">AYAH &amp; CORE</button>
+              <button type="button" class="bib-chip" data-filter="kreatif">KREATIF &amp; DIGITAL</button>
+              <button type="button" class="bib-chip" data-filter="runner">SQUAD RUNNER</button>
+            </div>
+
+            <!-- View Mode Switcher: Wall Grid vs Rack Geser -->
+            <div class="bib-view-switch" role="group" aria-label="Mode Tampilan">
+              <button type="button" class="bib-view-btn active" id="bibViewGrid" title="Tampilan Papan Wall Grid" aria-label="Tampilan Grid">⊞ Wall</button>
+              <button type="button" class="bib-view-btn" id="bibViewRack" title="Tampilan Gantungan Geser" aria-label="Tampilan Geser">⇄ Geser</button>
+            </div>
+          </div>
         </div>
 
-        <div class="bib-track-wrapper">
-          <div class="bib-track">
+        <!-- Container Kartu Bib (Mendukung Mode Grid dan Mode Rack) -->
+        <div class="bib-wall-container view-grid" id="bibWallContainer">
 
-            <!-- Bib 1: Runner of the Month - Anisa (Mba mba ultra aja) -->
-            <article class="bib-card bib-rotm active" tabindex="0" aria-label="Bib Runner of the Month Anisa">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">PRINCESS</span>
+          <!-- Bib 1: Runner of the Month - Anisa (Mba mba ultra aja) -->
+          <article class="bib-card bib-rotm active" data-category="runner" tabindex="0" aria-label="Bib Runner of the Month Anisa">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip rotm-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">GKRC ★ SPECIAL EDITION</span>
+                <span class="bib-wave">ULTRA CORRAL • PACE A</span>
               </div>
-              <div>
-                <img src="assets/images/runner-of-month.jpg" alt="Foto Anisa" class="bib-photo-mini">
-                <div class="bib-number tabular">01</div>
-              </div>
-              <div class="bib-footer">
+              <span class="bib-tag tag-princess">PRINCESS</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
+              <img src="assets/images/runner-of-month.jpg" alt="Foto Anisa" class="bib-photo-mini">
+              <div class="bib-number tabular">01</div>
+              <div class="bib-runner-details">
                 <div class="bib-name">Anisa</div>
                 <div class="bib-role">Mba mba ultra aja • Niat 5K tahu-tahu tembus kabupaten sebelah</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 2: Tiar (Sebagai Ayah) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Tiar">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Ayah 01</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">|||| || | |||| ||| | ||</span>
+                  <span class="barcode-num">GK-2026-01-ROTM</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">ULTRA PASS</span>
+                  <span class="stub-desc">TEMBUS KABUPATEN SEBELAH</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 2: Tiar (Sebagai Ayah) -->
+          <article class="bib-card" data-category="ayah" tabindex="0" aria-label="Bib Tiar 02">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">GANK KAPAK MOJOKERTO</span>
+                <span class="bib-wave">WAVE 1 • AYAH CORRAL</span>
+              </div>
+              <span class="bib-tag">AYAH 01</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">02</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Tiar</div>
                 <div class="bib-role">Sebagai ayah • Memastikan pelari pulang kenyang</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 3: Faisal (Sebagai Ayah) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Faisal">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Ayah 02</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| | |||| | ||| || |||</span>
+                  <span class="barcode-num">GK-2026-02-TYR</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">MEAL VOUCHER</span>
+                  <span class="stub-desc">KOYO &amp; MAKAN KENYANG</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 3: Faisal (Sebagai Ayah) -->
+          <article class="bib-card" data-category="ayah" tabindex="0" aria-label="Bib Faisal 03">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">GANK KAPAK MOJOKERTO</span>
+                <span class="bib-wave">WAVE 1 • AYAH CORRAL</span>
+              </div>
+              <span class="bib-tag">AYAH 02</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">03</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Faisal</div>
                 <div class="bib-role">Sebagai ayah • Memastikan pelari pulang dengan aman</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 4: Kafaby (Desainer dan Admin) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Kafaby">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Kreatif</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| || | |||| ||| | |||</span>
+                  <span class="barcode-num">GK-2026-03-FSL</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">SAFETY PASS</span>
+                  <span class="stub-desc">PULANG DENGAN AMAN</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 4: Kafaby (Desainer dan Admin) -->
+          <article class="bib-card" data-category="kreatif" tabindex="0" aria-label="Bib Kafaby 04">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">CREATIVE DEPT</span>
+                <span class="bib-wave">LOOKBOOK &amp; IDENTITY</span>
+              </div>
+              <span class="bib-tag">KREATIF</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">04</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Kafaby</div>
                 <div class="bib-role">Desainer dan admin • Arsitek visual lookbook dan feeds kalcer</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 5: Fajar (Admin dan Digital) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Fajar">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Digital</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">|||| |||| | || | ||| ||</span>
+                  <span class="barcode-num">GK-2026-04-DSGN</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">DESIGN PASS</span>
+                  <span class="stub-desc">LOOKBOOK &amp; FEEDS IG</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 5: Fajar (Admin dan Digital) -->
+          <article class="bib-card" data-category="kreatif" tabindex="0" aria-label="Bib Fajar 05">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">TECH &amp; SYSTEMS</span>
+                <span class="bib-wave">SERVER &amp; STRAVA READY</span>
+              </div>
+              <span class="bib-tag">DIGITAL</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">05</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Fajar</div>
                 <div class="bib-role">Admin dan digital • Penjaga server, Strava, dan broadcast WA</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 6: Surya (Marketing Handal) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Surya">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Marketing</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| | ||| |||| | || |||</span>
+                  <span class="barcode-num">GK-2026-05-SRVR</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">ACCESS TICKET</span>
+                  <span class="stub-desc">SERVER &amp; BROADCAST WA</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 6: Surya (Marketing Handal) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Surya 06">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">GEAR ADDICTION</span>
+                <span class="bib-wave">CARBON PLATE CORRAL</span>
+              </div>
+              <span class="bib-tag">MARKETING</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">06</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Surya</div>
                 <div class="bib-role">Marketing handal • Penebar racun sepatu pelat karbon di grup chat</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 7: Gusti (Transportasi) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Gusti">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Logistik</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">|||| | ||| | |||| || ||</span>
+                  <span class="barcode-num">GK-2026-06-MRKT</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">RACUN PASS</span>
+                  <span class="stub-desc">SEPATU PLAT KARBON</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 7: Gusti (Transportasi) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Gusti 07">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">FLEET COMMAND</span>
+                <span class="bib-wave">LOGISTICS &amp; SUPPORT</span>
+              </div>
+              <span class="bib-tag">LOGISTIK</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">07</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Gusti</div>
                 <div class="bib-role">Transportasi • Bagasi mobil muat 11 pelari lemas dan galon air</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 8: Paijo (Penunggu Basecamp) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Paijo">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Basecamp</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| |||| | ||| | ||| ||</span>
+                  <span class="barcode-num">GK-2026-07-TRNS</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">TRANSPORT TICKET</span>
+                  <span class="stub-desc">BAGASI 11 PELARI LEMAS</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 8: Paijo (Penunggu Basecamp) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Paijo 08">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">HEADQUARTERS</span>
+                <span class="bib-wave">COFFEE STATION 24/7</span>
+              </div>
+              <span class="bib-tag">BASECAMP</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">08</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Paijo</div>
                 <div class="bib-role">Penunggu basecamp • Tak lari tak apa, yang penting kopi siap</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 9: Ega (Orang Have Suka Liburan ke Dieng) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Ega">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Elevasi</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| | |||| ||| | || |||</span>
+                  <span class="barcode-num">GK-2026-08-CAMP</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">KOPI VOUCHER</span>
+                  <span class="stub-desc">KOPI HITAM BASECAMP</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 9: Ega (Orang Have Suka Liburan ke Dieng) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Ega 09">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">ALTITUDE SQUAD</span>
+                <span class="bib-wave">2000M+ ELEVATION CLUB</span>
+              </div>
+              <span class="bib-tag">ELEVASI</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">09</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Ega</div>
                 <div class="bib-role">Orang have suka liburan ke dieng • Elevasi kabut adalah habitat keduanya</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 10: Hanif (Muadzin) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Hanif">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Religi</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">|||| || | ||| |||| | ||</span>
+                  <span class="barcode-num">GK-2026-09-DIENG</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">ELEVASI PASS</span>
+                  <span class="stub-desc">KABUT DINGIN DIENG</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 10: Hanif (Muadzin) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Hanif 10">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">DAWN PATROL</span>
+                <span class="bib-wave">SUBUH CFD SQUAD</span>
+              </div>
+              <span class="bib-tag">RELIGI</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">10</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Hanif</div>
                 <div class="bib-role">Muadzin • Alarm subuh alami rombongan CFD dan pengingat sholat</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 11: Evan (Introvert) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Evan">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Stealth</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| |||| | || |||| | ||</span>
+                  <span class="barcode-num">GK-2026-10-ADZN</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">ALARM TICKET</span>
+                  <span class="stub-desc">SUBUH CFD MOJOKERTO</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bib 11: Evan (Introvert) -->
+          <article class="bib-card" data-category="runner" tabindex="0" aria-label="Bib Evan 11">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">STEALTH MODE</span>
+                <span class="bib-wave">REAR PACER • HEADSET ON</span>
+              </div>
+              <span class="bib-tag">STEALTH</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
               <div class="bib-number tabular">11</div>
-              <div class="bib-footer">
+              <div class="bib-runner-details">
                 <div class="bib-name">Evan</div>
                 <div class="bib-role">Introvert • Lari barisan belakang pakai headset, finis langsung pulang</div>
               </div>
-            </article>
+            </div>
 
-            <!-- Bib 12: Iqbal (Tugasnya Klarifikasi Kesalahan) -->
-            <article class="bib-card" tabindex="0" aria-label="Bib Iqbal">
-              <span class="bib-pin bib-pin-tl"></span>
-              <span class="bib-pin bib-pin-tr"></span>
-              <span class="bib-pin bib-pin-bl"></span>
-              <span class="bib-pin bib-pin-br"></span>
-              <div class="bib-header">
-                <span class="bib-tag">Klarifikasi</span>
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
               </div>
-              <div>
-                <img src="assets/images/gambar3.jpeg" alt="Poster El Klarifikasi Iqbal" class="bib-photo-mini">
-                <div class="bib-number tabular">12</div>
-              </div>
-              <div class="bib-footer">
-                <div class="bib-name">Iqbal</div>
-                <div class="bib-role">Tugasnya klarifikasi kesalahan • Rilis permohonan maaf bila ada rute yang tersesat
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">||| | ||| |||| | ||| ||</span>
+                  <span class="barcode-num">GK-2026-11-INTR</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">EXIT PASS</span>
+                  <span class="stub-desc">FINIS LANGSUNG PULANG</span>
                 </div>
               </div>
-            </article>
+            </div>
+          </article>
 
-          </div>
+          <!-- Bib 12: Iqbal (Tugasnya Klarifikasi Kesalahan) -->
+          <article class="bib-card" data-category="kreatif" tabindex="0" aria-label="Bib Iqbal 12">
+            <span class="bib-pin bib-pin-tl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-tr" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-bl" aria-hidden="true"></span>
+            <span class="bib-pin bib-pin-br" aria-hidden="true"></span>
+
+            <div class="bib-top-strip">
+              <div class="bib-top-left">
+                <span class="bib-series">PUBLIC RELATIONS</span>
+                <span class="bib-wave">OFFICIAL SPOKESMAN</span>
+              </div>
+              <span class="bib-tag">KLARIFIKASI</span>
+            </div>
+
+            <div class="bib-center-content">
+              <div class="bib-watermark" aria-hidden="true">GKRC</div>
+              <img src="assets/images/gambar3.jpeg" alt="Poster El Klarifikasi Iqbal" class="bib-photo-mini">
+              <div class="bib-number tabular">12</div>
+              <div class="bib-runner-details">
+                <div class="bib-name">Iqbal</div>
+                <div class="bib-role">Tugasnya klarifikasi kesalahan • Rilis permohonan maaf bila ada rute yang tersesat</div>
+              </div>
+            </div>
+
+            <div class="bib-tear-stub">
+              <div class="stub-line" aria-hidden="true">
+                <span>✄ - - - - - - - - - - - - - - - - - - - - ✄</span>
+              </div>
+              <div class="stub-body">
+                <div class="stub-barcode">
+                  <span class="barcode-font">|||| ||| | ||| |||| | ||</span>
+                  <span class="barcode-num">GK-2026-12-MAAF</span>
+                </div>
+                <div class="stub-claim">
+                  <span class="stub-tag">SURAT RESMI</span>
+                  <span class="stub-desc">PERMOHONAN MAAF RUTE</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-       [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
+       [H] GALERI (Contact Sheet Zine Collage Ala Street Running, Washi Tape & Decals)
        ========================================================================== -->
     <section class="section-spacing" id="galeri" aria-label="Galeri Foto Film">
       <div class="container">
@@ -657,72 +972,112 @@
         <div class="contact-sheet-header">
           <div class="contact-sheet-meta">
             <span class="cs-badge">KODAK 400TX</span>
-            <span class="cs-sub">CONTACT SHEET #2026 • SAFETY FILM</span>
+            <span class="cs-sub">CONTACT SHEET #2026 • DARKROOM EDITORIAL</span>
           </div>
 
           <!-- Interactive Film LUT Switcher (Gacor Film Filter Toggles) -->
           <div class="film-lut-controls" role="group" aria-label="Pilihan Tone Warna Film">
-            <button type="button" class="lut-btn active" data-lut="bw" title="Hitam Putih Kontras Khas Kodak Tri-X">400TX B&amp;W</button>
+            <button type="button" class="lut-btn active" data-lut="bw"
+              title="Hitam Putih Kontras Khas Kodak Tri-X">400TX B&amp;W</button>
             <button type="button" class="lut-btn" data-lut="retro" title="Warna Hangat Kalcer Fujicolor 800">FUJI 800</button>
             <button type="button" class="lut-btn" data-lut="darkroom" title="Mode Lampu Merah Kamar Gelap">DARKROOM 🔴</button>
           </div>
         </div>
 
+        <!-- Asymmetric Kalcer Zine Collage Grid -->
         <div class="gallery-grid" id="galleryGrid">
 
-          <!-- Frame 01A -->
+          <!-- Frame 01A: Hero Editorial Negative with Grease Pencil Wax Circle & Crop Marks -->
           <div class="film-card film-card-1" data-frame-index="0" onclick="openLightboxByIndex(0)">
+            <span class="washi-tape-accent" aria-hidden="true"></span>
             <span class="film-frame-number tabular">01A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/gambar4.jpeg" alt="Ekspresi sebelum km 8" class="film-img">
+              <img src="assets/images/gambar4.jpeg" alt="Long Run Pertama Km 16" class="film-img">
+              <div class="grease-circle" aria-hidden="true"></div>
+              <div class="grease-note" aria-hidden="true">KM 16 • STILL BREATHING</div>
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
-            <p class="film-caption">"LONG RUN PERTAMA"</p>
+            <div class="film-footer-meta">
+              <p class="film-caption">"LONG RUN PERTAMA"</p>
+              <span class="film-exposure-meta">1/1000s • ƒ/2.8 • 28mm</span>
+            </div>
           </div>
 
-          <!-- Frame 02A -->
+          <!-- Frame 02A: Night Patrol Negative with Hazard Decal & Marshal Squad Stamp -->
           <div class="film-card film-card-2" data-frame-index="1" onclick="openLightboxByIndex(1)">
+            <span class="tape-hazard" aria-hidden="true">MARSHAL DUTY • 03:30 AM</span>
             <span class="film-frame-number tabular">02A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10%" class="film-img">
+              <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10% jadi marshal" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
-            <p class="film-caption">"jadi marshal"</p>
+            <div class="film-footer-meta">
+              <p class="film-caption">"jadi marshal"</p>
+              <span class="film-exposure-meta">ISO 3200 • HIGH CONTRAST</span>
+            </div>
           </div>
 
-          <!-- Frame 03A -->
-          <div class="film-card film-card-3" data-frame-index="2" onclick="openLightboxByIndex(2)">
+          <!-- Frame 03A: Authentic Polaroid / 120 Medium Format Frame with Tape Decal -->
+          <div class="film-card film-card-3 polaroid-mount" data-frame-index="2" onclick="openLightboxByIndex(2)">
+            <span class="scotch-tape-center" aria-hidden="true"></span>
             <span class="film-frame-number tabular">03A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/gambar1.jpeg" alt="Pura-pura tegar" class="film-img">
+              <img src="assets/images/gambar1.jpeg" alt="Pura-pura tegar depan kamera" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
-            <p class="film-caption">"biar apa ? biar kentchang"</p>
+            <div class="polaroid-chin">
+              <p class="polaroid-caption">"biar apa ? biar kentchang"</p>
+              <span class="polaroid-meta">FUJICOLOR 800 • INSTAX WIDE</span>
+            </div>
           </div>
 
-          <!-- Frame 04A -->
+          <!-- Frame 04A: Green Ink Rubber Stamp Contingent Finisher -->
           <div class="film-card film-card-4" data-frame-index="3" onclick="openLightboxByIndex(3)">
+            <span class="stamp-contingent" aria-hidden="true">★ KONTINGEN RESMI ★</span>
             <span class="film-frame-number tabular">04A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/gambar3.jpeg" alt="Finisher smile" class="film-img">
+              <img src="assets/images/gambar3.jpeg" alt="Kontingen Pertama Genk Kapak" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
-            <p class="film-caption">"FIRST KONTINGEN GENK KAPAK"</p>
+            <div class="film-footer-meta">
+              <p class="film-caption">"FIRST KONTINGEN GENK KAPAK"</p>
+              <span class="film-exposure-meta">SAFETY FILM • PUSH +1</span>
+            </div>
           </div>
 
-          <!-- Frame 05A -->
-          <div class="film-card film-card-5" data-frame-index="4" onclick="openLightboxByIndex(4)">
-            <span class="film-frame-number tabular">05A</span>
+          <!-- Frame 06A: Night Patrol Reflective Vests Squad -->
+          <div class="film-card film-card-6" data-frame-index="4" onclick="openLightboxByIndex(4)">
+            <span class="stamp-patrol" aria-hidden="true">MOJOKERTO NIGHT PATROL</span>
+            <span class="film-frame-number tabular">06A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/gambar5.jpeg" alt="Duduk santai sehabis lari" class="film-img">
+              <img src="assets/images/gambar2.jpeg" alt="Patroli malam & kopi subuh" class="film-img">
               <div class="film-light-leak" aria-hidden="true"></div>
               <div class="film-crosshair" aria-hidden="true"></div>
             </div>
-            <p class="film-caption">"UNO RUN AWAL DARI SEMUA"</p>
+            <div class="film-footer-meta">
+              <p class="film-caption">"patroli malam &amp; rombongan"</p>
+              <span class="film-exposure-meta">REFL. VEST • BASECAMP</span>
+            </div>
+          </div>
+
+          <!-- Frame 05A: Panoramic Archive Hero Banner at Base -->
+          <div class="film-card film-card-5 panoramic-mount" data-frame-index="5" onclick="openLightboxByIndex(5)">
+            <span class="stamp-archive" aria-hidden="true">ARCHIVE #0001 • CIKAL BAKAL</span>
+            <span class="film-frame-number tabular">05A</span>
+            <div class="film-img-wrapper">
+              <img src="assets/images/gambar5.jpeg" alt="Uno Run Awal Dari Semua" class="film-img">
+              <div class="grease-arrow" aria-hidden="true">◀ AWAL DARI SEMUA</div>
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
+            </div>
+            <div class="film-footer-meta">
+              <p class="film-caption">"UNO RUN AWAL DARI SEMUA"</p>
+              <span class="film-exposure-meta">EXP 2026 • DARKROOM PRINT #01</span>
+            </div>
           </div>
 
         </div>
@@ -921,12 +1276,12 @@
       <div class="container">
         <div class="panel-black gabung-box">
           <h2 class="gabung-headline">
-            DATANG SAJA. BILANG KAMU BARU. SISANYA KAMI URUS.
+            DATANG SAJA. BILANG KAMU BARU. SISANYA GABOLEH ONAR.
           </h2>
           <p
             style="font-size: 1.0625rem; color: var(--text-muted); margin-bottom: 32px; max-width: 680px; line-height: 1.5;">
-            Grup WhatsApp saat ini bersifat khusus dan terbatas untuk anggota internal. Untuk kenalan, tanya rute, atau
-            ikut sesi lari dadakan, sapa kami langsung melalui DM Instagram.
+            Grup WhatsApp saat ini khusus internal dulu bes. Untuk kenalan, tanya rute, atau
+            ikut sesi lari dadakan, DM aja bes. Sepuranya ya bes
           </p>
           <div class="gabung-actions">
             <a href="https://www.instagram.com/gankkapakmerah/" target="_blank" rel="noopener noreferrer"
@@ -1056,8 +1411,8 @@
       </div>
 
       <div class="footer-bottom-row">
-        <span>© GANK KAPAK</span>
-        <span>Lari dulu, mikir belakangan.</span>
+        <span>© GANK KAPAK X fajarsya__</span>
+        <span>Mencari Habitat Yang Cocok</span>
       </div>
     </div>
   </footer>

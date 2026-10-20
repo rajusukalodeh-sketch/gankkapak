@@ -161,6 +161,49 @@
       });
 
       // ------------------------------------------------------------------------
+      // PAPAN BIB: FILTER KATEGORI & VIEW MODE SWITCHER (WALL VS RACK)
+      // ------------------------------------------------------------------------
+      const bibChips = document.querySelectorAll('.bib-chip');
+      const bibContainer = document.getElementById('bibWallContainer');
+      const bibViewGridBtn = document.getElementById('bibViewGrid');
+      const bibViewRackBtn = document.getElementById('bibViewRack');
+
+      if (bibChips.length > 0 && bibContainer) {
+        bibChips.forEach(chip => {
+          chip.addEventListener('click', function () {
+            bibChips.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-filter');
+
+            const allBibs = bibContainer.querySelectorAll('.bib-card');
+            allBibs.forEach(card => {
+              if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.classList.remove('is-filtered-out');
+              } else {
+                card.classList.add('is-filtered-out');
+              }
+            });
+          });
+        });
+      }
+
+      if (bibViewGridBtn && bibViewRackBtn && bibContainer) {
+        bibViewGridBtn.addEventListener('click', () => {
+          bibViewGridBtn.classList.add('active');
+          bibViewRackBtn.classList.remove('active');
+          bibContainer.classList.remove('view-rack');
+          bibContainer.classList.add('view-grid');
+        });
+
+        bibViewRackBtn.addEventListener('click', () => {
+          bibViewRackBtn.classList.add('active');
+          bibViewGridBtn.classList.remove('active');
+          bibContainer.classList.remove('view-grid');
+          bibContainer.classList.add('view-rack');
+        });
+      }
+
+      // ------------------------------------------------------------------------
       // EVENT: TOGGLE ARSIP KENANGAN
       // ------------------------------------------------------------------------
       const archiveBtn = document.getElementById('archiveToggleBtn');
@@ -225,6 +268,7 @@
         { src: 'assets/images/hero.jpeg', caption: '"jadi marshal"', frame: 'FRAME 02A' },
         { src: 'assets/images/gambar1.jpeg', caption: '"biar apa ? biar kentchang"', frame: 'FRAME 03A' },
         { src: 'assets/images/gambar3.jpeg', caption: '"FIRST KONTINGEN GENK KAPAK"', frame: 'FRAME 04A' },
+        { src: 'assets/images/gambar2.jpeg', caption: '"patroli malam & rombongan"', frame: 'FRAME 06A' },
         { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'FRAME 05A' }
       ];
       let currentGalleryIndex = 0;

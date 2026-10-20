@@ -1380,50 +1380,150 @@ footer[id] {
 }
 
 /* ==========================================================================
-   [G] ORANG-ORANG (Scroll-Snap Bib Race Berukuran Besar)
+   [G] ORANG-ORANG (Papan Nomor Dada / Kalcer Race Bib Wall & Roster)
    ========================================================================== */
-.bib-track-wrapper {
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  padding: 16px 0 24px;
-  scroll-snap-type: x mandatory;
+.bib-board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
 }
 
-.bib-track-wrapper::-webkit-scrollbar {
-  display: none;
+.bib-board-title-group {
+  max-width: 580px;
 }
 
-.bib-track {
+.bib-controls-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Category Filter Chips */
+.bib-category-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(10, 15, 11, 0.85);
+  border: 1px solid var(--border-thin);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.bib-chip {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bib-chip:hover {
+  color: var(--chalk-white);
+  background-color: rgba(234, 244, 236, 0.08);
+}
+
+.bib-chip.active {
+  background-color: var(--green);
+  color: #0A0F0B;
+  box-shadow: 0 2px 8px rgba(31, 157, 85, 0.4);
+}
+
+/* View Mode Switcher */
+.bib-view-switch {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(10, 15, 11, 0.85);
+  border: 1px solid var(--border-thin);
+  padding: 4px;
+  border-radius: 8px;
+  gap: 4px;
+}
+
+.bib-view-btn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bib-view-btn:hover {
+  color: var(--chalk-white);
+}
+
+.bib-view-btn.active {
+  background-color: #1e2d21;
+  color: var(--green);
+  border: 1px solid rgba(31, 157, 85, 0.4);
+}
+
+/* Container Mode 1: Wall Grid (Default Clubhouse Board) */
+.bib-wall-container.view-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Container Mode 2: Rack Geser (Horizontal Swipable Rack) */
+.bib-wall-container.view-rack {
   display: flex;
   gap: 20px;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-right: var(--gutter);
-  width: max-content;
+  padding: 12px 0 24px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Bib Card (Animation #4: Miring 3 derajat & pin bergoyang + Holographic Sheen) */
-.bib-card {
+.bib-wall-container.view-rack .bib-card {
+  width: 290px;
   flex-shrink: 0;
   scroll-snap-align: start;
+}
+
+/* Bib Card (Authentic Tyvek Paper, 3D Sheen, Safety Pins & Tear-off Stub) */
+.bib-card {
+  position: relative;
   background-color: #EAF4EC;
   color: #0A0F0B;
   border-radius: var(--radius);
-  padding: 24px 20px;
-  position: relative;
+  padding: 20px 18px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(10, 15, 11, 0.15);
-  width: 270px;
-  height: 380px;
-  transform: rotate(0deg);
-  transition: transform 0.25s var(--ease-run), box-shadow 0.25s ease;
+  border: 1px solid rgba(10, 15, 11, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   user-select: none;
   overflow: hidden;
   perspective: 1000px;
   transform-style: preserve-3d;
+  transition: transform 0.25s var(--ease-run), box-shadow 0.25s ease, opacity 0.3s ease;
+  min-height: 420px;
+}
+
+/* Filtered out cards state */
+.bib-card.is-filtered-out {
+  display: none !important;
 }
 
 /* Dynamic Holographic Sheen Reflection */
@@ -1437,10 +1537,10 @@ footer[id] {
   background: linear-gradient(
     115deg,
     transparent 35%,
-    rgba(255, 255, 255, 0.4) 45%,
+    rgba(255, 255, 255, 0.45) 45%,
     rgba(31, 157, 85, 0.35) 50%,
     rgba(79, 195, 247, 0.3) 53%,
-    rgba(255, 255, 255, 0.4) 58%,
+    rgba(255, 255, 255, 0.45) 58%,
     transparent 68%
   );
   opacity: 0;
@@ -1461,51 +1561,30 @@ footer[id] {
   100% { transform: rotate(-25deg) translateY(50%); }
 }
 
-/* Runner of the Month (Bib pertama dibuat lebih besar) */
-.bib-card.bib-rotm {
-  width: 320px;
-  height: 420px;
-  background-color: #FFFFFF;
-  border: 2px solid var(--green);
-}
-
 .bib-card:hover,
 .bib-card:focus-visible,
 .bib-card.active {
-  transform: translateY(-6px) rotate(3deg);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(31, 157, 85, 0.4);
+  transform: translateY(-6px) rotate(1.5deg);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(31, 157, 85, 0.45);
 }
 
-/* Pin Holes (4 di sudut) */
+/* Realistic 3D Metallic Safety Pins */
 .bib-pin {
   position: absolute;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #0A0F0B;
-  border: 2px solid #a3b8a8;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #aebbb0 45%, #3c483f 100%);
+  border: 1px solid rgba(10, 15, 11, 0.45);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 0 2px rgba(0, 0, 0, 0.6);
+  z-index: 6;
   transition: transform 0.22s var(--ease-run);
 }
 
-.bib-pin-tl {
-  top: 14px;
-  left: 14px;
-}
-
-.bib-pin-tr {
-  top: 14px;
-  right: 14px;
-}
-
-.bib-pin-bl {
-  bottom: 14px;
-  left: 14px;
-}
-
-.bib-pin-br {
-  bottom: 14px;
-  right: 14px;
-}
+.bib-pin-tl { top: 12px; left: 12px; }
+.bib-pin-tr { top: 12px; right: 12px; }
+.bib-pin-bl { bottom: 12px; left: 12px; }
+.bib-pin-br { bottom: 12px; right: 12px; }
 
 .bib-card:hover .bib-pin,
 .bib-card:focus-visible .bib-pin,
@@ -1515,110 +1594,268 @@ footer[id] {
 
 @keyframes pinJiggle {
   0% { transform: rotate(-10deg) scale(1); }
-  100% { transform: rotate(10deg) scale(1.12); }
+  100% { transform: rotate(10deg) scale(1.15); }
 }
 
-.bib-header {
-  text-align: center;
-  padding-top: 8px;
+/* Top Strip (Event series & Corral Tag) */
+.bib-top-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #0A0F0B;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.bib-top-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.bib-series {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: #0A0F0B;
+  text-transform: uppercase;
+}
+
+.bib-wave {
+  font-family: monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: rgba(10, 15, 11, 0.65);
+  font-weight: 700;
 }
 
 .bib-tag {
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #0F5B30;
-  border: 1px solid #0F5B30;
-  padding: 2px 8px;
+  border: 1.5px solid #0F5B30;
+  padding: 3px 8px;
   border-radius: 4px;
+  background-color: rgba(31, 157, 85, 0.1);
   display: inline-block;
-  margin-bottom: 6px;
+}
+
+.tag-princess {
+  color: #b8860b;
+  border-color: #b8860b;
+  background-color: rgba(255, 215, 0, 0.15);
+}
+
+/* Center Content & Giant Bib Number */
+.bib-center-content {
+  position: relative;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 4px;
+}
+
+.bib-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 5.5rem;
+  color: rgba(10, 15, 11, 0.05);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
 }
 
 .bib-number {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 4.5rem;
+  font-weight: 900;
+  font-size: 4.75rem;
   line-height: 0.85;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   text-align: center;
-  margin: 16px 0;
+  margin: 12px 0 10px;
   color: #0A0F0B;
+  position: relative;
+  z-index: 2;
 }
 
 .bib-rotm .bib-number {
-  font-size: 5.5rem;
   color: #0F5B30;
 }
 
 .bib-photo-mini {
-  width: 72px;
-  height: 72px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 12px;
+  margin: 0 auto 6px;
   border: 2px solid #0A0F0B;
   filter: grayscale(100%) contrast(1.2);
+  position: relative;
+  z-index: 2;
 }
 
-.bib-footer {
+.bib-runner-details {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  border-top: 1px solid rgba(10, 15, 11, 0.15);
-  padding-top: 12px;
-  margin-top: auto;
 }
 
 .bib-name {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.125rem;
+  font-weight: 900;
+  font-size: 1.1875rem;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #0A0F0B;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.bib-role {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: rgba(10, 15, 11, 0.72);
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+/* Runner of the Month Distinct Accent */
+.bib-card.bib-rotm {
+  background-color: #FFFFFF;
+  border: 2px solid var(--green);
+  box-shadow: 0 8px 24px rgba(31, 157, 85, 0.25);
+}
+
+/* Perforated Tear-off Coupon Stub */
+.bib-tear-stub {
+  margin-top: 14px;
+  border-top: 1.5px dashed rgba(10, 15, 11, 0.3);
+  padding-top: 6px;
+  position: relative;
+}
+
+.stub-line {
+  font-family: monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.15em;
+  color: rgba(10, 15, 11, 0.4);
+  text-align: center;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+.stub-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.stub-barcode {
+  display: flex;
+  flex-direction: column;
+}
+
+.barcode-font {
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #0A0F0B;
+}
+
+.barcode-num {
+  font-family: monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: rgba(10, 15, 11, 0.55);
+}
+
+.stub-claim {
+  text-align: right;
+}
+
+.stub-tag {
+  display: block;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0F5B30;
+}
+
+.stub-desc {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.6875rem;
+  line-height: 1.1;
   text-transform: uppercase;
   color: #0A0F0B;
 }
 
-.bib-role {
-  font-size: 0.8125rem;
-  color: rgba(10, 15, 11, 0.7);
+/* Responsive Bib Wall */
+@media (max-width: 1200px) and (min-width: 901px) {
+  .bib-wall-container.view-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) and (min-width: 601px) {
+  .bib-wall-container.view-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .bib-board-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .bib-wall-container.view-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bib-board-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .bib-controls-wrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .bib-category-chips {
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
   .bib-card {
-    width: 220px;
-    height: 320px;
-    padding: 18px 14px;
+    min-height: 380px;
+    padding: 18px 14px 14px;
   }
-
-  .bib-card.bib-rotm {
-    width: 240px;
-    height: 340px;
-  }
-
   .bib-number {
-    font-size: 3.25rem !important;
-    margin: 10px 0 !important;
-  }
-
-  .bib-rotm .bib-number {
-    font-size: 3.75rem !important;
-  }
-
-  .bib-photo-mini {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 8px;
-  }
-
-  .bib-card:hover,
-  .bib-card:focus-visible,
-  .bib-card.active {
-    transform: translateY(-2px) rotate(1.5deg);
+    font-size: 3.8rem;
   }
 }
 
 /* ==========================================================================
-   [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
+   [H] GALERI (Contact Sheet Zine Collage Ala Street Running, Washi Tape & Decals)
    ========================================================================== */
 /* 35mm Film Sprocket Perforations */
 .sprocket-strip {
@@ -1740,11 +1977,12 @@ footer[id] {
   box-shadow: 0 2px 8px rgba(31, 157, 85, 0.4);
 }
 
-/* Gallery Grid */
+/* Gallery Grid (Asymmetric Editorial Collage) */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
+  align-items: start;
   transition: filter 0.3s ease;
 }
 
@@ -1761,13 +1999,13 @@ footer[id] {
   filter: grayscale(25%) sepia(1) saturate(5.5) hue-rotate(-55deg) contrast(1.35) brightness(0.9) !important;
 }
 
-/* Foto Cetak Film */
+/* Base Film Card Styling */
 .film-card {
   position: relative;
   background-color: #0A0F0B;
   border: 1px solid var(--border-thin);
   border-radius: var(--radius);
-  padding: 12px 12px 16px;
+  padding: 14px 14px 16px;
   cursor: pointer;
   transform: translateY(0) rotate(var(--tilt, 0deg));
   transition: transform 0.28s var(--ease-run), border-color 0.2s ease, box-shadow 0.2s ease;
@@ -1797,91 +2035,328 @@ footer[id] {
 .film-card:focus-visible {
   transform: translateY(-6px) rotate(0deg);
   border-color: var(--green);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45), 0 0 16px rgba(31, 157, 85, 0.2);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55), 0 0 16px rgba(31, 157, 85, 0.25);
 }
 
+/* Layout Offsets & Spans */
+/* Frame 01A: Hero Editorial Frame */
 .film-card-1 {
-  grid-column: span 5;
+  grid-column: span 7;
   --tilt: -1deg;
 }
 
+.film-card-1 .film-img-wrapper {
+  height: 380px;
+}
+
+/* Frame 02A: Night Patrol */
 .film-card-2 {
-  grid-column: span 7;
-  --tilt: 1deg;
+  grid-column: span 5;
+  --tilt: 1.2deg;
 }
 
-.film-card-3 {
+.film-card-2 .film-img-wrapper {
+  height: 380px;
+}
+
+/* Frame 03A: Polaroid Mount */
+.film-card-3.polaroid-mount {
   grid-column: span 4;
-  --tilt: 1.5deg;
+  --tilt: 2deg;
+  background-color: #f7f9f7;
+  color: #0A0F0B;
+  border: 1px solid rgba(234, 244, 236, 0.3);
+  padding: 12px 12px 20px;
 }
 
+.film-card-3 .film-img-wrapper {
+  height: 280px;
+}
+
+.polaroid-chin {
+  padding-top: 12px;
+  text-align: center;
+}
+
+.polaroid-caption {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #121813;
+  margin: 0 0 4px;
+}
+
+.polaroid-meta {
+  font-family: monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: rgba(18, 24, 19, 0.6);
+  text-transform: uppercase;
+}
+
+/* Frame 04A: Contingent Finisher */
 .film-card-4 {
   grid-column: span 4;
-  --tilt: -1.2deg;
+  --tilt: -1.5deg;
 }
 
-.film-card-5 {
+.film-card-4 .film-img-wrapper {
+  height: 280px;
+}
+
+/* Frame 06A: Night Patrol Reflective Vests */
+.film-card-6 {
   grid-column: span 4;
-  --tilt: 0.8deg;
+  --tilt: 1.2deg;
 }
 
+.film-card-6 .film-img-wrapper {
+  height: 280px;
+}
+
+/* Frame 05A: Panoramic Archive Hero Banner at Base */
+.film-card-5.panoramic-mount {
+  grid-column: span 12;
+  --tilt: -0.3deg;
+  margin-top: 8px;
+}
+
+.film-card-5 .film-img-wrapper {
+  height: 320px;
+}
+
+/* Grease Pencil Red Wax Annotations */
+.grease-circle {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 120px;
+  height: 120px;
+  border: 3.5px solid rgba(255, 45, 45, 0.88);
+  border-radius: 54% 46% 60% 40% / 48% 55% 45% 52%;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  z-index: 6;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 4px rgba(255, 45, 45, 0.6));
+}
+
+.grease-note {
+  position: absolute;
+  top: 14%;
+  left: 55%;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 900;
+  font-size: 0.6875rem;
+  color: #ff3333;
+  letter-spacing: 0.12em;
+  background: rgba(10, 15, 11, 0.85);
+  border: 1px solid rgba(255, 51, 51, 0.6);
+  padding: 3px 8px;
+  border-radius: 3px;
+  transform: rotate(4deg);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.grease-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #ffd700;
+  background-color: rgba(10, 15, 11, 0.85);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Washi Tape & Decals */
+.washi-tape-accent {
+  position: absolute;
+  top: -10px;
+  left: 28px;
+  width: 110px;
+  height: 24px;
+  background-color: rgba(223, 200, 122, 0.65);
+  transform: rotate(-4deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 8;
+  pointer-events: none;
+  backdrop-filter: blur(1px);
+  border-left: 2px dashed rgba(10, 15, 11, 0.25);
+  border-right: 2px dashed rgba(10, 15, 11, 0.25);
+}
+
+.scotch-tape-center {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  width: 90px;
+  height: 22px;
+  background-color: rgba(234, 244, 236, 0.45);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 8;
+  pointer-events: none;
+  backdrop-filter: blur(1px);
+  border-left: 2px dashed rgba(10, 15, 11, 0.2);
+  border-right: 2px dashed rgba(10, 15, 11, 0.2);
+}
+
+.tape-hazard {
+  position: absolute;
+  top: 14px;
+  right: -24px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffd700,
+    #ffd700 8px,
+    #0A0F0B 8px,
+    #0A0F0B 16px
+  );
+  color: #ffd700;
+  background-color: #0A0F0B;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.5625rem;
+  letter-spacing: 0.15em;
+  padding: 4px 32px;
+  transform: rotate(32deg);
+  pointer-events: none;
+  z-index: 8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Rubber Stamps */
+.stamp-contingent {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 2px solid var(--green);
+  color: var(--green);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  padding: 3px 8px;
+  transform: rotate(8deg);
+  pointer-events: none;
+  z-index: 7;
+  background: rgba(10, 15, 11, 0.7);
+  border-radius: 3px;
+}
+
+.stamp-patrol {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 2px solid #ffd700;
+  color: #ffd700;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  padding: 3px 8px;
+  transform: rotate(-6deg);
+  pointer-events: none;
+  z-index: 7;
+  background: rgba(10, 15, 11, 0.7);
+  border-radius: 3px;
+}
+
+.stamp-archive {
+  position: absolute;
+  bottom: 44px;
+  right: 24px;
+  border: 2px dashed #ff6b4a;
+  color: #ff6b4a;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  padding: 4px 12px;
+  transform: rotate(-3deg);
+  pointer-events: none;
+  z-index: 7;
+  background: rgba(10, 15, 11, 0.75);
+  border-radius: 4px;
+}
+
+.film-footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.film-exposure-meta {
+  font-family: monospace;
+  font-size: 0.6875rem;
+  color: rgba(234, 244, 236, 0.4);
+  letter-spacing: 0.08em;
+}
+
+/* Responsive Editorial Gallery Grid */
 @media (max-width: 1024px) and (min-width: 641px) {
   .film-card-1 {
     grid-column: span 6;
     --tilt: 0deg;
   }
-
   .film-card-2 {
     grid-column: span 6;
     --tilt: 0deg;
   }
-
-  .film-card-3 {
-    grid-column: span 4;
+  .film-card-3.polaroid-mount {
+    grid-column: span 6;
     --tilt: 0deg;
   }
-
   .film-card-4 {
-    grid-column: span 4;
+    grid-column: span 6;
     --tilt: 0deg;
   }
-
-  .film-card-5 {
-    grid-column: span 4;
+  .film-card-6 {
+    grid-column: span 6;
     --tilt: 0deg;
   }
-
-  .film-img-wrapper {
-    height: 220px;
+  .film-card-5.panoramic-mount {
+    grid-column: span 12;
+    --tilt: 0deg;
   }
-
+  .film-card-1 .film-img-wrapper,
   .film-card-2 .film-img-wrapper {
-    height: 220px;
+    height: 300px;
+  }
+  .film-card-3 .film-img-wrapper,
+  .film-card-4 .film-img-wrapper,
+  .film-card-6 .film-img-wrapper {
+    height: 250px;
   }
 }
 
 @media (max-width: 640px) {
   .gallery-grid {
-    gap: 16px;
+    gap: 18px;
   }
-
   .film-card-1,
   .film-card-2,
-  .film-card-3,
+  .film-card-3.polaroid-mount,
   .film-card-4,
-  .film-card-5 {
+  .film-card-6,
+  .film-card-5.panoramic-mount {
     grid-column: span 12;
     --tilt: 0deg;
   }
-
   .film-img-wrapper {
-    height: 200px;
+    height: 230px !important;
   }
-
-  .film-card-2 .film-img-wrapper {
-    height: 220px;
-  }
-
   .contact-sheet-header {
     font-size: 0.6875rem;
     gap: 10px;
@@ -1896,113 +2371,6 @@ footer[id] {
     padding: 6px 4px;
     font-size: 0.625rem;
   }
-}
-
-.film-frame-number {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  color: var(--green);
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.film-img-wrapper {
-  position: relative;
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-  border-radius: 6px;
-  background-color: #121813;
-}
-
-.film-card-2 .film-img-wrapper {
-  height: 320px;
-}
-
-.film-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(40%) contrast(1.1);
-  transition: filter 0.3s ease, transform 0.35s ease;
-}
-
-.film-card:hover .film-img {
-  transform: scale(1.04);
-}
-
-/* Analog Light Leak Sweep on Hover */
-.film-light-leak {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 120, 40, 0.45) 0%,
-    rgba(255, 60, 20, 0.25) 35%,
-    transparent 70%
-  );
-  opacity: 0;
-  mix-blend-mode: screen;
-  transition: opacity 0.35s ease, transform 0.45s ease;
-  transform: translateX(-40%);
-  pointer-events: none;
-  z-index: 4;
-}
-
-.film-card:hover .film-light-leak {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Viewfinder Target Crosshair in Center */
-.film-crosshair {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 34px;
-  height: 34px;
-  transform: translate(-50%, -50%) scale(0.6);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 6;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.film-crosshair::before,
-.film-crosshair::after {
-  content: "";
-  position: absolute;
-  background-color: rgba(31, 157, 85, 0.95);
-  box-shadow: 0 0 6px rgba(31, 157, 85, 0.8);
-}
-
-.film-crosshair::before {
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  transform: translateY(-50%);
-}
-
-.film-crosshair::after {
-  left: 50%;
-  top: 0;
-  height: 100%;
-  width: 1.5px;
-  transform: translateX(-50%);
-}
-
-.film-card:hover .film-crosshair {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.film-caption {
-  margin-top: 12px;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  font-style: italic;
 }
 
 /* Camera Mechanical Shutter Overlay */
