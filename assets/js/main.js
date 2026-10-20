@@ -415,24 +415,17 @@
       }
 
       // ------------------------------------------------------------------------
-      // GALERI: 3D INTERACTIVE TILT ON FILM CARDS (Desktop)
+      // GALERI: INTERACTIVE KEYBOARD ACCESSIBILITY
       // ------------------------------------------------------------------------
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        const filmCards = document.querySelectorAll('.film-card');
-        filmCards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rotateX = -(y / rect.height) * 10;
-            const rotateY = (x / rect.width) * 10;
-            card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
-          });
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-          });
+      const galleryFigs = document.querySelectorAll('.gallery-fig');
+      galleryFigs.forEach(fig => {
+        fig.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fig.click();
+          }
         });
-      }
+      });
 
       // ------------------------------------------------------------------------
       // ANIMASI #4+: INTERACTIVE 3D HOLOGRAPHIC TILT PADA BIB CARDS
@@ -474,7 +467,7 @@
       // ------------------------------------------------------------------------
       // KALCER SCROLL REVEAL ENTRANCE (IntersectionObserver)
       // ------------------------------------------------------------------------
-      const revealTargets = document.querySelectorAll('.event-row, .film-card, .cerita-item, .faq-item, .sponsor-logo, .drop-card');
+      const revealTargets = document.querySelectorAll('.event-row, .gallery-fig, .cerita-item, .faq-item, .sponsor-logo, .drop-card');
       revealTargets.forEach((target, idx) => {
         target.classList.add('kalcer-reveal');
         target.style.transitionDelay = `${(idx % 4) * 0.08}s`;

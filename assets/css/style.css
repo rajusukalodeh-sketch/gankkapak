@@ -1809,527 +1809,102 @@ footer[id] {
 }
 
 /* ==========================================================================
-   [H] GALERI (Contact Sheet Zine Collage Ala Street Running, Washi Tape & Decals)
+   [H] GALERI (Grid 6 Kolom Asimetris Ala Branch ini-bukan-habitatku)
    ========================================================================== */
-/* Runner Track Ribbon (Pita Rute & Milestone KM Kalcer) */
-.runner-track-ribbon {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background-color: #060906;
-  border-top: 1px dashed rgba(31, 157, 85, 0.4);
-  border-bottom: 1px dashed rgba(31, 157, 85, 0.4);
-  padding: 8px 16px;
+.gallery-header-clean {
   margin-bottom: 24px;
-  overflow-x: auto;
-  user-select: none;
-  scrollbar-width: none;
 }
 
-.runner-track-ribbon::-webkit-scrollbar {
-  display: none;
-}
-
-.runner-track-ribbon.ribbon-bottom {
-  margin-top: 28px;
-  margin-bottom: 0;
-}
-
-.track-km-badge {
-  font-family: monospace;
-  font-weight: 800;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  color: var(--green);
-  background-color: rgba(31, 157, 85, 0.12);
-  border: 1px solid rgba(31, 157, 85, 0.35);
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.track-dash-line {
-  flex: 1;
-  min-width: 24px;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(31, 157, 85, 0.6) 0px,
-    rgba(31, 157, 85, 0.6) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-}
-
-.contact-sheet-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 14px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border-thin);
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.contact-sheet-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.cs-badge {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.8125rem;
-  letter-spacing: 0.15em;
-  background-color: #121813;
-  color: #ffd700;
-  border: 1px solid rgba(255, 215, 0, 0.35);
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.cs-sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-/* Film LUT Switcher Buttons */
-.film-lut-controls {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: rgba(10, 15, 11, 0.85);
-  border: 1px solid var(--border-thin);
-  padding: 4px;
-  border-radius: 6px;
-}
-
-.lut-btn {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.lut-btn:hover {
-  color: var(--chalk-white);
-  background-color: rgba(234, 244, 236, 0.08);
-}
-
-.lut-btn.active {
-  background-color: var(--green);
-  color: #0A0F0B;
-  box-shadow: 0 2px 8px rgba(31, 157, 85, 0.4);
-}
-
-/* Gallery Grid (Asymmetric Editorial Collage) */
-.gallery-grid {
+.gallery-asym-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   align-items: start;
-  transition: filter 0.3s ease;
 }
 
-/* Film LUT Filter States */
-.gallery-grid.lut-bw .film-img {
-  filter: grayscale(100%) contrast(1.2) brightness(0.95) !important;
+@media (min-width: 860px) {
+  .gallery-asym-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+  }
+  .g-span-2 { grid-column: span 2; }
+  .g-span-3 { grid-column: span 3; }
+  .g-span-4 { grid-column: span 4; }
 }
 
-.gallery-grid.lut-retro .film-img {
-  filter: sepia(0.25) contrast(1.15) brightness(1.05) saturate(1.45) hue-rotate(-8deg) !important;
-}
-
-.gallery-grid.lut-darkroom .film-img {
-  filter: grayscale(25%) sepia(1) saturate(5.5) hue-rotate(-55deg) contrast(1.35) brightness(0.9) !important;
-}
-
-/* Base Film Card Styling */
-.film-card {
-  position: relative;
-  background-color: #0A0F0B;
-  border: 1px solid var(--border-thin);
-  border-radius: var(--radius);
-  padding: 14px 14px 16px;
+.gallery-fig {
   cursor: pointer;
-  transform: translateY(0) rotate(var(--tilt, 0deg));
-  transition: transform 0.28s var(--ease-run), border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  outline: none;
+  user-select: none;
+}
+
+/* Foto Cetak Film Dengan Border Putih Bersih & Rotasi Halus */
+.film-photo {
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
   overflow: hidden;
+  background: #0A0F0B;
+  position: relative;
+  transition: transform 350ms cubic-bezier(.2, .7, .2, 1), box-shadow 350ms ease, border-color 300ms ease;
 }
 
-/* Viewfinder Target corners */
-.film-card::before {
-  content: "";
-  position: absolute;
-  inset: 6px;
-  border: 1px dashed rgba(31, 157, 85, 0.45);
-  border-radius: 4px;
-  opacity: 0;
-  transform: scale(0.97);
-  transition: all 0.25s var(--ease-run);
-  pointer-events: none;
-  z-index: 5;
+.film-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(105%) saturate(95%) sepia(6%);
+  transition: transform 400ms cubic-bezier(.2, .7, .2, 1), filter 300ms ease;
 }
 
-.film-card:hover::before {
-  opacity: 1;
-  transform: scale(1);
+.film-tilt-1 { transform: rotate(-1.5deg); }
+.film-tilt-2 { transform: rotate(1.2deg); }
+.film-tilt-3 { transform: rotate(-1.0deg); }
+
+/* Efek Hover Kalcer: Naik Halus, Rotasi Menjadi Netral 0deg, Glow Halus, dan Zoom Ringan */
+.gallery-fig:hover .film-photo,
+.gallery-fig:focus-visible .film-photo,
+.film-photo:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.02);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 22px rgba(31, 157, 85, 0.3);
+  border-color: #F4FAF5;
 }
 
-.film-card:hover,
-.film-card:focus-visible {
-  transform: translateY(-6px) rotate(0deg);
-  border-color: var(--green);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55), 0 0 16px rgba(31, 157, 85, 0.25);
+.gallery-fig:hover .film-photo img,
+.gallery-fig:focus-visible .film-photo img,
+.film-photo:hover img {
+  transform: scale(1.06);
+  filter: contrast(110%) saturate(106%) sepia(0%);
 }
 
-/* Layout Offsets & Spans */
-/* Frame 01A: Hero Editorial Frame */
-.film-card-1 {
-  grid-column: span 7;
-  --tilt: -1deg;
-}
-
-.film-card-1 .film-img-wrapper {
-  height: 380px;
-}
-
-/* Frame 02A: Night Patrol */
-.film-card-2 {
-  grid-column: span 5;
-  --tilt: 1.2deg;
-}
-
-.film-card-2 .film-img-wrapper {
-  height: 380px;
-}
-
-/* Frame 03A: Polaroid Mount */
-.film-card-3.polaroid-mount {
-  grid-column: span 4;
-  --tilt: 2deg;
-  background-color: #f7f9f7;
-  color: #0A0F0B;
-  border: 1px solid rgba(234, 244, 236, 0.3);
-  padding: 12px 12px 20px;
-}
-
-.film-card-3 .film-img-wrapper {
-  height: 280px;
-}
-
-.polaroid-chin {
-  padding-top: 12px;
-  text-align: center;
-}
-
-.polaroid-caption {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 700;
-  font-size: 0.9375rem;
-  color: #121813;
-  margin: 0 0 4px;
-}
-
-.polaroid-meta {
-  font-family: monospace;
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  color: rgba(18, 24, 19, 0.6);
-  text-transform: uppercase;
-}
-
-/* Frame 04A: Contingent Finisher */
-.film-card-4 {
-  grid-column: span 4;
-  --tilt: -1.5deg;
-}
-
-.film-card-4 .film-img-wrapper {
-  height: 280px;
-}
-
-/* Frame 06A: Night Patrol Reflective Vests */
-.film-card-6 {
-  grid-column: span 4;
-  --tilt: 1.2deg;
-}
-
-.film-card-6 .film-img-wrapper {
-  height: 280px;
-}
-
-/* Frame 05A: Panoramic Archive Hero Banner at Base */
-.film-card-5.panoramic-mount {
-  grid-column: span 12;
-  --tilt: -0.3deg;
-  margin-top: 8px;
-}
-
-.film-card-5 .film-img-wrapper {
-  height: 320px;
-}
-
-/* Grease Pencil Red Wax Annotations */
-.grease-circle {
-  position: absolute;
-  top: 25%;
-  left: 45%;
-  width: 120px;
-  height: 120px;
-  border: 3.5px solid rgba(255, 45, 45, 0.88);
-  border-radius: 54% 46% 60% 40% / 48% 55% 45% 52%;
-  transform: rotate(-12deg);
-  pointer-events: none;
-  z-index: 6;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 4px rgba(255, 45, 45, 0.6));
-}
-
-.grease-note {
-  position: absolute;
-  top: 14%;
-  left: 55%;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 900;
-  font-size: 0.6875rem;
-  color: #ff3333;
-  letter-spacing: 0.12em;
-  background: rgba(10, 15, 11, 0.85);
-  border: 1px solid rgba(255, 51, 51, 0.6);
-  padding: 3px 8px;
-  border-radius: 3px;
-  transform: rotate(4deg);
-  pointer-events: none;
-  z-index: 7;
-}
-
-.grease-arrow {
-  position: absolute;
-  bottom: 20px;
-  left: 24px;
-  font-family: monospace;
-  font-weight: 900;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: #ffd700;
-  background-color: rgba(10, 15, 11, 0.85);
-  border: 1px solid rgba(255, 215, 0, 0.5);
-  padding: 4px 10px;
-  border-radius: 4px;
-  pointer-events: none;
-  z-index: 7;
-}
-
-/* Washi Tape & Decals */
-.washi-tape-accent {
-  position: absolute;
-  top: -10px;
-  left: 28px;
-  width: 110px;
-  height: 24px;
-  background-color: rgba(223, 200, 122, 0.65);
-  transform: rotate(-4deg);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 8;
-  pointer-events: none;
-  backdrop-filter: blur(1px);
-  border-left: 2px dashed rgba(10, 15, 11, 0.25);
-  border-right: 2px dashed rgba(10, 15, 11, 0.25);
-}
-
-.scotch-tape-center {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%) rotate(1deg);
-  width: 90px;
-  height: 22px;
-  background-color: rgba(234, 244, 236, 0.45);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  z-index: 8;
-  pointer-events: none;
-  backdrop-filter: blur(1px);
-  border-left: 2px dashed rgba(10, 15, 11, 0.2);
-  border-right: 2px dashed rgba(10, 15, 11, 0.2);
-}
-
-.tape-hazard {
-  position: absolute;
-  top: 14px;
-  right: -24px;
-  background: repeating-linear-gradient(
-    -45deg,
-    #ffd700,
-    #ffd700 8px,
-    #0A0F0B 8px,
-    #0A0F0B 16px
-  );
-  color: #ffd700;
-  background-color: #0A0F0B;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.5625rem;
-  letter-spacing: 0.15em;
-  padding: 4px 32px;
-  transform: rotate(32deg);
-  pointer-events: none;
-  z-index: 8;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Rubber Stamps */
-.stamp-contingent {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: 2px solid var(--green);
-  color: var(--green);
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.625rem;
-  letter-spacing: 0.15em;
-  padding: 3px 8px;
-  transform: rotate(8deg);
-  pointer-events: none;
-  z-index: 7;
-  background: rgba(10, 15, 11, 0.7);
-  border-radius: 3px;
-}
-
-.stamp-patrol {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: 2px solid #ffd700;
-  color: #ffd700;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.625rem;
-  letter-spacing: 0.15em;
-  padding: 3px 8px;
-  transform: rotate(-6deg);
-  pointer-events: none;
-  z-index: 7;
-  background: rgba(10, 15, 11, 0.7);
-  border-radius: 3px;
-}
-
-.stamp-archive {
-  position: absolute;
-  bottom: 44px;
-  right: 24px;
-  border: 2px dashed #ff6b4a;
-  color: #ff6b4a;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  padding: 4px 12px;
-  transform: rotate(-3deg);
-  pointer-events: none;
-  z-index: 7;
-  background: rgba(10, 15, 11, 0.75);
-  border-radius: 4px;
-}
-
-.film-footer-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.gallery-caption {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
   margin-top: 10px;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: block;
+  line-height: 1.4;
+  font-weight: 500;
+  transition: color 250ms ease;
 }
 
-.film-exposure-meta {
-  font-family: monospace;
-  font-size: 0.6875rem;
-  color: rgba(234, 244, 236, 0.4);
-  letter-spacing: 0.08em;
-}
-
-/* Responsive Editorial Gallery Grid */
-@media (max-width: 1024px) and (min-width: 641px) {
-  .film-card-1 {
-    grid-column: span 6;
-    --tilt: 0deg;
-  }
-  .film-card-2 {
-    grid-column: span 6;
-    --tilt: 0deg;
-  }
-  .film-card-3.polaroid-mount {
-    grid-column: span 6;
-    --tilt: 0deg;
-  }
-  .film-card-4 {
-    grid-column: span 6;
-    --tilt: 0deg;
-  }
-  .film-card-6 {
-    grid-column: span 6;
-    --tilt: 0deg;
-  }
-  .film-card-5.panoramic-mount {
-    grid-column: span 12;
-    --tilt: 0deg;
-  }
-  .film-card-1 .film-img-wrapper,
-  .film-card-2 .film-img-wrapper {
-    height: 300px;
-  }
-  .film-card-3 .film-img-wrapper,
-  .film-card-4 .film-img-wrapper,
-  .film-card-6 .film-img-wrapper {
-    height: 250px;
-  }
+.gallery-fig:hover .gallery-caption,
+.gallery-fig:focus-visible .gallery-caption {
+  color: var(--chalk-white);
 }
 
 @media (max-width: 640px) {
-  .gallery-grid {
-    gap: 18px;
+  .gallery-asym-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .film-card-1,
-  .film-card-2,
-  .film-card-3.polaroid-mount,
-  .film-card-4,
-  .film-card-6,
-  .film-card-5.panoramic-mount {
-    grid-column: span 12;
-    --tilt: 0deg;
+  .film-photo {
+    height: 250px !important;
+    transform: none !important;
   }
-  .film-img-wrapper {
-    height: 230px !important;
-  }
-  .contact-sheet-header {
-    font-size: 0.6875rem;
-    gap: 10px;
-  }
-  .film-lut-controls {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .lut-btn {
-    flex: 1;
-    text-align: center;
-    padding: 6px 4px;
-    font-size: 0.625rem;
+  .gallery-fig:hover .film-photo {
+    transform: translateY(-4px) !important;
   }
 }
 

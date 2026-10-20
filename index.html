@@ -803,145 +803,78 @@
     </section>
 
     <!-- ==========================================================================
-       [H] GALERI (Momen Jalanan & Race Recap Pelari Kalcer)
+       [H] GALERI (Dokumentasi Otentik Ala Branch ini-bukan-habitatku)
        ========================================================================== -->
-    <section class="section-spacing" id="galeri" aria-label="Dokumentasi Pelari Kalcer">
+    <section class="section-spacing" id="galeri" aria-label="Dokumentasi Pelari">
       <div class="container">
-        <!-- Runner KM Split Track Ribbon -->
-        <div class="runner-track-ribbon" aria-hidden="true">
-          <span class="track-km-badge">KM 00 START</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">KM 05 WATER STATION</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">KM 10 PACE 04:30</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">KM 16 CARBO GEL</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">KM 21.097 FINISH LINE</span>
+
+        <div class="gallery-header-clean">
+          <span class="cs-badge">GALERI</span>
+          <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 8px 0 4px;">Dokumentasi</h2>
+          <p class="deadpan-quote" style="margin: 0 0 24px; font-size: 0.9375rem; color: var(--text-muted);">
+            Bukti dokumentasi bahwa kami pernah bergerak.
+          </p>
         </div>
 
-        <div class="contact-sheet-header">
-          <div class="contact-sheet-meta">
-            <span class="cs-badge">GANK KAPAK RACE RECAP</span>
-            <span class="cs-sub">MOMEN JALANAN 2026 • KERINGAT &amp; SENYUM FINISHER</span>
+        <!-- Grid 6 Kolom Asimetris Ala Branch ini-bukan-habitatku -->
+        <div class="gallery-asym-grid" id="galleryGrid">
+
+          <!-- Foto 1: Long Run Pertama (Span 2) -->
+          <div class="gallery-fig g-span-2" onclick="openLightboxByIndex(0)" tabindex="0" role="button"
+            aria-label="Lihat foto Long Run Pertama">
+            <div class="film-photo film-tilt-2" style="height: 270px;">
+              <img src="assets/images/gambar4.jpeg" alt="Ekspresi sebelum km 8, masih bisa senyum.">
+            </div>
+            <span class="gallery-caption">Ekspresi sebelum km 8, masih bisa senyum.</span>
           </div>
 
-          <!-- Interactive Running Tone Switcher -->
-          <div class="film-lut-controls" role="group" aria-label="Pilihan Tone Dokumentasi Lari">
-            <button type="button" class="lut-btn active" data-lut="bw"
-              title="Hitam Putih Raw Street Running">MONOCHROME</button>
-            <button type="button" class="lut-btn" data-lut="retro" title="Warna Hangat CFD Pagi">SUNRISE CFD</button>
-            <button type="button" class="lut-btn" data-lut="darkroom" title="Mode Lari Malam Gelap">NIGHT RUN
-              🔴</button>
-          </div>
-        </div>
-
-        <!-- Asymmetric Kalcer Runner Collage Grid -->
-        <div class="gallery-grid" id="galleryGrid">
-
-          <!-- Frame 01A: Hero Long Run Km 16 -->
-          <div class="film-card film-card-1" data-frame-index="0" onclick="openLightboxByIndex(0)">
-            <span class="washi-tape-accent" aria-hidden="true"></span>
-            <span class="film-frame-number tabular">RECAP #01</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/gambar4.jpeg" alt="Long Run Pertama Km 16" class="film-img">
-              <div class="grease-circle" aria-hidden="true"></div>
-              <div class="grease-note" aria-hidden="true">KM 16 • STILL BREATHING</div>
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
+          <!-- Foto 2: Jadi Marshal (Span 4) -->
+          <div class="gallery-fig g-span-4" onclick="openLightboxByIndex(1)" tabindex="0" role="button"
+            aria-label="Lihat foto Jadi Marshal">
+            <div class="film-photo" style="height: 270px;">
+              <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10% jadi marshal.">
             </div>
-            <div class="film-footer-meta">
-              <p class="film-caption">"LONG RUN PERTAMA"</p>
-              <span class="film-exposure-meta">Pace 05:12 / KM • 16.4 KM • HR 164 BPM</span>
-            </div>
+            <span class="gallery-caption">Nafas tinggal 10% jadi marshal rute.</span>
           </div>
 
-          <!-- Frame 02A: Night Patrol Marshal Duty -->
-          <div class="film-card film-card-2" data-frame-index="1" onclick="openLightboxByIndex(1)">
-            <span class="tape-hazard" aria-hidden="true">MARSHAL DUTY • 03:30 AM</span>
-            <span class="film-frame-number tabular">RECAP #02</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10% jadi marshal" class="film-img">
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
+          <!-- Foto 3: Biar Kentchang (Span 3) -->
+          <div class="gallery-fig g-span-3" onclick="openLightboxByIndex(2)" tabindex="0" role="button"
+            aria-label="Lihat foto Biar Kentchang">
+            <div class="film-photo film-tilt-3" style="height: 290px;">
+              <img src="assets/images/gambar1.jpeg" alt="Pura-pura segar setelah 10K.">
             </div>
-            <div class="film-footer-meta">
-              <p class="film-caption">"jadi marshal"</p>
-              <span class="film-exposure-meta">03:30 AM • Marshal Rute • Zero Incident</span>
-            </div>
+            <span class="gallery-caption">Biar apa ? Biar kentchang.</span>
           </div>
 
-          <!-- Frame 03A: Sprint Finish Kentchang -->
-          <div class="film-card film-card-3 polaroid-mount" data-frame-index="2" onclick="openLightboxByIndex(2)">
-            <span class="scotch-tape-center" aria-hidden="true"></span>
-            <span class="film-frame-number tabular">RECAP #03</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/gambar1.jpeg" alt="Pura-pura tegar depan kamera" class="film-img">
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
+          <!-- Foto 4: Kontingen Resmi (Span 3) -->
+          <div class="gallery-fig g-span-3" onclick="openLightboxByIndex(3)" tabindex="0" role="button"
+            aria-label="Lihat foto Kontingen Pertama">
+            <div class="film-photo film-tilt-1" style="height: 290px;">
+              <img src="assets/images/gambar3.jpeg" alt="First kontingen resmi Gank Kapak.">
             </div>
-            <div class="polaroid-chin">
-              <p class="polaroid-caption">"biar apa ? biar kentchang"</p>
-              <span class="polaroid-meta">Sprint Finish • Cadence 192 SPM • Muka Pura-pura Tegar</span>
-            </div>
+            <span class="gallery-caption">First kontingen resmi Gank Kapak.</span>
           </div>
 
-          <!-- Frame 04A: Official Contingent Finisher Medals -->
-          <div class="film-card film-card-4" data-frame-index="3" onclick="openLightboxByIndex(3)">
-            <span class="stamp-contingent" aria-hidden="true">★ KONTINGEN RESMI ★</span>
-            <span class="film-frame-number tabular">RECAP #04</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/gambar3.jpeg" alt="Kontingen Pertama Genk Kapak" class="film-img">
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
+          <!-- Foto 5: Patroli Malam (Span 3) -->
+          <div class="gallery-fig g-span-3" onclick="openLightboxByIndex(4)" tabindex="0" role="button"
+            aria-label="Lihat foto Patroli Malam">
+            <div class="film-photo film-tilt-2" style="height: 290px;">
+              <img src="assets/images/gambar2.jpeg" alt="Patroli malam & rombongan.">
             </div>
-            <div class="film-footer-meta">
-              <p class="film-caption">"FIRST KONTINGEN GENK KAPAK"</p>
-              <span class="film-exposure-meta">Half Marathon • Target Sub-2 • Medali Sah</span>
-            </div>
+            <span class="gallery-caption">Patroli malam rompi hijau &amp; finish warkop.</span>
           </div>
 
-          <!-- Frame 06A: Night Patrol Reflective Vests Squad -->
-          <div class="film-card film-card-6" data-frame-index="4" onclick="openLightboxByIndex(4)">
-            <span class="stamp-patrol" aria-hidden="true">ROMPI HIJAU PATROL</span>
-            <span class="film-frame-number tabular">RECAP #05</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/gambar2.jpeg" alt="Patroli malam & kopi subuh" class="film-img">
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
+          <!-- Foto 6: Uno Run (Span 3) -->
+          <div class="gallery-fig g-span-3" onclick="openLightboxByIndex(5)" tabindex="0" role="button"
+            aria-label="Lihat foto Uno Run">
+            <div class="film-photo film-tilt-3" style="height: 290px;">
+              <img src="assets/images/gambar5.jpeg" alt="Uno run 5K awal dari semua.">
             </div>
-            <div class="film-footer-meta">
-              <p class="film-caption">"patroli malam &amp; rombongan"</p>
-              <span class="film-exposure-meta">Rompi Hijau • Pace Santai 06:30 • Finish Warung Kopi</span>
-            </div>
-          </div>
-
-          <!-- Frame 05A: Uno Run 5K Pertama -->
-          <div class="film-card film-card-5 panoramic-mount" data-frame-index="5" onclick="openLightboxByIndex(5)">
-            <span class="stamp-archive" aria-hidden="true">HISTORIC 5K • CIKAL BAKAL</span>
-            <span class="film-frame-number tabular">RECAP #06</span>
-            <div class="film-img-wrapper">
-              <img src="assets/images/gambar5.jpeg" alt="Uno Run Awal Dari Semua" class="film-img">
-              <div class="grease-arrow" aria-hidden="true">◀ DARI SINI SEMUA DIMULAI</div>
-              <div class="film-light-leak" aria-hidden="true"></div>
-              <div class="film-crosshair" aria-hidden="true"></div>
-            </div>
-            <div class="film-footer-meta">
-              <p class="film-caption">"UNO RUN AWAL DARI SEMUA"</p>
-              <span class="film-exposure-meta">Uno Run 2026 • 5.0 KM • Titik Nol Gank Kapak</span>
-            </div>
+            <span class="gallery-caption">Uno run 5K, awal dari semua cerita.</span>
           </div>
 
         </div>
 
-        <!-- Runner Finish Line Strip -->
-        <div class="runner-track-ribbon ribbon-bottom" aria-hidden="true">
-          <span class="track-km-badge">GANK KAPAK MOJOKERTO</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">LARI DULU MIKIR BELAKANGAN</span>
-          <span class="track-dash-line"></span>
-          <span class="track-km-badge">TIDAK BOLEH ONAR YA</span>
-        </div>
       </div>
     </section>
 
