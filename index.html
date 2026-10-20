@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GANK KAPAK — Ini bukan habitatku.</title>
-  <meta name="description" content="Komunitas lari independen GANK KAPAK. Slogan: Ini bukan habitatku. Jadwal lari mingguan, event, race bib, dan lookbook.">
+  <meta name="description"
+    content="Komunitas lari independen GANK KAPAK. Slogan: Ini bukan habitatku. Jadwal lari mingguan, event, race bib, dan lookbook.">
   <meta property="og:title" content="GANK KAPAK — Ini bukan habitatku.">
-  <meta property="og:description" content="Komunitas lari independen. Lookbook, zine, papan jadwal. Santai, berkarakter, dan tanpa basa-basi.">
+  <meta property="og:description"
+    content="Komunitas lari independen. Lookbook, zine, papan jadwal. Santai, berkarakter, dan tanpa basa-basi.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts: Bricolage Grotesque (800 + variable width) & Instrument Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -72,7 +77,9 @@
     }
 
     /* Reset & Base */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -214,13 +221,11 @@
     .finish-line-strip {
       height: 8px;
       width: 100%;
-      background-image: repeating-linear-gradient(
-        90deg,
-        #0A0F0B 0px,
-        #0A0F0B 8px,
-        #EAF4EC 8px,
-        #EAF4EC 16px
-      );
+      background-image: repeating-linear-gradient(90deg,
+          #0A0F0B 0px,
+          #0A0F0B 8px,
+          #EAF4EC 8px,
+          #EAF4EC 16px);
       display: block;
     }
 
@@ -475,13 +480,11 @@
       left: 0;
       height: 100%;
       width: 0%;
-      background-image: repeating-linear-gradient(
-        90deg,
-        #0A0F0B 0px,
-        #0A0F0B 8px,
-        #EAF4EC 8px,
-        #EAF4EC 16px
-      );
+      background-image: repeating-linear-gradient(90deg,
+          #0A0F0B 0px,
+          #0A0F0B 8px,
+          #EAF4EC 8px,
+          #EAF4EC 16px);
       pointer-events: none;
       transition: width 0.4s var(--ease-run);
       z-index: 2;
@@ -585,9 +588,11 @@
       .nav-links {
         display: none;
       }
+
       .mobile-menu-btn {
         display: block;
       }
+
       .mobile-floating-wa {
         display: block;
       }
@@ -697,6 +702,7 @@
       0% {
         transform: translateY(110%);
       }
+
       100% {
         transform: translateY(0);
       }
@@ -707,10 +713,13 @@
         transform: translateX(100px);
         opacity: 0;
       }
+
       80% {
-        transform: translateX(-10px); /* Overshoot */
+        transform: translateX(-10px);
+        /* Overshoot */
         opacity: 1;
       }
+
       100% {
         transform: translateX(0);
         opacity: 1;
@@ -828,9 +837,12 @@
     }
 
     @keyframes todayPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(0.98);
       }
@@ -1022,10 +1034,25 @@
       transition: transform 0.22s var(--ease-run);
     }
 
-    .bib-pin-tl { top: 14px; left: 14px; }
-    .bib-pin-tr { top: 14px; right: 14px; }
-    .bib-pin-bl { bottom: 14px; left: 14px; }
-    .bib-pin-br { bottom: 14px; right: 14px; }
+    .bib-pin-tl {
+      top: 14px;
+      left: 14px;
+    }
+
+    .bib-pin-tr {
+      top: 14px;
+      right: 14px;
+    }
+
+    .bib-pin-bl {
+      bottom: 14px;
+      left: 14px;
+    }
+
+    .bib-pin-br {
+      bottom: 14px;
+      right: 14px;
+    }
 
     .bib-card:hover .bib-pin,
     .bib-card:focus-visible .bib-pin,
@@ -1137,14 +1164,38 @@
       transform: translateY(-4px) rotate(0deg);
     }
 
-    .film-card-1 { grid-column: span 5; --tilt: -1deg; }
-    .film-card-2 { grid-column: span 7; --tilt: 1deg; }
-    .film-card-3 { grid-column: span 4; --tilt: 1.5deg; }
-    .film-card-4 { grid-column: span 4; --tilt: -1.2deg; }
-    .film-card-5 { grid-column: span 4; --tilt: 0.8deg; }
+    .film-card-1 {
+      grid-column: span 5;
+      --tilt: -1deg;
+    }
+
+    .film-card-2 {
+      grid-column: span 7;
+      --tilt: 1deg;
+    }
+
+    .film-card-3 {
+      grid-column: span 4;
+      --tilt: 1.5deg;
+    }
+
+    .film-card-4 {
+      grid-column: span 4;
+      --tilt: -1.2deg;
+    }
+
+    .film-card-5 {
+      grid-column: span 4;
+      --tilt: 0.8deg;
+    }
 
     @media (max-width: 860px) {
-      .film-card-1, .film-card-2, .film-card-3, .film-card-4, .film-card-5 {
+
+      .film-card-1,
+      .film-card-2,
+      .film-card-3,
+      .film-card-4,
+      .film-card-5 {
         grid-column: span 12;
         --tilt: 0deg;
       }
@@ -1375,6 +1426,7 @@
         grid-template-columns: 1fr;
         gap: 12px;
       }
+
       .cerita-category {
         text-align: left;
       }
@@ -1625,6 +1677,7 @@
       0% {
         transform: translateX(0%);
       }
+
       100% {
         transform: translateX(-50%);
       }
@@ -1674,29 +1727,35 @@
        Matikan animasi #1, #2, #6, #8
        ========================================================================== */
     @media (prefers-reduced-motion: reduce) {
+
       .slogan-line-1,
       .slogan-line-2 {
         animation: none !important;
         transform: none !important;
         opacity: 1 !important;
       }
+
       .route-active-path {
         stroke-dashoffset: 0 !important;
         transition: none !important;
       }
+
       .day-cell.is-today {
         animation: none !important;
       }
+
       .marquee-track {
         animation: none !important;
         transform: none !important;
       }
+
       body {
         background-attachment: scroll !important;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ==========================================================================
@@ -1744,7 +1803,7 @@
           <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
             Lainnya
             <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor" aria-hidden="true">
-              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
             </svg>
           </button>
           <ul class="dropdown-menu">
@@ -1762,7 +1821,8 @@
       <!-- Action Button -->
       <div style="display: flex; align-items: center; gap: 12px;">
         <button type="button" class="mobile-menu-btn" id="mobileMenuOpenBtn" aria-label="Buka Menu">Menu</button>
-        <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" id="navGabungBtn">
+        <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank"
+          rel="noopener noreferrer" class="btn-green btn-wa-sweep" id="navGabungBtn">
           <span class="sweep-layer" aria-hidden="true"></span>
           Gabung
         </a>
@@ -1794,7 +1854,8 @@
         <a href="#kontak" class="mobile-nav-link">Kontak</a>
       </div>
       <div style="margin-top: 24px;">
-        <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="width: 100%;">
+        <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank"
+          rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="width: 100%;">
           <span class="sweep-layer" aria-hidden="true"></span>
           Gabung grup WhatsApp
         </a>
@@ -1803,7 +1864,8 @@
   </div>
 
   <!-- Mobile Floating Bottom WhatsApp Button -->
-  <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank" rel="noopener noreferrer" class="mobile-floating-wa btn-wa-sweep" aria-label="Gabung via WhatsApp">
+  <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20lari!" target="_blank"
+    rel="noopener noreferrer" class="mobile-floating-wa btn-wa-sweep" aria-label="Gabung via WhatsApp">
     <span class="sweep-layer" aria-hidden="true"></span>
     Gabung via WhatsApp
   </a>
@@ -1815,11 +1877,13 @@
          ========================================================================== -->
     <section class="hero-section" id="hero" aria-label="Hero">
       <div class="hero-photo-wrapper">
-        <img src="assets/images/hero.jpg" alt="Pelari malam melintas di jalanan kota, foto berbutir film" class="hero-photo">
+        <img src="assets/images/hero.jpeg" alt="Pelari malam melintas di jalanan kota, foto berbutir film"
+          class="hero-photo">
       </div>
       <div class="container hero-content">
         <div class="hero-top-bar">
-          <a href="#gabung" class="btn-outline" style="background-color: rgba(10, 15, 11, 0.7); backdrop-filter: none; font-size: 0.8125rem; padding: 6px 14px;">Gabung</a>
+          <a href="#gabung" class="btn-outline"
+            style="background-color: rgba(10, 15, 11, 0.7); backdrop-filter: none; font-size: 0.8125rem; padding: 6px 14px;">Gabung</a>
         </div>
         <div class="hero-bottom-area">
           <h1 class="slogan-title" aria-label="Ini bukan habitatku.">
@@ -1846,7 +1910,8 @@
           KAMI BUKAN PENGHUNI SOFA. KAMI LARI, LALU MAKAN, LALU LUPA KENAPA TADI MENGELUH. INI BUKAN HABITATKU.
         </h2>
         <p class="manifesto-kapak">
-          KAPAK: Kumpulan Arek Pelari Asal Keringetan — metafora membelah rasa malas, kasur empuk, dan keraguan diri sendiri sebelum matahari terbit.
+          KAPAK: Kumpulan Arek Pelari Asal Keringetan — metafora membelah rasa malas, kasur empuk, dan keraguan diri
+          sendiri sebelum matahari terbit.
         </p>
       </div>
     </section>
@@ -1883,14 +1948,16 @@
               </div>
               <div class="day-run-info">
                 <span class="run-time tabular">19.15 WIB</span>
-                <div class="run-distance tabular"><span class="counter-num" data-target="7.0">0.0</span> <span style="font-size: 1.125rem;">KM</span></div>
+                <div class="run-distance tabular"><span class="counter-num" data-target="7.0">0.0</span> <span
+                    style="font-size: 1.125rem;">KM</span></div>
                 <div class="run-meta">
                   <div><strong>Pace:</strong> 4:55 /km</div>
                   <div><strong>Kumpul:</strong> Stadion Atletik</div>
                   <div><strong>Sifat:</strong> Ngebut teratur</div>
                 </div>
               </div>
-              <a href="#rute-selasa" class="run-route-link" onclick="openRouteModal('Selasa: Interval 7K Stadion'); return false;">Lihat rute</a>
+              <a href="#rute-selasa" class="run-route-link"
+                onclick="openRouteModal('Selasa: Interval 7K Stadion'); return false;">Lihat rute</a>
             </div>
 
             <!-- RABU -->
@@ -1911,14 +1978,16 @@
               </div>
               <div class="day-run-info">
                 <span class="run-time tabular">19.00 WIB</span>
-                <div class="run-distance tabular"><span class="counter-num" data-target="5.0">0.0</span> <span style="font-size: 1.125rem;">KM</span></div>
+                <div class="run-distance tabular"><span class="counter-num" data-target="5.0">0.0</span> <span
+                    style="font-size: 1.125rem;">KM</span></div>
                 <div class="run-meta">
                   <div><strong>Pace:</strong> 6:30 /km</div>
                   <div><strong>Kumpul:</strong> Pendopo Paijo</div>
                   <div><strong>Sifat:</strong> Santai bercanda</div>
                 </div>
               </div>
-              <a href="#rute-kamis" class="run-route-link" onclick="openRouteModal('Kamis: Easy Night Run 5K Paijo'); return false;">Lihat rute</a>
+              <a href="#rute-kamis" class="run-route-link"
+                onclick="openRouteModal('Kamis: Easy Night Run 5K Paijo'); return false;">Lihat rute</a>
             </div>
 
             <!-- JUMAT -->
@@ -1949,14 +2018,16 @@
               </div>
               <div class="day-run-info">
                 <span class="run-time tabular">05.45 WIB</span>
-                <div class="run-distance tabular"><span class="counter-num" data-target="15.0">0.0</span> <span style="font-size: 1.125rem;">KM</span></div>
+                <div class="run-distance tabular"><span class="counter-num" data-target="15.0">0.0</span> <span
+                    style="font-size: 1.125rem;">KM</span></div>
                 <div class="run-meta">
                   <div><strong>Pace:</strong> 6:00 /km</div>
                   <div><strong>Kumpul:</strong> CFD Taman Kota</div>
                   <div><strong>Sifat:</strong> Long run sarapan</div>
                 </div>
               </div>
-              <a href="#rute-minggu" class="run-route-link" onclick="openRouteModal('Minggu: Long Run 15K CFD'); return false;">Lihat rute</a>
+              <a href="#rute-minggu" class="run-route-link"
+                onclick="openRouteModal('Minggu: Long Run 15K CFD'); return false;">Lihat rute</a>
             </div>
 
           </div>
@@ -1969,7 +2040,10 @@
        ========================================================================== -->
     <section class="section-spacing" id="event" aria-label="Event Mendatang">
       <div class="container">
-        <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 24px;">Event Mendatang</h2>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
+          <h2 class="title-normal" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Event yang Diikuti</h2>
+          <span style="font-size: 0.875rem; color: var(--text-muted);">Target Race & Rombongan</span>
+        </div>
 
         <!-- Event Row 1 -->
         <div class="event-row">
@@ -1978,12 +2052,7 @@
             <h3 class="event-title">Gank Kapak 2nd Anniversary Night Run 7K</h3>
             <span class="event-loc">Pendopo Basecamp Paijo, Surabaya</span>
           </div>
-          <div>
-            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Daftar%20Anniversary%20Night%20Run%207K" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
-              <span class="sweep-layer" aria-hidden="true"></span>
-              Daftar
-            </a>
-          </div>
+          <span style="font-size: 0.875rem; color: var(--green); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">Agenda Utama</span>
         </div>
 
         <!-- Event Row 2 -->
@@ -1993,12 +2062,17 @@
             <h3 class="event-title">Ekspedisi Borobudur Marathon 2026</h3>
             <span class="event-loc">Magelang, Jawa Tengah (Rombongan Bus Komunitas)</span>
           </div>
-          <div>
-            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Daftar%20Ekspedisi%20Borobudur%20Marathon" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
-              <span class="sweep-layer" aria-hidden="true"></span>
-              Daftar
-            </a>
+          <span style="font-size: 0.875rem; color: var(--green); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">Rencana Ikut</span>
+        </div>
+
+        <!-- Event Row 3 -->
+        <div class="event-row">
+          <div class="event-date tabular">15 MEI 2027</div>
+          <div class="event-detail">
+            <h3 class="event-title">Dieng Trail Run & Sesi Santai</h3>
+            <span class="event-loc">Dieng Plateau, Jawa Tengah (Sesi Elevasi bareng Ega & Anisa)</span>
           </div>
+          <span style="font-size: 0.875rem; color: var(--green); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">Rencana Ikut</span>
         </div>
 
         <!-- Toggle Kenangan Arsip -->
@@ -2006,7 +2080,7 @@
           <button type="button" class="event-archive-toggle" id="archiveToggleBtn" aria-expanded="false">
             <span>Lihat kenangan</span>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M1 1.5L6 6.5L11 1.5"/>
+              <path d="M1 1.5L6 6.5L11 1.5" />
             </svg>
           </button>
           <div class="event-archive-content" id="archiveContent">
@@ -2243,7 +2317,8 @@
         <div class="gallery-grid">
 
           <!-- Frame 01A -->
-          <div class="film-card film-card-1" onclick="openLightbox('assets/images/runners-pack.jpg', 'Ekspresi sebelum km 8: Masih bisa tertawa di pinggir trotoar.')">
+          <div class="film-card film-card-1"
+            onclick="openLightbox('assets/images/runners-pack.jpg', 'Ekspresi sebelum km 8: Masih bisa tertawa di pinggir trotoar.')">
             <span class="film-frame-number tabular">01A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/runners-pack.jpg" alt="Ekspresi sebelum km 8" class="film-img">
@@ -2252,16 +2327,18 @@
           </div>
 
           <!-- Frame 02A -->
-          <div class="film-card film-card-2" onclick="openLightbox('assets/images/hero.jpg', 'Nafas tinggal 10%: Menembus gelap malam sendirian.')">
+          <div class="film-card film-card-2"
+            onclick="openLightbox('assets/images/hero.jpeg', 'Nafas tinggal 10%: Menembus gelap malam sendirian.')">
             <span class="film-frame-number tabular">02A</span>
             <div class="film-img-wrapper">
-              <img src="assets/images/hero.jpg" alt="Nafas tinggal 10%" class="film-img">
+              <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10%" class="film-img">
             </div>
             <p class="film-caption">"Nafas tinggal 10%"</p>
           </div>
 
           <!-- Frame 03A -->
-          <div class="film-card film-card-3" onclick="openLightbox('assets/images/runner-of-month.jpg', 'Pura-pura tegar depan kamera walau lutut bergetar.')">
+          <div class="film-card film-card-3"
+            onclick="openLightbox('assets/images/runner-of-month.jpg', 'Pura-pura tegar depan kamera walau lutut bergetar.')">
             <span class="film-frame-number tabular">03A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/runner-of-month.jpg" alt="Pura-pura tegar" class="film-img">
@@ -2270,7 +2347,8 @@
           </div>
 
           <!-- Frame 04A -->
-          <div class="film-card film-card-4" onclick="openLightbox('assets/images/basecamp.jpg', 'Finisher smile di basecamp warung kopi.')">
+          <div class="film-card film-card-4"
+            onclick="openLightbox('assets/images/basecamp.jpg', 'Finisher smile di basecamp warung kopi.')">
             <span class="film-frame-number tabular">04A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/basecamp.jpg" alt="Finisher smile" class="film-img">
@@ -2279,7 +2357,8 @@
           </div>
 
           <!-- Frame 05A -->
-          <div class="film-card film-card-5" onclick="openLightbox('assets/images/singlet.jpg', 'Duduk santai sehabis lari, baju basah keringat dingin.')">
+          <div class="film-card film-card-5"
+            onclick="openLightbox('assets/images/singlet.jpg', 'Duduk santai sehabis lari, baju basah keringat dingin.')">
             <span class="film-frame-number tabular">05A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/singlet.jpg" alt="Duduk santai sehabis lari" class="film-img">
@@ -2321,7 +2400,8 @@
               <span class="drop-status">Ready Stock</span>
               <h3 class="drop-name">Kaos Lari "Ini Bukan Habitatku"</h3>
               <div class="drop-price tabular">Rp 150.000</div>
-              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pesan%20Kaos%20Lari%20Ini%20Bukan%20Habitatku" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pesan%20Kaos%20Lari%20Ini%20Bukan%20Habitatku"
+                target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
                 <span class="sweep-layer" aria-hidden="true"></span>
                 Pesan via WhatsApp
               </a>
@@ -2337,7 +2417,8 @@
               <span class="drop-status">Pre-order</span>
               <h3 class="drop-name">Singlet Race "Kapak Forest"</h3>
               <div class="drop-price tabular">Rp 135.000</div>
-              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pre-order%20Singlet%20Race%20Kapak%20Forest" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pre-order%20Singlet%20Race%20Kapak%20Forest"
+                target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
                 <span class="sweep-layer" aria-hidden="true"></span>
                 Pesan via WhatsApp
               </a>
@@ -2353,7 +2434,8 @@
               <span class="drop-status">Ready Stock</span>
               <h3 class="drop-name">Buff Microfiber Anti-Debu</h3>
               <div class="drop-price tabular">Rp 45.000</div>
-              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pesan%20Buff%20Microfiber" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep">
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20Pesan%20Buff%20Microfiber" target="_blank"
+                rel="noopener noreferrer" class="btn-green btn-wa-sweep">
                 <span class="sweep-layer" aria-hidden="true"></span>
                 Pesan via WhatsApp
               </a>
@@ -2374,28 +2456,34 @@
         <div class="cerita-list">
 
           <!-- Entry 1 -->
-          <article class="cerita-item" onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
+          <article class="cerita-item"
+            onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
             <div>
               <h3 class="cerita-title">Bagaimana Mba-Mba Ultra Bertahan di Tengah Pasukan Sofa</h3>
-              <p class="cerita-sentence">Catatan Anisa menempuh 50 kilometer sementara anggota lain masih berdebat soal menu sarapan bubur.</p>
+              <p class="cerita-sentence">Catatan Anisa menempuh 50 kilometer sementara anggota lain masih berdebat soal
+                menu sarapan bubur.</p>
             </div>
             <span class="cerita-category">Ultra</span>
           </article>
 
           <!-- Entry 2 -->
-          <article class="cerita-item" onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
+          <article class="cerita-item"
+            onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
             <div>
               <h3 class="cerita-title">Dua Ayah, Sembilan Anak, dan Satu Rute Malam Tanpa Drama</h3>
-              <p class="cerita-sentence">Tiar dan Faisal berbagi tugas menyisir barisan belakang agar tidak ada yang tertinggal di Pendopo Paijo.</p>
+              <p class="cerita-sentence">Tiar dan Faisal berbagi tugas menyisir barisan belakang agar tidak ada yang
+                tertinggal di Pendopo Paijo.</p>
             </div>
             <span class="cerita-category">Keluarga</span>
           </article>
 
           <!-- Entry 3 -->
-          <article class="cerita-item" onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
+          <article class="cerita-item"
+            onclick="alert('Artikel lengkap segera rilis di Buletin Cetak Gank Kapak Edisi 01.');">
             <div>
               <h3 class="cerita-title">Seni Menghilang Sehabis Finish ala Pelari Introvert</h3>
-              <p class="cerita-sentence">Taktik taktis Evan: lari di barisan paling belakang, finis tepat waktu, lalu lenyap tanpa jejak foto bersama.</p>
+              <p class="cerita-sentence">Taktik taktis Evan: lari di barisan paling belakang, finis tepat waktu, lalu
+                lenyap tanpa jejak foto bersama.</p>
             </div>
             <span class="cerita-category">Catatan</span>
           </article>
@@ -2443,7 +2531,8 @@
         </div>
 
         <div>
-          <a href="https://www.strava.com/clubs/gankkapak" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <a href="https://www.strava.com/clubs/gankkapak" target="_blank" rel="noopener noreferrer"
+            class="btn-outline">
             Lihat klub di Strava
           </a>
         </div>
@@ -2460,11 +2549,14 @@
             DATANG SAJA. BILANG KAMU BARU. SISANYA KAMI URUS.
           </h2>
           <div class="gabung-actions">
-            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20grup%20WhatsApp!" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="font-size: 1.0625rem; padding: 14px 28px;">
+            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20saya%20mau%20gabung%20grup%20WhatsApp!"
+              target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep"
+              style="font-size: 1.0625rem; padding: 14px 28px;">
               <span class="sweep-layer" aria-hidden="true"></span>
               Gabung grup WhatsApp
             </a>
-            <a href="https://instagram.com/gankkapak" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 1.0625rem; padding: 14px 28px;">
+            <a href="https://instagram.com/gankkapak" target="_blank" rel="noopener noreferrer" class="btn-outline"
+              style="font-size: 1.0625rem; padding: 14px 28px;">
               Ikuti di Instagram
             </a>
           </div>
@@ -2488,7 +2580,8 @@
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-answer">
-                Tentu. Setiap sesi ada rombongan santai (pace 7-8) dan sweeper yang bertugas menemani di baris paling belakang sampai finis.
+                Tentu. Setiap sesi ada rombongan santai (pace 7-8) dan sweeper yang bertugas menemani di baris paling
+                belakang sampai finis.
               </div>
             </div>
             <div class="faq-item">
@@ -2520,7 +2613,8 @@
               <div class="sponsor-logo">KINETIK PHYSIO</div>
               <div class="sponsor-logo">STRIDE STORE</div>
             </div>
-            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20kami%20tertarik%20menjadi%20partner%20sponsor" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; text-align: center;">
+            <a href="https://wa.me/6281234567890?text=Halo%20Gank%20Kapak,%20kami%20tertarik%20menjadi%20partner%20sponsor"
+              target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; text-align: center;">
               Jadi partner kami
             </a>
           </div>
@@ -2530,14 +2624,17 @@
             <h3 class="sisanya-col-title">Donasi</h3>
             <div class="donasi-box">
               <p>
-                Donasi sukarela untuk operasional air mineral galon di rute panjang, kotak P3K darurat, dan sarapan sweeper mingguan.
+                Donasi sukarela untuk operasional air mineral galon di rute panjang, kotak P3K darurat, dan sarapan
+                sweeper mingguan.
               </p>
               <div class="bank-card tabular">
-                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Transfer Bank BCA</span>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Transfer Bank
+                  BCA</span>
                 <div class="bank-account">829-019-8821</div>
                 <div style="font-size: 0.8125rem; color: var(--text-muted);">a.n. Gank Kapak Komunitas</div>
               </div>
-              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20sudah%20mengirim%20donasi%20operasional%20Gank%20Kapak" target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="text-align: center;">
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20sudah%20mengirim%20donasi%20operasional%20Gank%20Kapak"
+                target="_blank" rel="noopener noreferrer" class="btn-green btn-wa-sweep" style="text-align: center;">
                 <span class="sweep-layer" aria-hidden="true"></span>
                 Konfirmasi via WhatsApp
               </a>
@@ -2569,7 +2666,8 @@
     <!-- Pita teks berjalan (Animation #6) -->
     <div class="marquee-container" aria-hidden="true">
       <div class="marquee-track" id="marqueeTrack">
-        INI BUKAN HABITATKU. — GANK KAPAK RUN CLUB — DARI MBA-MBA ULTRA SAMPAI INTROVERT — LARI DULU, MIKIR BELAKANGAN. — INI BUKAN HABITATKU. — PENUNGGU BASECAMP SAMPAI ORANG HAVE KE DIENG — GANK KAPAK — 
+        INI BUKAN HABITATKU. — GANK KAPAK RUN CLUB — DARI MBA-MBA ULTRA SAMPAI INTROVERT — LARI DULU, MIKIR BELAKANGAN.
+        — INI BUKAN HABITATKU. — PENUNGGU BASECAMP SAMPAI ORANG HAVE KE DIENG — GANK KAPAK —
       </div>
     </div>
 
@@ -2593,7 +2691,7 @@
        JAVASCRIPT MURNI (LOGIKA & 8 ANIMASI EKSKLUSIF)
        ========================================================================== -->
   <script>
-    (function() {
+    (function () {
       'use strict';
 
       // ------------------------------------------------------------------------
@@ -2766,7 +2864,7 @@
       // ------------------------------------------------------------------------
       const waButtons = document.querySelectorAll('.btn-wa-sweep');
       waButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
           if (!href || href.startsWith('#')) return;
 
@@ -2785,7 +2883,7 @@
       // ------------------------------------------------------------------------
       const bibCards = document.querySelectorAll('.bib-card');
       bibCards.forEach(bib => {
-        bib.addEventListener('click', function() {
+        bib.addEventListener('click', function () {
           bibCards.forEach(b => { if (b !== this) b.classList.remove('active'); });
           this.classList.toggle('active');
         });
@@ -2827,7 +2925,7 @@
       const lightboxCaption = document.getElementById('lightboxCaption');
       const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
 
-      window.openLightbox = function(src, caption) {
+      window.openLightbox = function (src, caption) {
         if (!lightboxModal) return;
         lightboxImg.src = src;
         lightboxCaption.textContent = caption;
@@ -2843,11 +2941,11 @@
 
       if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
       if (lightboxModal) {
-        lightboxModal.addEventListener('click', function(e) {
+        lightboxModal.addEventListener('click', function (e) {
           if (e.target === this) closeLightbox();
         });
       }
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('open')) {
           closeLightbox();
         }
@@ -2856,7 +2954,7 @@
       // ------------------------------------------------------------------------
       // MODAL RUTE
       // ------------------------------------------------------------------------
-      window.openRouteModal = function(title) {
+      window.openRouteModal = function (title) {
         alert(`${title}\n\nRute detail telah tersinkronisasi dengan grup WhatsApp dan Strava resmi Gank Kapak.`);
       };
 
@@ -2891,4 +2989,5 @@
     })();
   </script>
 </body>
+
 </html>
