@@ -256,6 +256,20 @@
       mobileLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
       });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
+          closeMobileMenu();
+        }
+      });
+
+      // Auto-scroll jadwal strip to today's card on small screens
+      const todayCell = document.querySelector('.day-cell.is-today');
+      const weekWrapper = document.querySelector('.week-strip-wrapper');
+      if (todayCell && weekWrapper && window.innerWidth <= 768) {
+        setTimeout(() => {
+          todayCell.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }, 400);
+      }
 
       // ------------------------------------------------------------------------
       // DYNAMIC STRAVA SYNC LOADER (Papan km)

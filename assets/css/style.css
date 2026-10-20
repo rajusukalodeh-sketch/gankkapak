@@ -1,6 +1,6 @@
 /* ==========================================================================
-       1. DESIGN SYSTEM & TOKENS (PALET SOLID TANPA GRADASI)
-       ========================================================================== */
+   1. DESIGN SYSTEM & TOKENS (PALET SOLID TANPA GRADASI)
+   ========================================================================== */
 :root {
   --font-display: 'Bricolage Grotesque', -apple-system, sans-serif;
   --font-body: 'Instrument Sans', -apple-system, sans-serif;
@@ -28,29 +28,21 @@
   --ease-run: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* Light Mode */
-/* @media (prefers-color-scheme: light) {
-      :root {
-        --bg-base: #EEF4EF;
-        --dot-color: #CFE8D6;
-        --surface-dark: #EEF4EF;
-        --surface-elevated: #FFFFFF;
-        --green: #1F9D55;
-        --green-dark: #0F5B30;
-        --chalk-white: #0A0F0B;
-
-        --text: #0A0F0B;
-        --text-muted: rgba(10, 15, 11, 0.65);
-        --text-faint: rgba(10, 15, 11, 0.35);
-        --border-thin: rgba(10, 15, 11, 0.15);
-        --border-strong: #0A0F0B;
-      }
-    } */
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
+/* Tablet adjustments */
+@media (max-width: 1024px) {
   :root {
     --gutter: 20px;
+    --nav-height: 64px;
+    --info-height: 38px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  :root {
+    --gutter: 16px;
+    --nav-height: 56px;
+    --info-height: 34px;
   }
 }
 
@@ -71,6 +63,7 @@ html {
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Background Polkadot (strictly fixed on body, 3px dot, 18px spacing) */
@@ -84,6 +77,15 @@ body {
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+/* Give comfortable spacing at the bottom of the page for the floating Instagram CTA */
+@media (max-width: 860px) {
+  body {
+    padding-bottom: 84px;
+  }
 }
 
 /* Tabular numbers for all stats, times, km */
@@ -115,7 +117,14 @@ img {
   outline-offset: 3px;
 }
 
-/* Grid Container (12-column, 1280px max, 24px gutter / 20px mobile) */
+/* Smooth scroll margin for sticky navbar offset */
+section[id],
+div[id],
+footer[id] {
+  scroll-margin-top: calc(var(--nav-height) + var(--info-height) + 16px);
+}
+
+/* Grid Container (12-column, 1280px max, responsive gutter) */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -129,6 +138,13 @@ img {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gutter);
+}
+
+@media (max-width: 768px) {
+  .grid-12 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* Solid Panels: Polkadot is strictly hidden underneath panels */
@@ -188,10 +204,17 @@ img {
   padding-bottom: 96px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .section-spacing {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-spacing {
+    padding-top: 52px;
+    padding-bottom: 52px;
   }
 }
 
@@ -208,8 +231,8 @@ img {
 }
 
 /* ==========================================================================
-       2. SVG ROUTE LINE ANIMATION (Animation #2)
-       ========================================================================== */
+   2. SVG ROUTE LINE ANIMATION (Animation #2)
+   ========================================================================== */
 .route-tracker {
   position: fixed;
   right: 12px;
@@ -246,15 +269,15 @@ img {
   transition: transform 0.1s linear;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .route-tracker {
     display: none;
   }
 }
 
 /* ==========================================================================
-       [A] BAR INFO TIPIS (Paling Atas)
-       ========================================================================== */
+   [A] BAR INFO TIPIS (Paling Atas)
+   ========================================================================== */
 .top-info-bar {
   background-color: #0A0F0B;
   color: #EAF4EC;
@@ -266,6 +289,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
 }
 
 .top-info-content {
@@ -273,15 +297,25 @@ img {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 12px;
 }
 
 .top-info-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
+#nextRunText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .top-info-pulse {
@@ -297,12 +331,23 @@ img {
   color: var(--green);
   text-decoration: underline;
   text-underline-offset: 3px;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .top-info-bar {
+    font-size: 0.75rem;
+  }
+  .top-info-content {
+    gap: 8px;
+  }
 }
 
 /* ==========================================================================
-       [B] NAVBAR (Sticky 68px)
-       ========================================================================== */
+   [B] NAVBAR (Sticky 68px/60px/56px)
+   ========================================================================== */
 .navbar {
   background-color: var(--surface-dark);
   border-bottom: 1px solid var(--border-thin);
@@ -312,6 +357,7 @@ img {
   z-index: 90;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .nav-inner {
@@ -319,6 +365,7 @@ img {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 12px;
 }
 
 .nav-brand {
@@ -332,6 +379,8 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-logo-img {
@@ -344,7 +393,7 @@ img {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
   list-style: none;
 }
 
@@ -413,6 +462,14 @@ img {
   color: var(--text);
 }
 
+/* Action Container */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
 /* Buttons */
 .btn-green {
   background-color: var(--green);
@@ -425,14 +482,14 @@ img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease, transform 0.1s ease;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .btn-green:hover {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .btn-outline {
@@ -456,58 +513,83 @@ img {
   background-color: rgba(234, 244, 236, 0.05);
 }
 
-/* Tombol WhatsApp Finish-line sweep animation (Animation #7) */
-.btn-wa-sweep {
-  position: relative;
-  overflow: hidden;
+/* Mobile responsive adjustments for navbar */
+@media (max-width: 860px) {
+  .nav-brand {
+    font-size: 1.125rem;
+    gap: 8px;
+  }
+
+  .brand-logo-img {
+    height: 30px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-floating-wa {
+    display: block;
+  }
 }
 
-.btn-wa-sweep .sweep-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background-image: repeating-linear-gradient(90deg,
-      #0A0F0B 0px,
-      #0A0F0B 8px,
-      #EAF4EC 8px,
-      #EAF4EC 16px);
-  pointer-events: none;
-  transition: width 0.4s var(--ease-run);
-  z-index: 2;
+@media (max-width: 480px) {
+  .nav-brand span {
+    font-size: 1rem;
+  }
+
+  .brand-logo-img {
+    height: 26px;
+  }
+
+  #navGabungBtn {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .mobile-menu-btn {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+  }
 }
 
-.btn-wa-sweep.sweeping .sweep-layer {
-  width: 100%;
-}
-
-/* Mobile Menu Overlay */
+/* Mobile Menu Button */
 .mobile-menu-btn {
   display: none;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   text-transform: uppercase;
   color: var(--text);
-  padding: 8px 12px;
+  padding: 8px 14px;
   border: 1px solid var(--border-thin);
   border-radius: var(--radius);
+  background: rgba(234, 244, 236, 0.05);
+  cursor: pointer;
 }
 
+/* Mobile Menu Overlay */
 .mobile-nav-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   background-color: var(--bg-base);
   z-index: 200;
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  padding: 32px var(--gutter);
+  padding: 24px var(--gutter);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mobile-nav-overlay.open {
@@ -518,6 +600,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-thin);
 }
 
 .mobile-nav-list {
@@ -525,17 +609,18 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 40px 0;
+  margin: 32px 0;
 }
 
 .mobile-nav-item a {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2rem, 8vw, 3rem);
-  line-height: 1;
+  font-size: clamp(1.75rem, 6.5vw, 2.75rem);
+  line-height: 1.1;
   text-transform: uppercase;
   color: var(--text);
   display: inline-block;
+  transition: color 0.15s ease;
 }
 
 .mobile-nav-item a:hover {
@@ -545,7 +630,7 @@ img {
 .mobile-nav-sublinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
   padding-top: 16px;
   border-top: 1px solid var(--border-thin);
 }
@@ -553,13 +638,14 @@ img {
 .mobile-nav-sublinks a {
   font-size: 0.9375rem;
   color: var(--text-muted);
+  padding: 4px 0;
 }
 
-/* Floating WhatsApp button on mobile */
+/* Floating WhatsApp / Instagram button on mobile */
 .mobile-floating-wa {
   display: none;
   position: fixed;
-  bottom: 20px;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px));
   left: var(--gutter);
   right: var(--gutter);
   z-index: 85;
@@ -567,36 +653,41 @@ img {
   color: #0A0F0B;
   font-weight: 700;
   text-align: center;
-  padding: 16px;
+  padding: 14px 18px;
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-@media (max-width: 860px) {
-  .nav-links {
-    display: none;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .mobile-floating-wa {
-    display: block;
-  }
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(31, 157, 85, 0.3);
+  font-size: 0.9375rem;
 }
 
 /* ==========================================================================
-       [C] HERO (Full-Bleed 100vh, Foto Candid Gelap Film-Grain)
-       ========================================================================== */
+   [C] HERO (Full-Bleed Responsive Hero Banner)
+   ========================================================================== */
 .hero-section {
   position: relative;
   width: 100%;
   height: calc(100vh - var(--nav-height) - var(--info-height));
-  min-height: 600px;
-  max-height: 1080px;
+  height: calc(100dvh - var(--nav-height) - var(--info-height));
+  min-height: 500px;
+  max-height: 840px;
   background-color: #0A0F0B;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    min-height: 460px;
+    max-height: 700px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    height: auto;
+    min-height: 420px;
+    max-height: 72dvh;
+  }
 }
 
 .hero-photo-wrapper {
@@ -606,14 +697,38 @@ img {
   width: 100%;
   height: 100%;
   z-index: 1;
+  overflow: hidden;
 }
 
 .hero-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
-  filter: brightness(0.65) contrast(1.15);
+  object-position: center 35%;
+  filter: brightness(0.68) contrast(1.15);
+  transition: object-position 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .hero-photo {
+    object-position: 50% 30%;
+  }
+}
+
+/* Gradient vignette agar teks tajam & foto tidak terpotong kontrasnya */
+.hero-photo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 11, 0.45) 0%,
+    rgba(10, 15, 11, 0.1) 35%,
+    rgba(10, 15, 11, 0.45) 70%,
+    rgba(10, 15, 11, 0.92) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Film grain overlay */
@@ -626,19 +741,28 @@ img {
   height: 100%;
   background-image: radial-gradient(#000000 1px, transparent 1px);
   background-size: 3px 3px;
-  opacity: 0.25;
+  opacity: 0.22;
   pointer-events: none;
+  z-index: 3;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+  .hero-content {
+    padding-top: 18px;
+    padding-bottom: 20px;
+  }
 }
 
 .hero-top-bar {
@@ -650,12 +774,19 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero-bottom-area {
+    gap: 12px;
+  }
 }
 
 /* Slogan Animation #1: Masking dari bawah & habitatku berlari dari kanan */
 .slogan-title {
-  font-size: clamp(3.75rem, 11vw, 9.5rem);
-  line-height: 0.88;
+  font-size: clamp(2.125rem, 8.5vw, 9.5rem);
+  line-height: 0.96;
   letter-spacing: -0.04em;
   color: #EAF4EC;
   text-transform: uppercase;
@@ -664,24 +795,27 @@ img {
   font-variation-settings: 'wdth' 75;
   max-width: 100%;
   word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .slogan-mask {
   display: block;
   overflow: hidden;
-  line-height: 0.88;
+  line-height: 1.08;
+  padding-top: 3px;
+  padding-bottom: 4px;
 }
 
 .slogan-line-1 {
   display: inline-block;
-  transform: translateY(110%);
+  transform: translateY(115%);
   animation: heroMaskUp 0.75s var(--ease-run) forwards 0.15s;
 }
 
 .slogan-line-2 {
   display: inline-block;
   color: var(--green);
-  transform: translateX(100px);
+  transform: translateX(25px);
   opacity: 0;
   animation: heroRunRight 0.9s var(--ease-run) forwards 0.35s;
 }
@@ -698,13 +832,12 @@ img {
 
 @keyframes heroRunRight {
   0% {
-    transform: translateX(100px);
+    transform: translateX(35px);
     opacity: 0;
   }
 
   80% {
-    transform: translateX(-10px);
-    /* Overshoot */
+    transform: translateX(-4px);
     opacity: 1;
   }
 
@@ -729,24 +862,39 @@ img {
   border: 1px solid rgba(234, 244, 236, 0.2);
 }
 
+@media (max-width: 640px) {
+  .hero-caption {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}
+
 /* ==========================================================================
-       [D] MANIFESTO (TENTANG) - Section Lega Zine
-       ========================================================================== */
+   [D] MANIFESTO (TENTANG) - Section Lega Zine
+   ========================================================================== */
 .manifesto-section {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .manifesto-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
 }
 
 .manifesto-lead {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2rem, 5vw, 4.25rem);
-  line-height: 0.95;
+  font-size: clamp(1.625rem, 5vw, 4.25rem);
+  line-height: 1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--text);
   max-width: 1080px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  word-break: break-word;
 }
 
 .manifesto-kapak {
@@ -757,14 +905,37 @@ img {
   max-width: 720px;
 }
 
+@media (max-width: 640px) {
+  .manifesto-kapak {
+    font-size: 0.9375rem;
+    padding-left: 12px;
+  }
+}
+
 /* ==========================================================================
-       [E] JADWAL (Panel Hijau Penuh Lebar #1F9D55 - Week Strip)
-       ========================================================================== */
+   [E] JADWAL (Panel Hijau Penuh Lebar #1F9D55 - Week Strip)
+   ========================================================================== */
+.week-strip-hint {
+  display: none;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 1024px) {
+  .week-strip-hint {
+    display: block;
+  }
+}
+
 .week-strip-wrapper {
   width: 100%;
   overflow-x: auto;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
 }
 
 .week-strip {
@@ -775,6 +946,28 @@ img {
   border: 1px solid var(--green-dark);
   border-radius: var(--radius);
   overflow: hidden;
+  min-width: 1000px;
+}
+
+@media (max-width: 640px) {
+  .week-strip {
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: max-content;
+    padding-right: var(--gutter);
+  }
+
+  .day-cell {
+    flex: 0 0 250px;
+    border-radius: var(--radius);
+    border: 1px solid var(--green-dark);
+    scroll-snap-align: start;
+    min-height: 260px;
+    padding: 20px 16px;
+  }
 }
 
 .day-cell {
@@ -825,7 +1018,6 @@ img {
 }
 
 @keyframes todayPulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -887,8 +1079,8 @@ img {
 }
 
 /* ==========================================================================
-       [F] EVENT (Baris Selebar Layar)
-       ========================================================================== */
+   [F] EVENT (Baris Selebar Layar)
+   ========================================================================== */
 .event-row {
   display: grid;
   grid-template-columns: 220px 1fr auto;
@@ -901,7 +1093,7 @@ img {
 .event-date {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--text);
@@ -919,6 +1111,7 @@ img {
   font-size: 1.375rem;
   letter-spacing: -0.02em;
   color: var(--text);
+  word-break: break-word;
 }
 
 .event-loc {
@@ -948,21 +1141,53 @@ img {
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .event-row {
+    grid-template-columns: 180px 1fr auto;
+    gap: 18px;
+    padding: 24px 0;
+  }
+}
+
+@media (max-width: 640px) {
   .event-row {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 8px;
+    padding: 18px 0;
+  }
+
+  .event-date {
+    font-size: 1.375rem;
+  }
+
+  .event-title {
+    font-size: 1.125rem;
+  }
+
+  .event-loc {
+    font-size: 0.875rem;
+  }
+
+  .event-row > span:last-child {
+    align-self: flex-start;
+    margin-top: 4px;
+    font-size: 0.75rem !important;
+    background: rgba(31, 157, 85, 0.12);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
   }
 }
 
 /* ==========================================================================
-       [G] ORANG-ORANG (Scroll-Snap Bib Race Berukuran Besar)
-       ========================================================================== */
+   [G] ORANG-ORANG (Scroll-Snap Bib Race Berukuran Besar)
+   ========================================================================== */
 .bib-track-wrapper {
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  padding: 16px 0;
+  padding: 16px 0 24px;
+  scroll-snap-type: x mandatory;
 }
 
 .bib-track-wrapper::-webkit-scrollbar {
@@ -971,9 +1196,10 @@ img {
 
 .bib-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   scroll-snap-type: x mandatory;
   padding-right: var(--gutter);
+  width: max-content;
 }
 
 /* Bib Card (Animation #4: Miring 3 derajat & pin bergoyang) */
@@ -1113,9 +1339,43 @@ img {
   color: rgba(10, 15, 11, 0.7);
 }
 
+@media (max-width: 640px) {
+  .bib-card {
+    width: 220px;
+    height: 320px;
+    padding: 18px 14px;
+  }
+
+  .bib-card.bib-rotm {
+    width: 240px;
+    height: 340px;
+  }
+
+  .bib-number {
+    font-size: 3.25rem !important;
+    margin: 10px 0 !important;
+  }
+
+  .bib-rotm .bib-number {
+    font-size: 3.75rem !important;
+  }
+
+  .bib-photo-mini {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 8px;
+  }
+
+  .bib-card:hover,
+  .bib-card:focus-visible,
+  .bib-card.active {
+    transform: translateY(-2px) rotate(1.5deg);
+  }
+}
+
 /* ==========================================================================
-       [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
-       ========================================================================== */
+   [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
+   ========================================================================== */
 .contact-sheet-header {
   display: flex;
   justify-content: space-between;
@@ -1177,7 +1437,45 @@ img {
   --tilt: 0.8deg;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) and (min-width: 641px) {
+  .film-card-1 {
+    grid-column: span 6;
+    --tilt: 0deg;
+  }
+
+  .film-card-2 {
+    grid-column: span 6;
+    --tilt: 0deg;
+  }
+
+  .film-card-3 {
+    grid-column: span 4;
+    --tilt: 0deg;
+  }
+
+  .film-card-4 {
+    grid-column: span 4;
+    --tilt: 0deg;
+  }
+
+  .film-card-5 {
+    grid-column: span 4;
+    --tilt: 0deg;
+  }
+
+  .film-img-wrapper {
+    height: 220px;
+  }
+
+  .film-card-2 .film-img-wrapper {
+    height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    gap: 16px;
+  }
 
   .film-card-1,
   .film-card-2,
@@ -1186,6 +1484,20 @@ img {
   .film-card-5 {
     grid-column: span 12;
     --tilt: 0deg;
+  }
+
+  .film-img-wrapper {
+    height: 200px;
+  }
+
+  .film-card-2 .film-img-wrapper {
+    height: 220px;
+  }
+
+  .contact-sheet-header {
+    font-size: 0.6875rem;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 }
 
@@ -1236,6 +1548,7 @@ img {
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   background-color: rgba(10, 15, 11, 0.95);
   z-index: 300;
   display: none;
@@ -1256,6 +1569,7 @@ img {
 
 .lightbox-img {
   max-height: 80vh;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: var(--radius);
   border: 1px solid rgba(234, 244, 236, 0.2);
@@ -1273,25 +1587,34 @@ img {
   right: 24px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--text);
   cursor: pointer;
-  background: none;
+  background: rgba(10, 15, 11, 0.8);
   border: 1px solid var(--border-thin);
   padding: 8px 16px;
   border-radius: var(--radius);
 }
 
+@media (max-width: 640px) {
+  .lightbox-close {
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    font-size: 0.9375rem;
+  }
+}
+
 /* ==========================================================================
-       [I] DROP (MERCHANDISE - Lookbook Editorial)
-       ========================================================================== */
+   [I] DROP (MERCHANDISE - Lookbook Editorial)
+   ========================================================================== */
 .drop-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 460px));
   gap: 24px;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .drop-grid {
     grid-template-columns: 1fr;
   }
@@ -1322,6 +1645,16 @@ img {
   margin-bottom: 16px;
 }
 
+@media (max-width: 640px) {
+  .drop-photo-box {
+    height: 260px;
+  }
+
+  .drop-card {
+    padding: 14px;
+  }
+}
+
 .drop-photo {
   width: 100%;
   height: 100%;
@@ -1348,6 +1681,7 @@ img {
   font-size: 1.25rem;
   letter-spacing: -0.02em;
   color: var(--text);
+  word-break: break-word;
 }
 
 .drop-price {
@@ -1357,8 +1691,8 @@ img {
 }
 
 /* ==========================================================================
-       [J] CERITA (BERITA - 3 Entri Gaya Majalah)
-       ========================================================================== */
+   [J] CERITA (BERITA - 3 Entri Gaya Majalah)
+   ========================================================================== */
 .cerita-list {
   display: flex;
   flex-direction: column;
@@ -1381,12 +1715,13 @@ img {
 .cerita-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.375rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--text);
   margin-bottom: 8px;
   transition: color 0.15s ease;
+  word-break: break-word;
 }
 
 .cerita-item:hover .cerita-title {
@@ -1409,20 +1744,25 @@ img {
   text-align: right;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .cerita-item {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
+    padding: 20px 0;
   }
 
   .cerita-category {
     text-align: left;
   }
+
+  .cerita-sentence {
+    font-size: 0.9375rem;
+  }
 }
 
 /* ==========================================================================
-       [K] PAPAN KM (LEADERBOARD - Top 5 Teks Bersih Tabular Numbers)
-       ========================================================================== */
+   [K] PAPAN KM (LEADERBOARD - Top 5 Teks Bersih Tabular Numbers)
+   ========================================================================== */
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
@@ -1436,6 +1776,7 @@ img {
   border-bottom: 1px solid var(--border-thin);
   align-items: center;
   font-size: 1.0625rem;
+  gap: 12px;
 }
 
 .leaderboard-row:first-child {
@@ -1451,38 +1792,56 @@ img {
 .leaderboard-name {
   font-weight: 600;
   color: var(--text);
+  word-break: break-word;
 }
 
 .leaderboard-km {
   text-align: right;
   font-weight: 700;
   color: var(--text);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .leaderboard-row {
+    grid-template-columns: 40px 1fr auto;
+    padding: 14px 0;
+    font-size: 0.9375rem;
+    gap: 10px;
+  }
+
+  .leaderboard-rank {
+    font-size: 1rem;
+  }
+
+  .leaderboard-name {
+    font-size: 0.9375rem;
+  }
+
+  .leaderboard-km {
+    font-size: 0.9375rem;
+  }
 }
 
 /* ==========================================================================
-       [L] GABUNG (Panel Hitam Penuh Lebar, Tanpa Form)
-       ========================================================================== */
+   [L] GABUNG (Panel Hitam Penuh Lebar, Tanpa Form)
+   ========================================================================== */
 .gabung-box {
   padding: 72px 48px;
   text-align: left;
 }
 
-@media (max-width: 768px) {
-  .gabung-box {
-    padding: 48px 24px;
-  }
-}
-
 .gabung-headline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: #EAF4EC;
   max-width: 900px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
+  word-break: break-word;
 }
 
 .gabung-actions {
@@ -1491,9 +1850,45 @@ img {
   gap: 16px;
 }
 
+.btn-gabung-action {
+  font-size: 1.0625rem;
+  padding: 14px 28px;
+}
+
+@media (max-width: 1024px) {
+  .gabung-box {
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gabung-box {
+    padding: 32px 18px;
+  }
+
+  .gabung-headline {
+    font-size: clamp(1.625rem, 6.5vw, 2.5rem);
+    margin-bottom: 20px;
+  }
+
+  .gabung-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-gabung-action {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 0.9375rem;
+  }
+}
+
 /* ==========================================================================
-       [M] SISANYA (3 Blok Sejajar di Desktop, Bertumpuk di HP)
-       ========================================================================== */
+   [M] SISANYA (3 Blok Sejajar di Desktop, Bertumpuk di HP)
+   ========================================================================== */
 .sisanya-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1503,7 +1898,7 @@ img {
 @media (max-width: 860px) {
   .sisanya-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
 }
 
@@ -1535,12 +1930,14 @@ img {
   color: var(--text);
   text-align: left;
   cursor: pointer;
+  gap: 12px;
 }
 
 .faq-icon {
   font-size: 1.125rem;
   transition: transform 0.2s ease;
   color: var(--green);
+  flex-shrink: 0;
 }
 
 .faq-item.open .faq-icon {
@@ -1581,6 +1978,17 @@ img {
   color: var(--text-muted);
 }
 
+@media (max-width: 640px) {
+  .sponsor-grid {
+    gap: 10px;
+  }
+
+  .sponsor-logo {
+    padding: 14px 8px;
+    font-size: 0.8125rem;
+  }
+}
+
 /* Donasi */
 .donasi-box {
   font-size: 0.9375rem;
@@ -1609,8 +2017,8 @@ img {
 }
 
 /* ==========================================================================
-       [N] FOOTER RAKSASA (Kontak & Bleed Wordmark)
-       ========================================================================== */
+   [N] FOOTER RAKSASA (Kontak & Bleed Wordmark)
+   ========================================================================== */
 .footer-section {
   background-color: #0A0F0B;
   color: #EAF4EC;
@@ -1683,7 +2091,7 @@ img {
 .giant-wordmark {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(4.5rem, 16vw, 16.5rem);
+  font-size: clamp(3rem, 15vw, 16.5rem);
   letter-spacing: -0.05em;
   color: #EAF4EC;
   white-space: nowrap;
@@ -1691,6 +2099,7 @@ img {
   font-variation-settings: 'wdth' 75;
   display: block;
   transform: translateY(12%);
+  max-width: 100%;
 }
 
 .footer-bottom-row {
@@ -1703,17 +2112,38 @@ img {
 }
 
 @media (max-width: 640px) {
+  .footer-section {
+    padding-top: 48px;
+  }
+
+  .footer-links-row {
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+
+  .marquee-container {
+    margin-bottom: 32px;
+    padding: 8px 0;
+  }
+
+  .marquee-track {
+    font-size: 1rem;
+  }
+
   .footer-bottom-row {
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+    padding: 16px 0 24px;
   }
 }
 
 /* ==========================================================================
-       ACCESSIBILITY & PREFERS-REDUCED-MOTION
-       Matikan animasi #1, #2, #6, #8
-       ========================================================================== */
+   ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   Matikan animasi #1, #2, #6, #8
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
 
   .slogan-line-1,

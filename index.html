@@ -88,7 +88,7 @@
       </ul>
 
       <!-- Action Button -->
-      <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="nav-actions">
         <button type="button" class="mobile-menu-btn" id="mobileMenuOpenBtn" aria-label="Buka Menu">Menu</button>
         <a href="https://www.instagram.com/gankkapakmerah/" target="_blank" rel="noopener noreferrer" class="btn-green"
           id="navGabungBtn">
@@ -196,6 +196,9 @@
         </div>
 
         <!-- Week Strip 7 Kolom Kocak -->
+        <div class="week-strip-hint" aria-hidden="true">
+          <span>Geser hari ke samping &rarr;</span>
+        </div>
         <div class="week-strip-wrapper">
           <div class="week-strip" id="weekStrip">
 
@@ -699,7 +702,7 @@
           <span style="font-size: 0.875rem; color: var(--text-muted);">Arsip Rilisan</span>
         </div>
 
-        <div class="drop-grid" style="grid-template-columns: minmax(300px, 460px); justify-content: start;">
+        <div class="drop-grid">
 
           <!-- 1 Artikel Baju yang Sudah Sold Out -->
           <div class="drop-card" style="opacity: 0.95;">
@@ -849,12 +852,11 @@
           </p>
           <div class="gabung-actions">
             <a href="https://www.instagram.com/gankkapakmerah/" target="_blank" rel="noopener noreferrer"
-              class="btn-green" style="font-size: 1.0625rem; padding: 14px 28px;">
+              class="btn-green btn-gabung-action">
               Sapa di Instagram @gankkapakmerah
             </a>
-            <button type="button" class="btn-outline"
-              onclick="alert('Grup WhatsApp saat ini berstatus khusus dan privat. Silakan kirim pesan ke DM Instagram @gankkapakmerah untuk perkenalan.');"
-              style="font-size: 1.0625rem; padding: 14px 28px; opacity: 0.6; border-style: dashed;">
+            <button type="button" class="btn-outline btn-gabung-action"
+              onclick="alert('Grup WhatsApp saat ini berstatus khusus dan privat. Silakan kirim pesan ke DM Instagram @gankkapakmerah untuk perkenalan.');">
               Grup WhatsApp (Akses Terkunci)
             </button>
           </div>
