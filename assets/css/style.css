@@ -1620,26 +1620,148 @@ footer[id] {
 /* ==========================================================================
    [H] GALERI (Contact Sheet Ala Film, Frame Numbers & Captions)
    ========================================================================== */
+/* 35mm Film Sprocket Perforations */
+.sprocket-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background-color: #060906;
+  border-top: 1px solid rgba(234, 244, 236, 0.15);
+  border-bottom: 1px solid rgba(234, 244, 236, 0.15);
+  padding: 6px 14px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.sprocket-strip.sprocket-bottom {
+  margin-top: 28px;
+  margin-bottom: 0;
+}
+
+.sprocket-meta {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  color: #dfc87a;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sprockets-row {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: 12px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #18261b 0px,
+    #18261b 16px,
+    transparent 16px,
+    transparent 28px
+  );
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
 .contact-sheet-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
   margin-bottom: 24px;
   border-bottom: 1px solid var(--border-thin);
-  font-size: 0.75rem;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-sheet-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cs-badge {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8125rem;
   letter-spacing: 0.15em;
+  background-color: #121813;
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.cs-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
   text-transform: uppercase;
 }
 
+/* Film LUT Switcher Buttons */
+.film-lut-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(10, 15, 11, 0.85);
+  border: 1px solid var(--border-thin);
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.lut-btn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.lut-btn:hover {
+  color: var(--chalk-white);
+  background-color: rgba(234, 244, 236, 0.08);
+}
+
+.lut-btn.active {
+  background-color: var(--green);
+  color: #0A0F0B;
+  box-shadow: 0 2px 8px rgba(31, 157, 85, 0.4);
+}
+
+/* Gallery Grid */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
+  transition: filter 0.3s ease;
 }
 
-/* Foto Cetak Film (Animation #5: Naik 4px & lurus 0deg saat sentuh + Viewfinder corners) */
+/* Film LUT Filter States */
+.gallery-grid.lut-bw .film-img {
+  filter: grayscale(100%) contrast(1.2) brightness(0.95) !important;
+}
+
+.gallery-grid.lut-retro .film-img {
+  filter: sepia(0.25) contrast(1.15) brightness(1.05) saturate(1.45) hue-rotate(-8deg) !important;
+}
+
+.gallery-grid.lut-darkroom .film-img {
+  filter: grayscale(25%) sepia(1) saturate(5.5) hue-rotate(-55deg) contrast(1.35) brightness(0.9) !important;
+}
+
+/* Foto Cetak Film */
 .film-card {
   position: relative;
   background-color: #0A0F0B;
@@ -1648,9 +1770,11 @@ footer[id] {
   padding: 12px 12px 16px;
   cursor: pointer;
   transform: translateY(0) rotate(var(--tilt, 0deg));
-  transition: transform 0.25s var(--ease-run), border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.28s var(--ease-run), border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
+/* Viewfinder Target corners */
 .film-card::before {
   content: "";
   position: absolute;
@@ -1671,29 +1795,9 @@ footer[id] {
 
 .film-card:hover,
 .film-card:focus-visible {
-  transform: translateY(-5px) rotate(0deg);
+  transform: translateY(-6px) rotate(0deg);
   border-color: var(--green);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-}
-
-/* Camera Shutter Flash Effect for Contact Sheet */
-.camera-flash {
-  position: fixed;
-  inset: 0;
-  background-color: #ffffff;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.camera-flash.flash-active {
-  animation: cameraFlashShot 0.22s ease-out forwards;
-}
-
-@keyframes cameraFlashShot {
-  0% { opacity: 0.95; }
-  40% { opacity: 0.75; }
-  100% { opacity: 0; }
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45), 0 0 16px rgba(31, 157, 85, 0.2);
 }
 
 .film-card-1 {
@@ -1780,8 +1884,17 @@ footer[id] {
 
   .contact-sheet-header {
     font-size: 0.6875rem;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .film-lut-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .lut-btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 0.625rem;
   }
 }
 
@@ -1795,6 +1908,7 @@ footer[id] {
 }
 
 .film-img-wrapper {
+  position: relative;
   width: 100%;
   height: 260px;
   overflow: hidden;
@@ -1811,11 +1925,77 @@ footer[id] {
   height: 100%;
   object-fit: cover;
   filter: grayscale(40%) contrast(1.1);
-  transition: filter 0.2s ease;
+  transition: filter 0.3s ease, transform 0.35s ease;
 }
 
 .film-card:hover .film-img {
-  filter: grayscale(0%) contrast(1.05);
+  transform: scale(1.04);
+}
+
+/* Analog Light Leak Sweep on Hover */
+.film-light-leak {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 120, 40, 0.45) 0%,
+    rgba(255, 60, 20, 0.25) 35%,
+    transparent 70%
+  );
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.35s ease, transform 0.45s ease;
+  transform: translateX(-40%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.film-card:hover .film-light-leak {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Viewfinder Target Crosshair in Center */
+.film-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.film-crosshair::before,
+.film-crosshair::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(31, 157, 85, 0.95);
+  box-shadow: 0 0 6px rgba(31, 157, 85, 0.8);
+}
+
+.film-crosshair::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+
+.film-crosshair::after {
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1.5px;
+  transform: translateX(-50%);
+}
+
+.film-card:hover .film-crosshair {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .film-caption {
@@ -1825,7 +2005,61 @@ footer[id] {
   font-style: italic;
 }
 
-/* Lightbox modal */
+/* Camera Mechanical Shutter Overlay */
+.camera-shutter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.camera-shutter-overlay.shutter-active {
+  opacity: 1;
+}
+
+.camera-iris {
+  width: 250vmax;
+  height: 250vmax;
+  border-radius: 50%;
+  box-shadow: 0 0 0 150vmax #0A0F0B;
+  transform: scale(1);
+}
+
+.camera-shutter-overlay.shutter-active .camera-iris {
+  animation: irisSnap 0.28s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes irisSnap {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.02); }
+  100% { transform: scale(1); }
+}
+
+/* Camera Shutter Flash Effect for Contact Sheet */
+.camera-flash {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.camera-flash.flash-active {
+  animation: cameraFlashShot 0.24s ease-out forwards;
+}
+
+@keyframes cameraFlashShot {
+  0% { opacity: 0.95; }
+  35% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* Lightbox modal with 35mm Slide Mount */
 .lightbox-modal {
   position: fixed;
   top: 0;
@@ -1833,7 +2067,9 @@ footer[id] {
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  background-color: rgba(10, 15, 11, 0.95);
+  background-color: rgba(6, 10, 7, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 300;
   display: none;
   align-items: center;
@@ -1849,20 +2085,54 @@ footer[id] {
   max-width: 900px;
   width: 100%;
   text-align: center;
+  position: relative;
+}
+
+.lightbox-slide-mount {
+  background-color: #0b110c;
+  border: 1px solid rgba(234, 244, 236, 0.25);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(31, 157, 85, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.slide-mount-header,
+.slide-mount-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #ffd700;
+  text-transform: uppercase;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.slide-mount-footer {
+  color: var(--text-muted);
+  border-top: 1px dashed rgba(234, 244, 236, 0.15);
+  padding-top: 10px;
 }
 
 .lightbox-img {
-  max-height: 80vh;
+  max-height: 68vh;
   max-width: 100%;
   margin: 0 auto;
-  border-radius: var(--radius);
-  border: 1px solid rgba(234, 244, 236, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(234, 244, 236, 0.15);
+  object-fit: contain;
 }
 
 .lightbox-caption {
   margin-top: 16px;
   font-size: 1rem;
   color: var(--text);
+  font-style: italic;
 }
 
 .lightbox-close {
@@ -1874,13 +2144,56 @@ footer[id] {
   font-size: 1.125rem;
   color: var(--text);
   cursor: pointer;
-  background: rgba(10, 15, 11, 0.8);
+  background: rgba(10, 15, 11, 0.85);
   border: 1px solid var(--border-thin);
   padding: 8px 16px;
   border-radius: var(--radius);
+  z-index: 320;
 }
 
-@media (max-width: 640px) {
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(10, 15, 11, 0.85);
+  border: 1px solid var(--border-thin);
+  color: var(--text);
+  font-size: 2rem;
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 310;
+}
+
+.lightbox-nav-btn:hover {
+  background-color: var(--green);
+  color: #0A0F0B;
+  border-color: var(--green);
+  transform: translateY(-50%) scale(1.12);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.375rem;
+  }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
   .lightbox-close {
     top: 16px;
     right: 16px;

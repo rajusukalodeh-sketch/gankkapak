@@ -152,8 +152,10 @@
         <div class="hero-top-bar">
           <!-- Live Kalcer Telemetry HUD -->
           <div class="hero-hud-telemetry" aria-label="Live Telemetri Lari">
-            <span class="hud-item"><span class="hud-pulse-dot"></span> LIVE CADENCE <strong id="hudCadence">174</strong> SPM</span>
-            <span class="hud-item hud-timer"><span class="hud-clock-icon">⏱</span> <span id="hudStopwatch" class="tabular">00:24:18.4</span></span>
+            <span class="hud-item"><span class="hud-pulse-dot"></span> LIVE CADENCE <strong id="hudCadence">174</strong>
+              SPM</span>
+            <span class="hud-item hud-timer"><span class="hud-clock-icon">⏱</span> <span id="hudStopwatch"
+                class="tabular">00:24:18.4</span></span>
             <span class="hud-item hud-coord">SUB &bull; 07&deg;15'S 112&deg;45'E</span>
           </div>
           <a href="#gabung" class="btn-outline hero-gabung-pill">Gabung</a>
@@ -173,13 +175,14 @@
             <div class="kalcer-stamp-badge" title="GANK KAPAK • INDEPENDENT RUN CLUB" aria-hidden="true">
               <svg class="stamp-svg" viewBox="0 0 120 120">
                 <path id="stampCirclePath" d="M 60, 60 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" fill="none" />
-                <text font-size="9" font-family="var(--font-display)" font-weight="800" fill="var(--green)" letter-spacing="1.6">
+                <text font-size="9" font-family="var(--font-display)" font-weight="800" fill="var(--green)"
+                  letter-spacing="1.6">
                   <textPath href="#stampCirclePath" startOffset="0%">
-                    * GANK KAPAK * BUKAN HABITATKU * SBY *
+                    * GANK KAPAK * INI BUKAN HABITATKU * MJK
                   </textPath>
                 </text>
               </svg>
-              <div class="stamp-center-icon">⚡</div>
+              <div class="stamp-center-icon">⚒</div>
             </div>
           </div>
           <div class="hero-caption-row">
@@ -466,7 +469,7 @@
               <div class="bib-number tabular">02</div>
               <div class="bib-footer">
                 <div class="bib-name">Tiar</div>
-                <div class="bib-role">Sebagai ayah • Selalu siap sedia koyo dan minyak angin</div>
+                <div class="bib-role">Sebagai ayah • Memastikan pelari pulang kenyang</div>
               </div>
             </article>
 
@@ -482,7 +485,7 @@
               <div class="bib-number tabular">03</div>
               <div class="bib-footer">
                 <div class="bib-name">Faisal</div>
-                <div class="bib-role">Sebagai ayah • Memastikan semua pelari pulang dalam keadaan kenyang</div>
+                <div class="bib-role">Sebagai ayah • Memastikan pelari pulang dengan aman</div>
               </div>
             </article>
 
@@ -644,73 +647,119 @@
        ========================================================================== -->
     <section class="section-spacing" id="galeri" aria-label="Galeri Foto Film">
       <div class="container">
-        <div class="contact-sheet-header">
-          <span>KODAK 400TX</span>
-          <span>CONTACT SHEET #2026</span>
-          <span>SAFETY FILM</span>
+        <!-- 35mm Film Top Sprocket Strip -->
+        <div class="sprocket-strip" aria-hidden="true">
+          <span class="sprocket-meta">KODAK 5063 TX</span>
+          <span class="sprockets-row"></span>
+          <span class="sprocket-meta">▶ 12A • GANK KAPAK 2026</span>
         </div>
 
-        <div class="gallery-grid">
+        <div class="contact-sheet-header">
+          <div class="contact-sheet-meta">
+            <span class="cs-badge">KODAK 400TX</span>
+            <span class="cs-sub">CONTACT SHEET #2026 • SAFETY FILM</span>
+          </div>
+
+          <!-- Interactive Film LUT Switcher (Gacor Film Filter Toggles) -->
+          <div class="film-lut-controls" role="group" aria-label="Pilihan Tone Warna Film">
+            <button type="button" class="lut-btn active" data-lut="bw" title="Hitam Putih Kontras Khas Kodak Tri-X">400TX B&amp;W</button>
+            <button type="button" class="lut-btn" data-lut="retro" title="Warna Hangat Kalcer Fujicolor 800">FUJI 800</button>
+            <button type="button" class="lut-btn" data-lut="darkroom" title="Mode Lampu Merah Kamar Gelap">DARKROOM 🔴</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
 
           <!-- Frame 01A -->
-          <div class="film-card film-card-1" onclick="openLightbox('assets/images/gambar4.jpeg', 'kegiatan gabut')">
+          <div class="film-card film-card-1" data-frame-index="0" onclick="openLightboxByIndex(0)">
             <span class="film-frame-number tabular">01A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar4.jpeg" alt="Ekspresi sebelum km 8" class="film-img">
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <p class="film-caption">"LONG RUN PERTAMA"</p>
           </div>
 
           <!-- Frame 02A -->
-          <div class="film-card film-card-2"
-            onclick="openLightbox('assets/images/hero.jpeg', 'Nafas tinggal 10%: Menembus gelap malam sendirian.')">
+          <div class="film-card film-card-2" data-frame-index="1" onclick="openLightboxByIndex(1)">
             <span class="film-frame-number tabular">02A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/hero.jpeg" alt="Nafas tinggal 10%" class="film-img">
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <p class="film-caption">"jadi marshal"</p>
           </div>
 
           <!-- Frame 03A -->
-          <div class="film-card film-card-3"
-            onclick="openLightbox('assets/images/gambar1.jpeg', 'Pura-pura tegar depan kamera walau lutut bergetar.')">
+          <div class="film-card film-card-3" data-frame-index="2" onclick="openLightboxByIndex(2)">
             <span class="film-frame-number tabular">03A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar1.jpeg" alt="Pura-pura tegar" class="film-img">
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <p class="film-caption">"biar apa ? biar kentchang"</p>
           </div>
 
           <!-- Frame 04A -->
-          <div class="film-card film-card-4" onclick="openLightbox('assets/images/gambar3.jpeg', 'ONAR MULU INI ANAK')">
+          <div class="film-card film-card-4" data-frame-index="3" onclick="openLightboxByIndex(3)">
             <span class="film-frame-number tabular">04A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar3.jpeg" alt="Finisher smile" class="film-img">
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <p class="film-caption">"FIRST KONTINGEN GENK KAPAK"</p>
           </div>
 
           <!-- Frame 05A -->
-          <div class="film-card film-card-5" onclick="openLightbox('assets/images/gambar5.jpeg', 'Cikal Bakal.')">
+          <div class="film-card film-card-5" data-frame-index="4" onclick="openLightboxByIndex(4)">
             <span class="film-frame-number tabular">05A</span>
             <div class="film-img-wrapper">
               <img src="assets/images/gambar5.jpeg" alt="Duduk santai sehabis lari" class="film-img">
+              <div class="film-light-leak" aria-hidden="true"></div>
+              <div class="film-crosshair" aria-hidden="true"></div>
             </div>
             <p class="film-caption">"UNO RUN AWAL DARI SEMUA"</p>
           </div>
 
         </div>
+
+        <!-- 35mm Film Bottom Sprocket Strip -->
+        <div class="sprocket-strip sprocket-bottom" aria-hidden="true">
+          <span class="sprocket-meta">EASTMAN KODAK COMPANY</span>
+          <span class="sprockets-row"></span>
+          <span class="sprocket-meta">▶ 16A • SAFETY FILM</span>
+        </div>
       </div>
     </section>
 
-    <!-- Camera Shutter Flash Effect for Film Gallery -->
+    <!-- Camera Shutter Iris & Flash Optical Effect -->
+    <div class="camera-shutter-overlay" id="cameraShutterOverlay" aria-hidden="true">
+      <div class="camera-iris" id="cameraIris"></div>
+    </div>
     <div class="camera-flash" id="cameraFlash" aria-hidden="true"></div>
 
-    <!-- Lightbox Modal -->
-    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto">
-      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Tutup Pratinjau">Tutup</button>
+    <!-- Lightbox Modal with Film Negative Slide Mount -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Film">
+      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Tutup Pratinjau">Tutup &times;</button>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrevBtn" aria-label="Foto Sebelumnya">&#10094;</button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightboxNextBtn" aria-label="Foto Berikutnya">&#10095;</button>
+
       <div class="lightbox-inner">
-        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <div class="lightbox-slide-mount">
+          <div class="slide-mount-header" aria-hidden="true">
+            <span>KODAK SAFETY FILM 400TX</span>
+            <span id="lightboxFrameNum">FRAME 01A</span>
+          </div>
+          <img src="" alt="" class="lightbox-img" id="lightboxImg">
+          <div class="slide-mount-footer" aria-hidden="true">
+            <span>GANK KAPAK MOJOKERTO &bull; 2026</span>
+            <span>DEVELOPED AT BASECAMP</span>
+          </div>
+        </div>
         <p class="lightbox-caption" id="lightboxCaption"></p>
       </div>
     </div>

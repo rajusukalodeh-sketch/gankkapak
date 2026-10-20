@@ -218,30 +218,84 @@
       }
 
       // ------------------------------------------------------------------------
-      // LIGHTBOX GALERI DENGAN CAMERA SHUTTER FLASH EFFECT
+      // GALERI: 35MM SLIDE MOUNT LIGHTBOX, SHUTTER IRIS & FLASH EFFECT
       // ------------------------------------------------------------------------
+      const gallerySlides = [
+        { src: 'assets/images/gambar4.jpeg', caption: '"LONG RUN PERTAMA"', frame: 'FRAME 01A' },
+        { src: 'assets/images/hero.jpeg', caption: '"jadi marshal"', frame: 'FRAME 02A' },
+        { src: 'assets/images/gambar1.jpeg', caption: '"biar apa ? biar kentchang"', frame: 'FRAME 03A' },
+        { src: 'assets/images/gambar3.jpeg', caption: '"FIRST KONTINGEN GENK KAPAK"', frame: 'FRAME 04A' },
+        { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'FRAME 05A' }
+      ];
+      let currentGalleryIndex = 0;
+
       const lightboxModal = document.getElementById('lightboxModal');
       const lightboxImg = document.getElementById('lightboxImg');
       const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxFrameNum = document.getElementById('lightboxFrameNum');
       const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+      const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+      const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+      const cameraShutterOverlay = document.getElementById('cameraShutterOverlay');
       const cameraFlash = document.getElementById('cameraFlash');
+      const cameraIris = document.getElementById('cameraIris');
 
-      window.openLightbox = function (src, caption) {
-        if (!lightboxModal) return;
-
-        // Optical Camera Flash Trigger
+      function triggerCameraShutter() {
+        if (cameraShutterOverlay) {
+          cameraShutterOverlay.classList.remove('shutter-active');
+          void cameraShutterOverlay.offsetWidth;
+          cameraShutterOverlay.classList.add('shutter-active');
+          setTimeout(() => {
+            cameraShutterOverlay.classList.remove('shutter-active');
+          }, 320);
+        }
         if (cameraFlash) {
           cameraFlash.classList.remove('flash-active');
-          void cameraFlash.offsetWidth; // Force CSS Reflow
+          void cameraFlash.offsetWidth;
           cameraFlash.classList.add('flash-active');
+        }
+      }
+
+      function showGallerySlide(index, withShutter = true) {
+        if (!lightboxModal || gallerySlides.length === 0) return;
+        currentGalleryIndex = (index + gallerySlides.length) % gallerySlides.length;
+        const slide = gallerySlides[currentGalleryIndex];
+
+        if (withShutter) {
+          triggerCameraShutter();
         }
 
         setTimeout(() => {
-          lightboxImg.src = src;
-          lightboxCaption.textContent = caption;
+          if (lightboxImg) {
+            lightboxImg.src = slide.src;
+            lightboxImg.alt = slide.caption;
+          }
+          if (lightboxCaption) lightboxCaption.textContent = slide.caption;
+          if (lightboxFrameNum) lightboxFrameNum.textContent = slide.frame;
           lightboxModal.classList.add('open');
           document.body.style.overflow = 'hidden';
-        }, 120);
+        }, withShutter ? 100 : 0);
+      }
+
+      window.openLightboxByIndex = function (index) {
+        showGallerySlide(index, true);
+      };
+
+      // Backward-compatible fallback
+      window.openLightbox = function (src, caption) {
+        const foundIndex = gallerySlides.findIndex(s => s.src === src);
+        if (foundIndex !== -1) {
+          showGallerySlide(foundIndex, true);
+        } else {
+          triggerCameraShutter();
+          setTimeout(() => {
+            if (lightboxImg) lightboxImg.src = src;
+            if (lightboxCaption) lightboxCaption.textContent = caption;
+            if (lightboxFrameNum) lightboxFrameNum.textContent = 'SAFETY FILM';
+            lightboxModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+          }, 100);
+        }
       };
 
       function closeLightbox() {
@@ -251,16 +305,82 @@
       }
 
       if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
-      if (lightboxModal) {
-        lightboxModal.addEventListener('click', function (e) {
-          if (e.target === this) closeLightbox();
+      if (lightboxPrevBtn) {
+        lightboxPrevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showGallerySlide(currentGalleryIndex - 1, false);
         });
       }
+      if (lightboxNextBtn) {
+        lightboxNextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showGallerySlide(currentGalleryIndex + 1, false);
+        });
+      }
+
+      if (lightboxModal) {
+        lightboxModal.addEventListener('click', function (e) {
+          // Close if clicked on modal backdrop directly
+          if (e.target === this || e.target.classList.contains('lightbox-inner')) {
+            closeLightbox();
+          }
+        });
+      }
+
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('open')) {
+        if (!lightboxModal || !lightboxModal.classList.contains('open')) return;
+        if (e.key === 'Escape') {
           closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          showGallerySlide(currentGalleryIndex - 1, false);
+        } else if (e.key === 'ArrowRight') {
+          showGallerySlide(currentGalleryIndex + 1, false);
         }
       });
+
+      // ------------------------------------------------------------------------
+      // GALERI: FILM LUT SWITCHER (400TX B&W, FUJI 800, DARKROOM)
+      // ------------------------------------------------------------------------
+      const lutButtons = document.querySelectorAll('.lut-btn');
+      const galleryGrid = document.getElementById('galleryGrid');
+      if (galleryGrid && lutButtons.length > 0) {
+        lutButtons.forEach(btn => {
+          btn.addEventListener('click', function () {
+            lutButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const lut = this.getAttribute('data-lut');
+
+            galleryGrid.classList.remove('lut-bw', 'lut-retro', 'lut-darkroom');
+            if (lut === 'bw') {
+              galleryGrid.classList.add('lut-bw');
+            } else if (lut === 'retro') {
+              galleryGrid.classList.add('lut-retro');
+            } else if (lut === 'darkroom') {
+              galleryGrid.classList.add('lut-darkroom');
+            }
+          });
+        });
+      }
+
+      // ------------------------------------------------------------------------
+      // GALERI: 3D INTERACTIVE TILT ON FILM CARDS (Desktop)
+      // ------------------------------------------------------------------------
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const filmCards = document.querySelectorAll('.film-card');
+        filmCards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -(y / rect.height) * 10;
+            const rotateY = (x / rect.width) * 10;
+            card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+        });
+      }
 
       // ------------------------------------------------------------------------
       // ANIMASI #4+: INTERACTIVE 3D HOLOGRAPHIC TILT PADA BIB CARDS
