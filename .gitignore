@@ -1,0 +1,16 @@
+# Environment & Secret files
+.env
+.env.local
+.env.*.local
+strava_config.json
+
+# Vercel & Node
+.vercel
+node_modules/
+npm-debug.log*
+
+# Python & OS
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

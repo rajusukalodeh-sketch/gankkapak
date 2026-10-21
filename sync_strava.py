@@ -22,17 +22,22 @@ def log(msg, level="INFO"):
     print(f"{now} [{level}] {msg}")
 
 def run_sync():
-    if not os.path.exists(CONFIG_FILE):
-        log("File strava_config.json tidak ditemukan!", "ERROR")
-        sys.exit(1)
+    client_id = os.environ.get('STRAVA_CLIENT_ID', '').strip()
+    client_secret = os.environ.get('STRAVA_CLIENT_SECRET', '').strip()
+    refresh_token = os.environ.get('STRAVA_REFRESH_TOKEN', '').strip()
+    club_id = os.environ.get('STRAVA_CLUB_ID', '').strip()
 
-    with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
-        config = json.load(f)
-
-    client_id = str(config.get('client_id', '')).strip()
-    client_secret = str(config.get('client_secret', '')).strip()
-    refresh_token = str(config.get('refresh_token', '')).strip()
-    club_id = str(config.get('club_id', '')).strip()
+    config = {}
+    if os.path.exists(CONFIG_FILE):
+        try:
+            with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            client_id = client_id or str(config.get('client_id', '')).strip()
+            client_secret = client_secret or str(config.get('client_secret', '')).strip()
+            refresh_token = refresh_token or str(config.get('refresh_token', '')).strip()
+            club_id = club_id or str(config.get('club_id', '')).strip()
+        except Exception:
+            pass
 
     is_mock = '--mock' in sys.argv or 'MASUKKAN' in client_id or not client_id or not club_id
 
@@ -41,10 +46,10 @@ def run_sync():
         log("Menjalankan mode simulasi (mock) agar data tetap ter-update...", "INFO")
         mock_data = [
             {"rank": "01", "name": "Anisa (Mba-mba Ultra)", "distance": "168.0 KM"},
-            {"rank": "02", "name": "Ega (Dieng Elevasi)", "distance": "136.5 KM"},
-            {"rank": "03", "name": "Surya (Marketing Handal)", "distance": "116.2 KM"},
-            {"rank": "04", "name": "Fajar (Admin Digital)", "distance": "103.0 KM"},
-            {"rank": "05", "name": "Evan (Introvert Lari Hening)", "distance": "88.4 KM"},
+            {"rank": "02", "name": "Ega (Dieng)", "distance": "136.5 KM"},
+            {"rank": "03", "name": "Surya", "distance": "116.2 KM"},
+            {"rank": "04", "name": "Fajar", "distance": "103.0 KM"},
+            {"rank": "05", "name": "Gusti", "distance": "84.0 KM"},
         ]
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(mock_data, f, indent=4, ensure_ascii=False)

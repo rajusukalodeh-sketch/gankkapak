@@ -52,17 +52,15 @@ function logMessage($msg, $type = 'info') {
 // -----------------------------------------------------------------------------
 // 1. BACA KONFIGURASI STRAVA
 // -----------------------------------------------------------------------------
-if (!file_exists($configFile)) {
-    logMessage("File konfigurasi strava_config.json tidak ditemukan!", 'error');
-    exit(1);
+$config = [];
+if (file_exists($configFile)) {
+    $config = json_decode(file_get_contents($configFile), true) ?: [];
 }
 
-$config = json_decode(file_get_contents($configFile), true);
-
-$clientId     = trim($config['client_id'] ?? '');
-$clientSecret = trim($config['client_secret'] ?? '');
-$refreshToken = trim($config['refresh_token'] ?? '');
-$clubId       = trim($config['club_id'] ?? '');
+$clientId     = trim(getenv('STRAVA_CLIENT_ID') ?: ($config['client_id'] ?? ''));
+$clientSecret = trim(getenv('STRAVA_CLIENT_SECRET') ?: ($config['client_secret'] ?? ''));
+$refreshToken = trim(getenv('STRAVA_REFRESH_TOKEN') ?: ($config['refresh_token'] ?? ''));
+$clubId       = trim(getenv('STRAVA_CLUB_ID') ?: ($config['club_id'] ?? ''));
 
 $isMock = isset($_GET['mock']) || (isset($argv[1]) && $argv[1] === '--mock');
 
@@ -117,13 +115,12 @@ if ($isMock) {
     logMessage("Menghasilkan data simulasi bulan " . date('F Y') . "...", 'info');
     $mockAthletes = [
         ['name' => 'Anisa (Mba-mba Ultra)', 'base' => 165],
-        ['name' => 'Ega (Dieng Elevasi)', 'base' => 135],
-        ['name' => 'Surya (Marketing Handal)', 'base' => 118],
-        ['name' => 'Fajar (Admin Digital)', 'base' => 102],
-        ['name' => 'Evan (Introvert Lari Hening)', 'base' => 88],
-        ['name' => 'Iqbal (Klarifikasi Nyasar)', 'base' => 74],
-        ['name' => 'Gusti (Transportasi Galon)', 'base' => 62],
-        ['name' => 'Faisal (Ayah Pulang Kenyang)', 'base' => 55],
+        ['name' => 'Ega (Dieng)', 'base' => 135],
+        ['name' => 'Surya ', 'base' => 118],
+        ['name' => 'Fajar', 'base' => 102],
+        ['name' => 'Iqbal', 'base' => 74],
+        ['name' => 'Gusti', 'base' => 62],
+        ['name' => 'Faisal', 'base' => 55],
     ];
 
     // Tambahkan variasi jarak realistis

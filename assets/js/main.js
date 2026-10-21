@@ -277,7 +277,8 @@
         { src: 'assets/images/gambar1.jpeg', caption: '"BIAR APA ? BIAR KENTCHANG"', frame: 'RECAP #03' },
         { src: 'assets/images/gambar3.jpeg', caption: '"FIRST KONTINGEN GANK KAPAK"', frame: 'RECAP #04' },
         { src: 'assets/images/gambar2.jpeg', caption: '"PATROLI MALAM & ROMBONGAN"', frame: 'RECAP #05' },
-        { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'RECAP #06' }
+        { src: 'assets/images/gambar5.jpeg', caption: '"UNO RUN AWAL DARI SEMUA"', frame: 'RECAP #06' },
+        { src: 'assets/images/gambar6.jpeg', caption: '"EIGER MEGA BAZAAR MOJOKERTO"', frame: 'RECAP #07' }
       ];
       let currentGalleryIndex = 0;
 
@@ -538,37 +539,80 @@
       }
 
       // ------------------------------------------------------------------------
-      // DYNAMIC STRAVA SYNC LOADER (Papan km dengan Bar & Crown)
+      // DYNAMIC STRAVA SYNC LOADER (Vercel Serverless / Local Fallback)
       // ------------------------------------------------------------------------
       const leaderboardContainer = document.getElementById('leaderboardRows');
       if (leaderboardContainer && window.fetch) {
-        fetch('data/leaderboard.json')
-          .then(res => {
-            if (!res.ok) throw new Error('Data leaderboard tidak ditemukan');
-            return res.json();
-          })
+        async function loadLeaderboardData() {
+          // 1. Coba ambil data realtime dari Serverless Function Vercel
+          try {
+            const apiRes = await fetch('/api/leaderboard');
+            if (apiRes.ok) {
+              const apiData = await apiRes.json();
+              if (Array.isArray(apiData) && apiData.length > 0) return apiData;
+              if (apiData && Array.isArray(apiData.data) && apiData.data.length > 0) return apiData.data;
+            }
+          } catch (_) {
+            // Lanjutkan ke fallback statis jika di luar lingkungan Vercel
+          }
+
+          // 2. Fallback ke file statis data/leaderboard.json
+          const staticRes = await fetch('data/leaderboard.json');
+          if (!staticRes.ok) throw new Error('Data leaderboard tidak ditemukan');
+          return await staticRes.json();
+        }
+
+        loadLeaderboardData()
           .then(list => {
             if (Array.isArray(list) && list.length > 0) {
               const maxDist = Math.max(...list.map(i => parseFloat(i.distance) || 1));
-              leaderboardContainer.innerHTML = list.map((item, idx) => {
+
+              // Bersihkan container secara aman (Anti-XSS DOM standard)
+              leaderboardContainer.replaceChildren();
+
+              list.forEach((item, idx) => {
                 const distVal = parseFloat(item.distance) || 0;
                 const percent = maxDist > 0 ? ((distVal / maxDist) * 100).toFixed(1) : 50;
                 const isLeader = idx === 0;
-                return `
-                  <div class="leaderboard-row" data-percent="${percent}">
-                    <span class="leaderboard-rank ${isLeader ? 'leader-top' : ''}">
-                      ${item.rank} ${isLeader ? '<span class="crown-icon">👑</span>' : ''}
-                    </span>
-                    <span class="leaderboard-name">${item.name}</span>
-                    <span class="leaderboard-km">${item.distance}</span>
-                    <div class="leaderboard-bar" style="--bar-fill: ${percent}%;"></div>
-                  </div>
-                `;
-              }).join('');
+
+                const row = document.createElement('div');
+                row.className = 'leaderboard-row';
+                row.setAttribute('data-percent', percent);
+
+                const rankSpan = document.createElement('span');
+                rankSpan.className = `leaderboard-rank ${isLeader ? 'leader-top' : ''}`;
+                rankSpan.textContent = `${item.rank || String(idx + 1).padStart(2, '0')} `;
+
+                if (isLeader) {
+                  const crown = document.createElement('span');
+                  crown.className = 'crown-icon';
+                  crown.textContent = '👑';
+                  rankSpan.appendChild(crown);
+                }
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'leaderboard-name';
+                nameSpan.textContent = item.name || 'Pelari Gank Kapak';
+
+                const kmSpan = document.createElement('span');
+                kmSpan.className = 'leaderboard-km';
+                kmSpan.textContent = item.distance || `${distVal.toFixed(1)} KM`;
+
+                const barDiv = document.createElement('div');
+                barDiv.className = 'leaderboard-bar';
+                barDiv.style.setProperty('--bar-fill', `${percent}%`);
+
+                row.appendChild(rankSpan);
+                row.appendChild(nameSpan);
+                row.appendChild(kmSpan);
+                row.appendChild(barDiv);
+
+                leaderboardContainer.appendChild(row);
+              });
             }
           })
           .catch(() => {
-            // Fallback otomatis menggunakan daftar default
+            // Gunakan daftar default HTML yang sudah ada jika semua fetch gagal
           });
       }
 
