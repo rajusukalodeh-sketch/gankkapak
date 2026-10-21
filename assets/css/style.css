@@ -1721,15 +1721,24 @@ footer[id] {
 }
 
 .bib-photo-mini {
-  width: 68px;
-  height: 68px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 6px;
+  margin: 0 auto 8px;
   border: 2px solid #0A0F0B;
-  filter: grayscale(100%) contrast(1.2);
+  background-color: #FFFFFF;
+  filter: none; /* Hilangkan efek grayscale keras agar foto jelas, natural, dan berwarna */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
-  z-index: 2;
+  z-index: 6; /* Di atas lapisan efek holographic sheen */
+  transition: transform 0.25s var(--ease-run), box-shadow 0.25s ease;
+}
+
+.bib-card:hover .bib-photo-mini,
+.bib-card.active .bib-photo-mini {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(31, 157, 85, 0.3);
 }
 
 .bib-runner-details {
